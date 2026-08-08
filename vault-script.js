@@ -48,6 +48,7 @@ function animate() {
 animate();
 window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
 // --- Live Cryptograph Logic ---
+// --- Live Cryptograph Easter Egg Logic ---
 const cryptoChat = document.getElementById('crypto-chat');
 const cryptoInput = document.getElementById('crypto-input');
 
@@ -61,17 +62,23 @@ if (cryptoInput) {
             cryptoChat.innerHTML += `<div class="usr-msg">> INPUT: ${plaintext}</div>`;
             cryptoChat.scrollTop = cryptoChat.scrollHeight;
 
-            // Simulate Encryption Processing Delay
+            // Simulate Heavy Processing Delay for comedic effect
             setTimeout(() => {
-                // Generate a random 64-character "hash"
-                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
-                let hash = '';
-                for (let i = 0; i < 64; i++) {
-                    hash += chars.charAt(Math.floor(Math.random() * chars.length));
-                }
+                // A pool of hilarious mock decryption outputs
+                const funnyOutputs = [
+                    "> CIPHERTEXT: Error 404 - Intelligence not found in input.",
+                    "> CIPHERTEXT: Decryption failed. Subject is just overthinking again.",
+                    "> CIPHERTEXT: Hash successfully generated: 100% pure aura.",
+                    "> CIPHERTEXT: Security breach! User's search history is leaking into the mainfram— wait, false alarm, it's just cringe.",
+                    "> CIPHERTEXT: Algorithm analyzed input. Verdict: Bro really thought that would work.",
+                    "> CIPHERTEXT: Encrypted successfully into 64 bits of pure stubbornness.",
+                    "> CIPHERTEXT: WARNING: Input contains too much swagger. System overheating."
+                ];
+
+                // Pick a random funny output
+                const randomResponse = funnyOutputs[Math.floor(Math.random() * funnyOutputs.length)];
                 
-                const response = `> CIPHERTEXT (SHA-256 SIM):<br>${hash}`;
-                cryptoChat.innerHTML += `<div class="crypto-msg">${response}</div>`;
+                cryptoChat.innerHTML += `<div class="crypto-msg">${randomResponse}</div>`;
                 cryptoChat.scrollTop = cryptoChat.scrollHeight;
             }, 600);
         }
