@@ -1,0 +1,30 @@
+:root { --vault-amber: #FFB000; --vault-dark: #050300; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background-color: var(--vault-dark); color: var(--vault-amber); font-family: 'JetBrains Mono', monospace; overflow-x: hidden; }
+
+#vault-canvas { position: fixed; top: 0; left: 0; z-index: -2; }
+.hud-scanline { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.5) 50%); background-size: 100% 4px; z-index: -1; pointer-events: none; }
+.vignette { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: radial-gradient(circle, transparent 30%, #000000 120%); z-index: -1; pointer-events: none; }
+
+nav { display: flex; justify-content: space-between; padding: 2rem 4vw; font-size: 0.85rem; letter-spacing: 2px; }
+.back-btn { color: var(--vault-amber); text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.3s; }
+.back-btn:hover { text-shadow: 0 0 8px var(--vault-amber); border-bottom: 1px solid var(--vault-amber); }
+
+.sys-status { animation: pulseAlert 2s infinite; }
+@keyframes pulseAlert { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+.terminal-container { padding: 2rem 4vw 5rem; max-width: 1400px; }
+.dossier-header { margin-bottom: 4rem; }
+.dossier-header h1 { font-family: 'Syncopate', sans-serif; font-size: clamp(2rem, 4vw, 4rem); font-weight: 700; text-shadow: 0 0 20px rgba(255, 176, 0, 0.4); margin-bottom: 0.5rem; letter-spacing: -2px; }
+.role-highlight { font-size: 0.9rem; margin-bottom: 2rem; opacity: 0.7; }
+.core-concept { font-size: 1.1rem; line-height: 1.7; max-width: 700px; color: #FFD580; margin-bottom: 3rem; }
+
+.action-station { margin-bottom: 3rem; }
+.live-link-btn { display: inline-block; padding: 1rem 2rem; color: var(--vault-dark); background-color: var(--vault-amber); text-decoration: none; font-weight: 700; letter-spacing: 2px; transition: all 0.2s; box-shadow: 0 0 15px rgba(255, 176, 0, 0.3); }
+.live-link-btn:hover { background-color: #FFF; color: var(--vault-dark); box-shadow: 0 0 30px rgba(255, 176, 0, 0.6); }
+
+.data-stream { display: flex; flex-direction: column; gap: 3rem; max-width: 800px; }
+.stream-block { position: relative; padding-left: 2rem; border-left: 1px solid rgba(255, 176, 0, 0.3); }
+.stream-block::before { content: ''; position: absolute; top: 0; left: -4px; width: 7px; height: 7px; background: var(--vault-amber); box-shadow: 0 0 10px var(--vault-amber); }
+.stream-title { font-size: 0.85rem; letter-spacing: 3px; margin-bottom: 1.5rem; opacity: 0.6; }
+.stream-content p { font-size: 0.95rem; line-height: 1.8; margin-bottom: 1.2rem; color: #FFD580; }

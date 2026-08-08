@@ -1,0 +1,99 @@
+:root {
+    --bg-color: #050505;
+    --text-main: #F4F4F5;
+    --text-muted: #A1A1AA;
+    --accent-color: #E50914; 
+    --grid-line: rgba(229, 9, 20, 0.1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    background-image: 
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+#bg-canvas { position: fixed; top: 0; left: 0; z-index: -2; }
+
+.vignette {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: radial-gradient(circle, transparent 40%, #000000 120%);
+    z-index: -1; pointer-events: none;
+}
+
+nav {
+    display: flex; justify-content: space-between; padding: 2rem 5vw;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; letter-spacing: 2px;
+}
+
+header { 
+    padding: 5rem 5vw 2rem; 
+    max-width: 1000px; 
+    margin: 0 auto; /* Centers the container */
+    text-align: center; /* Centers the text */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: clamp(3rem, 6vw, 6rem); font-weight: 900;
+    letter-spacing: -0.05em; line-height: 1; margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-family: 'JetBrains Mono', monospace; color: var(--accent-color);
+    letter-spacing: 0.1em; font-size: 0.9rem;
+}
+
+.target-list { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 1rem; 
+    padding: 2rem 5vw; 
+    max-width: 1000px; 
+    margin: 0 auto; /* Centers the targeting menu */
+}
+.target-row {
+    display: flex; justify-content: space-between; align-items: center;
+    text-decoration: none; color: inherit; padding: 2rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05); transition: all 0.3s ease;
+}
+
+.target-brackets {
+    font-family: 'JetBrains Mono', monospace; font-size: 3rem; font-weight: 300;
+    color: transparent; transition: all 0.3s ease; text-shadow: none;
+}
+
+.tech-label { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+
+.target-data h2 { font-size: clamp(1.5rem, 3vw, 2.5rem); letter-spacing: -1px; margin: 0; transition: color 0.3s ease; }
+
+.role-highlight { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem; opacity: 0; transition: opacity 0.3s ease; }
+
+.target-row:hover { padding: 2rem 1rem; border-bottom: 1px solid var(--accent-color); }
+.target-row:hover .target-brackets { color: var(--accent-color); text-shadow: 0 0 15px var(--accent-color); }
+.target-row:hover .target-data h2 { color: var(--accent-color); }
+.target-row:hover .tech-label { color: var(--accent-color); }
+.target-row:hover .role-highlight { opacity: 1; color: var(--text-main); }
+/* --- Hidden CLI Hack --- */
+#cli-terminal {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 45vh;
+    background: rgba(5, 5, 5, 0.95); border-bottom: 2px solid var(--accent-color);
+    z-index: 100; display: flex; flex-direction: column; padding: 2rem 5vw;
+    font-family: 'JetBrains Mono', monospace; backdrop-filter: blur(10px);
+    transition: transform 0.4s cubic-bezier(0.1, 1, 0.1, 1);
+    transform: translateY(-100%); /* Hidden by default */
+}
+#cli-terminal.cli-active { transform: translateY(0); }
+.cli-header { color: var(--accent-color); font-size: 0.8rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(229, 9, 20, 0.3); padding-bottom: 0.5rem; letter-spacing: 2px;}
+.cli-output { flex-grow: 1; overflow-y: auto; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.cli-output span { color: var(--text-main); }
+.cli-input-line { display: flex; gap: 1rem; color: var(--accent-color); font-size: 1rem; }
+#cli-input { background: transparent; border: none; color: var(--text-main); font-family: 'JetBrains Mono', monospace; font-size: 1rem; flex-grow: 1; outline: none; }

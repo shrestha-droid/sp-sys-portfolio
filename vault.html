@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZERO-TRUST VAULT | Security Dossier</title>
+    <link rel="stylesheet" href="vault-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <canvas id="vault-canvas"></canvas>
+    <div class="hud-scanline"></div>
+    <div class="vignette"></div>
+
+    <nav>
+        <a href="index.html" class="back-btn">< EXIT TO MAIN SYSTEM</a>
+        <div class="sys-status">SYS. STATE: SECURE // AIR-GAP ACTIVE</div>
+    </nav>
+
+    <main class="terminal-container">
+        <header class="dossier-header">
+            <h1>ZERO-TRUST VAULT</h1>
+            <h2 class="role-highlight">ROLE // Security Architecture & Full-Stack Dev</h2>
+            <p class="core-concept">A client-side cryptographic monolith capable of full offline execution. Engineered to eliminate server-side plaintext exposure, utilizing WebAssembly and Shamir's Secret Sharing to ensure absolute data custody.</p>
+            
+            <div class="action-station">
+                <a href="https://zero-trust-vault.netlify.app" target="_blank" class="live-link-btn">[ INITIALIZE LIVE DEPLOYMENT ]</a>
+            </div>
+        </header>
+
+        <section class="data-stream">
+            <div class="stream-block">
+                <div class="stream-title">01 // ARCHITECTURE</div>
+                <div class="stream-content">
+                    <p>> <strong>Core:</strong> JavaScript (ES6+), HTML5/DOM Security</p>
+                    <p>> <strong>Cryptography:</strong> WebCrypto API, WebAssembly (WASM)</p>
+                    <p>> <strong>Infrastructure:</strong> Supabase (PostgreSQL), strict RLS</p>
+                </div>
+            </div>
+
+            <div class="stream-block">
+                <div class="stream-title">02 // CRYPTO & PROTOCOLS</div>
+                <div class="stream-content">
+                    <p>> <strong>AES-256-GCM & Argon2id:</strong> GPU-accelerated brute-force resistance via WASM memory-hard key derivation.</p>
+                    <p>> <strong>Key-Shattering Architecture:</strong> Shamir’s Secret Sharing (SSS) distributes master keys across physical shards.</p>
+                    <p>> <strong>Air-Gap Mode:</strong> Mathematically severs telemetry, forcing localized localStorage commits.</p>
+                </div>
+            </div>
+
+            <div class="stream-block">
+                <div class="stream-title">03 // INFRASTRUCTURE & OPSEC</div>
+                <div class="stream-content">
+                    <p>> <strong>Row Level Security:</strong> Bound database read/write operations cryptographically to authenticated JSON Web Tokens.</p>
+                    <p>> <strong>DOM Hardening:</strong> Stringent CSP headers neutralize XSS and malicious extension injections.</p>
+                    <p>> <strong>Asset Re-hydration:</strong> Custom serialization parser encrypts raw binary (C++, PDF) to Base64, flawlessly reconstructing byte structure upon decryption.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="vault-script.js"></script>
+</body>
+</html>

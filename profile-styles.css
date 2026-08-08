@@ -1,0 +1,58 @@
+:root { 
+    --temporal-purple: #B200FF; 
+    --temporal-light: #E8D5FF;
+    --temporal-gold: #FFD700;
+    --void-dark: #05000A; 
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { 
+    background-color: var(--void-dark); 
+    color: var(--temporal-light); 
+    font-family: 'JetBrains Mono', monospace; 
+    overflow-x: hidden; 
+}
+
+#profile-canvas { position: fixed; top: 0; left: 0; z-index: -2; opacity: 0.9; }
+.hud-scanline { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(rgba(10, 0, 20, 0) 50%, rgba(10, 0, 20, 0.4) 50%); background-size: 100% 4px; z-index: -1; pointer-events: none; }
+.vignette { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: radial-gradient(circle, transparent 20%, #000000 130%); z-index: -1; pointer-events: none; }
+
+nav { display: flex; justify-content: space-between; padding: 2rem 4vw; font-size: 0.85rem; letter-spacing: 2px; color: var(--temporal-purple); }
+.back-btn { color: var(--temporal-purple); text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.3s; }
+.back-btn:hover { text-shadow: 0 0 10px var(--temporal-purple); border-bottom: 1px solid var(--temporal-purple); color: var(--temporal-light); }
+
+.sys-status { opacity: 0.8; font-weight: bold; }
+
+.terminal-container { padding: 2rem 4vw 5rem; max-width: 1400px; }
+.dossier-header { margin-bottom: 4rem; position: relative; }
+
+.biometric-tag { display: inline-block; padding: 0.3rem 0.8rem; border: 1px solid var(--temporal-purple); font-size: 0.8rem; margin-bottom: 1.5rem; background: rgba(178, 0, 255, 0.1); color: var(--temporal-light); }
+.dossier-header h1 { font-family: 'Syncopate', sans-serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 700; text-shadow: 0 0 20px rgba(178, 0, 255, 0.6); margin-bottom: 0.5rem; letter-spacing: -2px; color: #FFF; }
+.role-highlight { font-size: 0.9rem; margin-bottom: 2rem; opacity: 0.8; color: var(--temporal-purple); }
+.core-concept { font-size: 1.1rem; line-height: 1.7; max-width: 700px; color: var(--temporal-light); margin-bottom: 3rem; }
+
+.data-stream { display: flex; flex-direction: column; gap: 3rem; max-width: 800px; }
+.stream-block { position: relative; padding-left: 2rem; border-left: 1px solid rgba(178, 0, 255, 0.3); }
+.stream-block::before { content: ''; position: absolute; top: 0; left: -4px; width: 7px; height: 7px; background: var(--temporal-purple); box-shadow: 0 0 12px var(--temporal-purple); }
+.stream-title { font-size: 0.85rem; letter-spacing: 3px; margin-bottom: 1.5rem; opacity: 0.9; color: var(--temporal-purple); }
+.stream-content p { font-size: 0.95rem; line-height: 1.8; margin-bottom: 1.2rem; color: var(--temporal-light); }
+
+.network-link { color: var(--temporal-purple); text-decoration: none; font-weight: bold; transition: all 0.3s; display: inline-block; }
+.network-link:hover { text-shadow: 0 0 15px var(--temporal-purple); color: #FFF; transform: translateX(5px); }
+/* --- Destabilization Warning --- */
+#temporal-warning {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    text-align: center; color: #FF003C; font-family: 'Syncopate', sans-serif;
+    z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.2s;
+    text-shadow: 0 0 20px #FF003C;
+}
+#temporal-warning h2 { font-size: 3rem; letter-spacing: 5px; margin-bottom: 1rem; }
+.glitch-active #temporal-warning { opacity: 1; animation: jitter 0.1s infinite; }
+.glitch-active body { background-color: #1A0005; } /* Dark Red Void */
+
+@keyframes jitter {
+    0% { transform: translate(-50%, -50%) translate(2px, 2px); }
+    50% { transform: translate(-50%, -50%) translate(-2px, -2px); }
+    100% { transform: translate(-50%, -50%) translate(2px, -2px); }
+}

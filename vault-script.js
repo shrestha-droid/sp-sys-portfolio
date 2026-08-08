@@ -1,0 +1,49 @@
+const canvas = document.querySelector('#vault-canvas');
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(window.innerWidth, window.innerHeight);
+camera.position.setZ(45); camera.position.setX(20); 
+
+const material = new THREE.MeshBasicMaterial({ color: 0xFFB000, wireframe: true, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending });
+const lineMaterial = new THREE.LineBasicMaterial({ color: 0xFFB000, transparent: true, opacity: 0.15 });
+
+const coreMesh = new THREE.Mesh(new THREE.OctahedronGeometry(8, 0), material);
+scene.add(coreMesh);
+
+const shards = [], tethers = [];
+for(let i = 0; i < 6; i++) {
+    const shard = new THREE.Mesh(new THREE.TetrahedronGeometry(1.5, 0), material);
+    shard.userData = { orbitSpeed: 0.0015 + Math.random() * 0.003, angle: Math.random() * Math.PI * 2, radius: 18 + Math.random() * 12, yOffset: (Math.random() - 0.5) * 20 };
+    shards.push(shard); scene.add(shard);
+    const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints([coreMesh.position, shard.position]), lineMaterial);
+    tethers.push(line); scene.add(line);
+}
+
+let mouseX = 0, mouseY = 0;
+document.addEventListener('mousemove', (e) => { mouseX = (e.clientX / window.innerWidth) * 2 - 1; mouseY = -(e.clientY / window.innerHeight) * 2 + 1; });
+
+function animate() {
+    requestAnimationFrame(animate);
+    coreMesh.rotation.y += 0.002; coreMesh.rotation.z += 0.001;
+    coreMesh.rotation.x += (mouseY * 0.3 - coreMesh.rotation.x) * 0.05;
+    coreMesh.rotation.y += (mouseX * 0.3 - coreMesh.rotation.y) * 0.05;
+
+    shards.forEach((shard, index) => {
+        shard.userData.angle += shard.userData.orbitSpeed;
+        shard.position.x = Math.cos(shard.userData.angle) * shard.userData.radius;
+        shard.position.z = Math.sin(shard.userData.angle) * shard.userData.radius;
+        shard.position.y = shard.userData.yOffset + Math.sin(shard.userData.angle * 2) * 5;
+        shard.rotation.x += 0.01; shard.rotation.y += 0.01;
+
+        const positions = tethers[index].geometry.attributes.position.array;
+        positions[0] = coreMesh.position.x; positions[1] = coreMesh.position.y; positions[2] = coreMesh.position.z;
+        positions[3] = shard.position.x; positions[4] = shard.position.y; positions[5] = shard.position.z;
+        tethers[index].geometry.attributes.position.needsUpdate = true;
+    });
+    renderer.render(scene, camera);
+}
+animate();
+window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });

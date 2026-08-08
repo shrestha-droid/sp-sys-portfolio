@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRIDAY | System Dossier</title>
+    <link rel="stylesheet" href="friday-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <canvas id="hud-canvas"></canvas>
+    
+    <div class="hud-scanline"></div>
+    <div class="vignette"></div>
+
+    <nav>
+        <a href="index.html" class="back-btn">< EXIT TO MAIN SYSTEM</a>
+        <div class="sys-status">SYS. STATE: ONLINE</div>
+    </nav>
+
+    <main class="terminal-container">
+        <header class="dossier-header">
+            <h1>FRIDAY_AI</h1>
+            <div class="mic-status">
+                <span class="pulse-dot"></span>
+                <span>AUDIO OVERRIDE // LISTENING...</span>
+            </div>
+            <p class="core-concept">A local-first, OS-integrated AI operating assistant featuring a custom WebGL holographic interface, bypassing standard browser sandboxes to execute native system commands via a background Python daemon.</p>
+        </header>
+
+        <section class="holo-stream">
+            
+            <div class="stream-block">
+                <div class="stream-title">PROTOCOL // ARCHITECTURE</div>
+                <div class="stream-content">
+                    <p>> <strong>Backend:</strong> Python 3, FastAPI, Uvicorn (Asynchronous REST/WebSocket API)</p>
+                    <p>> <strong>LLM Engine:</strong> Google GenAI SDK (Gemini 2.5 Flash)</p>
+                    <p>> <strong>Frontend:</strong> HTML5, CSS3, Vanilla JS, Three.js (WebGL)</p>
+                    <p>> <strong>OS Integration:</strong> rumps, subprocess, psutil</p>
+                </div>
+            </div>
+
+            <div class="stream-block">
+                <div class="stream-title">PROTOCOL // CAPABILITIES</div>
+                <div class="stream-content">
+                    <p>> <strong>OS-Level Tool Calling:</strong> Autonomously executes terminal commands and reads local files.</p>
+                    <p>> <strong>Dynamic State Machine:</strong> UI reacts to AI states (Standby vs. Active Matrix).</p>
+                    <p>> <strong>Multi-Modal I/O:</strong> Voice mapping, glassmorphic CLI, drag-and-drop context injection.</p>
+                    <p>> <strong>Background Daemon:</strong> Native macOS menu bar persistence.</p>
+                </div>
+            </div>
+
+            <div class="stream-block">
+                <div class="stream-title">LOG // ENGINEERING SOLUTIONS</div>
+                <div class="stream-content">
+                    <p>> <strong>Sandbox Escape:</strong> Engineered a localhost:8000 bridge connecting browser Web Speech APIs to a root-level Python environment.</p>
+                    <p>> <strong>Tool-Calling Pipelines:</strong> Implemented strict function-calling via Gemini SDK, feeding terminal output seamlessly back into the LLM context.</p>
+                    <p>> <strong>Thermal Optimization:</strong> Dropped heavy per-frame vertex displacement for lightweight nested matrix rotations, reducing CPU overhead by 90%.</p>
+                </div>
+            </div>
+
+        </section>
+
+        <div class="ai-interface">
+            <div class="ai-chat-window" id="ai-chat">
+                <div class="ai-msg">> FRIDAY_SYS: I am online. How can I assist you with Shrestha's portfolio?</div>
+            </div>
+            <div class="ai-input-wrapper">
+                <span class="ai-prompt">USR ></span>
+                <input type="text" id="ai-input" placeholder="Query Friday..." autocomplete="off">
+            </div>
+        </div>
+        
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="friday-script.js"></script>
+</body>
+</html>
