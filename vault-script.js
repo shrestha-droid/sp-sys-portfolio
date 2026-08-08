@@ -47,3 +47,33 @@ function animate() {
 }
 animate();
 window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
+// --- Live Cryptograph Logic ---
+const cryptoChat = document.getElementById('crypto-chat');
+const cryptoInput = document.getElementById('crypto-input');
+
+if (cryptoInput) {
+    cryptoInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && cryptoInput.value.trim() !== '') {
+            const plaintext = cryptoInput.value.trim();
+            cryptoInput.value = '';
+            
+            // Print User Input
+            cryptoChat.innerHTML += `<div class="usr-msg">> INPUT: ${plaintext}</div>`;
+            cryptoChat.scrollTop = cryptoChat.scrollHeight;
+
+            // Simulate Encryption Processing Delay
+            setTimeout(() => {
+                // Generate a random 64-character "hash"
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
+                let hash = '';
+                for (let i = 0; i < 64; i++) {
+                    hash += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                
+                const response = `> CIPHERTEXT (SHA-256 SIM):<br>${hash}`;
+                cryptoChat.innerHTML += `<div class="crypto-msg">${response}</div>`;
+                cryptoChat.scrollTop = cryptoChat.scrollHeight;
+            }, 600);
+        }
+    });
+}
