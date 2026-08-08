@@ -62,30 +62,28 @@ const cliOutput = document.getElementById('cli-output');
 
 // Rolling buffer listener for trigger sequence
 document.addEventListener('keydown', (e) => {
-    // Ignore modifier keys that interrupt fast typing
     if (['Shift', 'Control', 'Alt', 'Meta', 'CapsLock'].includes(e.key)) return;
     
-    // Add the pressed key to the buffer
     keyBuffer += e.key;
-    
-    // Keep only the last 3 characters in the memory buffer
-    if (keyBuffer.length > 3) {
-        keyBuffer = keyBuffer.slice(-3);
-    }
+    if (keyBuffer.length > 3) keyBuffer = keyBuffer.slice(-3);
 
-    // Trigger the CLI if the last 3 keys were '///'
     if (keyBuffer === '///') {
         cli.classList.toggle('cli-active');
         if (cli.classList.contains('cli-active')) { 
-            setTimeout(() => cliInput.focus(), 100); 
+            // Wait 400ms for the CSS slide animation to finish before forcing focus
+            setTimeout(() => cliInput.focus(), 400); 
         }
-        keyBuffer = ''; // Clear buffer after successful trigger
+        keyBuffer = ''; 
     } 
-    // Emergency exit for the terminal
     else if (e.key === 'Escape') {
         cli.classList.remove('cli-active');
         keyBuffer = '';
     }
+});
+
+// Force focus if the user clicks anywhere inside the terminal
+cli.addEventListener('click', () => {
+    cliInput.focus();
 });
 
 // Process terminal commands
@@ -102,13 +100,17 @@ function printOutput(text) {
     const el = document.createElement('div');
     el.innerHTML = text;
     cliOutput.appendChild(el);
-    cliOutput.scrollTop = cliOutput.scrollHeight; // Auto-scroll to bottom
+    cliOutput.scrollTop = cliOutput.scrollHeight; 
 }
 
 function processCommand(cmd) {
     switch(cmd) {
         case 'help': 
             printOutput('> COMMANDS: whoami, status, init concierge, clear, exit'); 
+            // Adds a slight delay for comedic timing
+            setTimeout(() => {
+                printOutput('> (and yes, ik i am pretty cool to add this part 😎)');
+            }, 800);
             break;
         case 'whoami': 
             printOutput('> SP_1102 // DESIGNATION: AI SYSTEMS ARCHITECT'); 
