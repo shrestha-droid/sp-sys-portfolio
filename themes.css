@@ -1,0 +1,105 @@
+/* One theme per project. Variables apply to the project's home tile and its case-study page;
+   the decoration rules below only touch the page (.case) unless they say .tile. */
+
+/* ---- Branch HQ: an agent crew in terminal windows ---- */
+.t-branch-hq { --bg:#03110c; --fg:#d8ffee; --soft:#9fd9bf; --muted:#5f8f7a; --line:#0f3a2b; --accent:#00e5a0; --accent2:#7cffcb; --display:'JetBrains Mono',monospace; --body:'JetBrains Mono',monospace; --display-weight:800; --display-ls:-.05em; --r:6px; --r2:8px; }
+.t-branch-hq .case section { border: 1px solid var(--line); border-radius: 10px; background: #00e5a00a; padding: 0 1.25rem .8rem; overflow: hidden; }
+.t-branch-hq .case h2 { margin: 0 -1.25rem .6rem; padding: .7rem 1.25rem; background: #00e5a014; border-bottom: 1px solid var(--line); text-transform: none; letter-spacing: 0; }
+.t-branch-hq .case h2::before { content: '● ● ●   '; color: #ff5f56; letter-spacing: .05em; word-spacing: -.1em; }
+.t-branch-hq .case section p { border-top: 0; padding: .35rem 0; font-size: .88rem; }
+.t-branch-hq .case section p::before { content: '$ '; color: var(--accent); }
+.t-branch-hq .case h1::after { content: '_'; color: var(--accent); animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ---- Zero-Trust Vault v2: key slots ---- */
+.t-vault-v2 { --bg:#0b0700; --fg:#fff1d0; --soft:#d9c7a0; --muted:#8f7d56; --line:#2c2108; --accent:#ffb000; --accent2:#ffd36b; --display:'Syncopate',sans-serif; --body:'Space Grotesk',sans-serif; --display-weight:700; --display-case:uppercase; --display-ls:-.04em; --r:0; --r2:0; }
+.t-vault-v2 .case h1 { font-size: clamp(2rem, 5.2vw, 4.2rem); }
+.t-vault-v2 .case section { position: relative; padding: 1.4rem 1.4rem .6rem 1.4rem; border: 1px solid var(--line); border-top: 3px solid var(--accent); background: linear-gradient(180deg, #ffb00010, transparent); }
+.t-vault-v2 .case h2::before { content: 'SLOT ' counter(sec) ' ▸ '; }
+.t-vault-v2 .case section::after { content: ''; position: absolute; right: 1rem; top: 1rem; width: 14px; height: 14px; border: 2px solid var(--accent); border-radius: 50%; box-shadow: inset 0 0 0 3px var(--bg), inset 0 0 0 5px var(--accent); }
+
+/* ---- SPHEREx: observatory plates ---- */
+.t-spherex { --bg:#030816; --fg:#e6f0ff; --soft:#a9bddd; --muted:#6d82a8; --line:#13244a; --accent:#7ab8ff; --accent2:#c4a7ff; --display:'Space Grotesk',sans-serif; --body:'Space Grotesk',sans-serif; --display-weight:300; --display-ls:-.05em; }
+.t-spherex .case h1 { background: linear-gradient(100deg, #fff, var(--accent) 55%, var(--accent2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.t-spherex .case h2::before { content: 'PLATE ' counter(sec, upper-roman) ' · '; }
+.t-spherex .case section p { border-top-style: dashed; }
+
+/* ---- CLPS: sun and earth over a blueprint ---- */
+.t-clps { --bg:#09090d; --fg:#f2f2f6; --soft:#b5b5c4; --muted:#7c7c8e; --line:#20202c; --accent:#ffd166; --accent2:#4da3ff; --display:'Space Mono',monospace; --body:'Space Mono',monospace; --display-weight:700; --display-ls:-.06em; --r:2px; --r2:2px; }
+.t-clps { background-image: linear-gradient(#ffffff0a 1px, transparent 1px), linear-gradient(90deg, #ffffff0a 1px, transparent 1px); background-size: 44px 44px; }
+.t-clps .case h1 { text-shadow: 4px 4px 0 #4da3ff55; }
+.t-clps .case h2::before { content: '§' counter(sec) ' '; }
+.t-clps .case section p { font-size: .88rem; border-top-style: dotted; }
+
+/* ---- Drishti: traffic signal ---- */
+.t-drishti { --bg:#0d0c0a; --fg:#fff3df; --soft:#cfc3ad; --muted:#8c8372; --line:#2a2620; --accent:#ff9f1c; --accent2:#2ee86b; --display:'Barlow Condensed','Noto Sans Devanagari',sans-serif; --body:'Barlow Condensed','Noto Sans Devanagari',sans-serif; --display-weight:800; --display-case:uppercase; --display-ls:-.01em; --r:4px; --r2:4px; }
+.t-drishti .case { font-size: 1.05rem; }
+.t-drishti .case h1 { font-size: clamp(3.4rem, 10vw, 8rem); line-height: .85; }
+.t-drishti .case h1::after { content: ''; display: block; height: 12px; margin-top: 1rem; background: repeating-linear-gradient(-45deg, var(--accent) 0 16px, #0d0c0a 16px 32px); }
+.t-drishti .case section { padding-left: 1.4rem; border-left: 8px solid var(--sig, #2ee86b); }
+.t-drishti .case section:nth-of-type(3n+2) { --sig: #ff9f1c; }
+.t-drishti .case section:nth-of-type(3n+3) { --sig: #ff3b3b; }
+.t-drishti .case section p { font-size: 1.02rem; }
+
+/* ---- Bheed Drishti: marigold garland and crowd heat ---- */
+.t-bheed-drishti { --bg:#1a0805; --fg:#fff0e0; --soft:#e2c3ab; --muted:#a07c66; --line:#40170d; --accent:#ff6b35; --accent2:#ffc233; --display:'Poppins','Noto Sans Devanagari',sans-serif; --body:'Poppins','Noto Sans Devanagari',sans-serif; --display-weight:800; --display-ls:-.04em; --r:12px; --r2:18px; }
+.t-bheed-drishti .case h1 { background: linear-gradient(95deg, var(--accent2), var(--accent) 50%, #e11d48); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: 1.4rem; }
+.t-bheed-drishti .case h1::after { content: ''; display: block; height: 14px; margin-top: .6rem; background: radial-gradient(circle at 7px 7px, var(--accent2) 0 4px, transparent 5px) 0 0/22px 14px repeat-x; }
+.t-bheed-drishti .case section { padding: 1.2rem 1.4rem .5rem; border-radius: var(--r2); background: linear-gradient(160deg, #ff6b3516, #e11d4810); border: 1px solid #ff6b3530; }
+.t-bheed-drishti .case section p { border-top-color: #ff6b3524; font-size: .93rem; }
+
+/* ---- RING0: protection rings, counted down to the kernel ---- */
+.t-ring0 { --bg:#090512; --fg:#f1e9ff; --soft:#bfb0e0; --muted:#8272ad; --line:#2a1d4a; --accent:#b388ff; --accent2:#ff7ad9; --display:'IBM Plex Mono',monospace; --body:'IBM Plex Mono',monospace; --display-weight:600; --display-ls:-.07em; --r:4px; --r2:6px; }
+.t-ring0 .case { counter-reset: ring var(--n, 4); }
+.t-ring0 .case section { counter-increment: ring -1; padding: 1.1rem 1.3rem .4rem; border: 1px solid var(--line); border-radius: 1.2rem; }
+.t-ring0 .case h2::before { content: 'RING ' counter(ring) ' ▸ '; }
+.t-ring0 .case section:last-of-type { border-color: var(--accent); box-shadow: 0 0 40px #b388ff30; }
+.t-ring0 .case h1::before { content: 'sudo '; color: var(--accent2); font-size: .35em; letter-spacing: 0; vertical-align: super; }
+
+/* ---- MEND: a hex dump that heals ---- */
+.t-mend { --bg:#020d06; --fg:#dcffe6; --soft:#9fd8b2; --muted:#5b9470; --line:#0f3a1d; --accent:#4ade80; --accent2:#ff3b4e; --display:'IBM Plex Mono',monospace; --body:'IBM Plex Mono',monospace; --display-weight:700; --display-ls:-.06em; --r:3px; --r2:3px; }
+.t-mend .case h1 { animation: heal 7s steps(1) infinite; }
+@keyframes heal { 0%, 90%, 100% { text-shadow: none; translate: 0 0; } 91% { text-shadow: 3px 0 #ff3b4e, -3px 0 #3bff8a; translate: 2px 0; } 93% { text-shadow: -4px 0 #ff3b4e, 4px 0 #3bff8a; translate: -3px 0; } 95% { text-shadow: 2px 0 #3bff8a; translate: 1px 0; } 97% { text-shadow: none; translate: 0 0; } }
+.t-mend .case section { counter-reset: b; }
+.t-mend .case h2::before { content: '0x' counter(sec, decimal-leading-zero) '00  '; }
+.t-mend .case section p { counter-increment: b; font-size: .86rem; }
+.t-mend .case section p::before { content: '0x' counter(b, decimal-leading-zero) '  '; color: var(--muted); }
+.t-mend .case section p:nth-of-type(odd) strong { color: var(--accent); }
+
+/* ---- NCII Shield: a privacy pipeline ---- */
+.t-ncii-shield { --bg:#0e0309; --fg:#ffe6f0; --soft:#e0b5c8; --muted:#a07587; --line:#3b1428; --accent:#ff4d8d; --accent2:#ffb3d1; --display:'Sora',sans-serif; --body:'Sora',sans-serif; --display-weight:800; --display-ls:-.05em; --r:10px; --r2:16px; }
+.t-ncii-shield .case h1 { background: linear-gradient(100deg, var(--accent2), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.t-ncii-shield .case section { position: relative; padding: 1.2rem 1.4rem .5rem; border: 1px solid var(--line); border-radius: var(--r2); background: linear-gradient(160deg, #ff4d8d14, transparent); }
+.t-ncii-shield .case section + section::before { content: '↓'; position: absolute; left: 1.6rem; top: -2.35rem; font-size: 1.4rem; color: var(--accent); }
+.t-ncii-shield .case h2::before { content: 'STEP ' counter(sec) ' → '; }
+
+/* ---- Friday: cockpit HUD ---- */
+.t-friday { --bg:#00101c; --fg:#e2fbff; --soft:#9ed8e6; --muted:#5f98a8; --line:#0b3347; --accent:#00e5ff; --accent2:#7df9ff; --display:'Orbitron',sans-serif; --body:'Rajdhani',sans-serif; --display-weight:800; --display-case:uppercase; --display-ls:.04em; --r:0; --r2:0; }
+.t-friday .case { font-size: 1.08rem; }
+.t-friday .case h1 { font-size: clamp(2.6rem, 8vw, 6.5rem); text-shadow: 0 0 30px #00e5ff77; }
+.t-friday .case section { position: relative; padding: 1.2rem 1.4rem .5rem; background: #00e5ff0d; border: 1px solid #00e5ff2a; clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px)); }
+.t-friday .case section p { font-size: 1.05rem; }
+.t-friday .eyebrow::after { content: 'AUDIO OVERRIDE // LISTENING…'; margin-left: 1rem; color: #ff4d6d; }
+
+/* ---- Vault v1: amber CRT ---- */
+.t-vault-v1 { --bg:#0a0600; --fg:#ffd98a; --soft:#d9b36a; --muted:#8a6a2e; --line:#2c1f06; --accent:#ffb000; --accent2:#ffcf5c; --display:'Space Mono',monospace; --body:'Space Mono',monospace; --display-weight:700; --display-case:uppercase; --display-ls:-.05em; --r:0; --r2:0; }
+.t-vault-v1 .case h1 { text-shadow: 0 0 22px #ffb00088; }
+.t-vault-v1::after { content: ''; position: fixed; inset: 0; z-index: 5; pointer-events: none; background: repeating-linear-gradient(transparent 0 2px, #00000038 2px 4px); }
+.t-vault-v1 .case section p { font-size: .85rem; }
+.t-vault-v1 .case section p::before { content: '> '; color: var(--accent); }
+
+/* ---- Home tiles: a little of each theme's character ---- */
+.tile.t-clps { background-image: linear-gradient(#ffffff0a 1px, transparent 1px), linear-gradient(90deg, #ffffff0a 1px, transparent 1px), radial-gradient(120% 90% at 100% 0%, #ffd16626, transparent 60%); background-size: 28px 28px, 28px 28px, auto; background-color: var(--bg); }
+.tile.t-drishti::before { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 8px; background: repeating-linear-gradient(-45deg, var(--accent) 0 12px, #0d0c0a 12px 24px); }
+.tile.t-bheed-drishti::before { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 14px; background: radial-gradient(circle at 7px 7px, var(--accent2) 0 4px, transparent 5px) 0 0/22px 14px repeat-x; }
+.tile.t-vault-v1::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(transparent 0 2px, #0000002e 2px 4px); }
+.tile.t-friday { clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 22px 100%, 0 calc(100% - 22px)); border-radius: 0; }
+.tile.t-vault-v2, .tile.t-clps, .tile.t-vault-v1 { border-radius: .25rem; }
+.tile.t-branch-hq, .tile.t-mend { border-radius: .6rem; }
+.tile.t-branch-hq h3, .tile.t-mend h3, .tile.t-ring0 h3 { letter-spacing: -.07em; }
+.tile.t-vault-v2 h3, .tile.t-drishti h3, .tile.t-friday h3, .tile.t-vault-v1 h3 { text-transform: uppercase; }
+.tile.t-vault-v2 h3 { font-size: clamp(1.1rem, 1.8vw, 1.5rem); }
+.tile.t-friday h3 { font-size: clamp(1.4rem, 2.4vw, 2rem); letter-spacing: .04em; }
+.tile.t-drishti h3 { font-size: clamp(2rem, 3.4vw, 3rem); line-height: .9; }
+
+@media (prefers-reduced-motion: reduce) { .t-mend .case h1, .t-branch-hq .case h1::after { animation: none; } }

@@ -7,19 +7,20 @@ if (!p) {
     root.innerHTML = '<div class="case"><h1>Not found</h1><p class="concept"><a href="index.html">Back to the portfolio</a></p></div>';
 } else {
     document.title = `${p.title} | Shrestha Pandey`;
-    document.documentElement.style.setProperty('--accent', p.accent);
+    document.body.classList.add(`t-${p.id}`);
 
     const nb = (q, label) => q ? `<a href="project.html?id=${q.id}"><span class="mono">${label}</span><span class="t">${esc(q.title)}</span></a>` : '<span></span>';
     root.innerHTML = `
-        <article class="case">
+        <article class="case" style="--n:${p.blocks.length + 1}">
             <p class="eyebrow mono">${esc(p.kind)} · ${p.year}</p>
             <h1>${esc(p.title)}</h1>
             <p class="role mono">${esc(p.role)}</p>
             <p class="concept">${esc(p.concept)}</p>
             ${p.live || p.repo ? `<div class="btns">
-                ${p.live ? `<a class="btn" href="${esc(p.live)}" target="_blank" rel="noopener">Live site ↗</a>` : ''}
-                ${p.repo ? `<a class="btn ${p.live ? 'alt' : ''}" href="${esc(p.repo)}" target="_blank" rel="noopener">Source code ↗</a>` : ''}
+                ${p.live ? `<a class="btn main" href="${esc(p.live)}" target="_blank" rel="noopener">Live site ↗</a>` : ''}
+                ${p.repo ? `<a class="btn ${p.live ? '' : 'main'}" href="${esc(p.repo)}" target="_blank" rel="noopener">Source code ↗</a>` : ''}
             </div>` : ''}
+            <div class="stats">${p.stats.map(([v, l]) => `<div><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join('')}</div>
             ${p.blocks.map(([title, lines]) => `
             <section>
                 <h2>${esc(title)}</h2>

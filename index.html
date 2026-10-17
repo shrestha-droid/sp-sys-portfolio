@@ -8,129 +8,112 @@
     <meta name="color-scheme" content="dark">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Instrument+Serif&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;800&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;800&family=Noto+Sans+Devanagari:wght@700&family=Orbitron:wght@500;800&family=Poppins:wght@400;600;800&family=Rajdhani:wght@400;600&family=Sora:wght@400;800&family=Space+Grotesk:wght@300;400;600&family=Space+Mono:wght@400;700&family=Syncopate:wght@700&family=Unbounded:wght@500;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="site.css">
+    <link rel="stylesheet" href="themes.css">
 </head>
 <body>
     <a class="skip" href="#about">Skip to content</a>
-    <div class="shell">
-        <header class="id">
-            <div>
-                <h1>Shrestha Pandey</h1>
-                <p class="role">AI systems architect, full-stack developer and founder.</p>
-                <p class="blurb">Second-year engineering student at VIT Bhopal, building software where AI, systems design and the web meet.</p>
-                <nav class="nav" aria-label="Sections">
-                    <a href="#about">About</a>
-                    <a href="#work">Work</a>
-                    <a href="#experience">Experience</a>
-                    <a href="#education">Education</a>
-                    <a href="#skills">Skills</a>
-                </nav>
+
+    <nav class="nav" aria-label="Sections">
+        <a href="#top">Home</a>
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <header class="hero" id="top">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <p class="tag"><i></i> Engineering student · VIT Bhopal · Year 2</p>
+        <h1><span>Shrestha</span><span class="grad">Pandey</span></h1>
+        <p class="sub">I'm an <b>AI systems architect</b>, <b>full-stack developer</b> and <b>founder</b>. I build the stuff that sounds impossible in a sentence: apps that write apps, vaults nobody can open alone, crowds that route themselves.</p>
+        <div class="cta">
+            <a class="btn hot" href="#work">See the work ↓</a>
+            <a class="btn" href="https://github.com/shrestha-droid" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="btn" href="mailto:shresthakp07@gmail.com">Say hi</a>
+        </div>
+        <p class="hint mono">psst. press <kbd>/</kbd><kbd>/</kbd><kbd>/</kbd> for a terminal.</p>
+    </header>
+
+    <div class="ticker" aria-hidden="true"><div id="ticker"></div></div>
+
+    <main>
+        <section id="about">
+            <h2 class="label"><small>01</small> About</h2>
+            <div class="about">
+                <div>
+                    <p class="lead">I like problems where <em>being wrong is expensive</em>: security, simulation, and software that has to keep working when nobody is watching.</p>
+                    <p>This year that has meant a desktop app that turns a sentence into a running full-stack app, a client-side vault that splits secrets between people you trust, a crowd-safety simulator for mass gatherings, and several NASA Space Apps entries. I'm also the founder of Concierge, where I build full-stack and AI software.</p>
+                </div>
+                <div class="facts">
+                    <div class="fact" style="--c:var(--pink)"><b>11</b><span>projects shipped this year</span></div>
+                    <div class="fact" style="--c:var(--cyan)"><b>2</b><span>NASA Space Apps 2026 entries</span></div>
+                    <div class="fact" style="--c:var(--lime)"><b>Year 2</b><span>engineering at VIT Bhopal</span></div>
+                </div>
             </div>
-            <ul class="links">
-                <li><a href="https://github.com/shrestha-droid" target="_blank" rel="noopener">GitHub</a></li>
-                <li><a href="https://www.kaggle.com/shrestha11022007" target="_blank" rel="noopener">Kaggle</a></li>
-                <li><a href="mailto:shresthakp07@gmail.com">Email</a></li>
-            </ul>
-        </header>
+        </section>
 
-        <main>
-            <section id="about">
-                <h2 class="label">About</h2>
-                <p class="lead">I build software where AI, systems design and the web meet, and I care most about the parts that have to be correct: security, simulation, and anything that has to keep working when nobody is watching.</p>
-                <p>This year that has meant a desktop app that turns a sentence into a running full-stack app, a client-side vault that splits secrets between people you trust, a crowd-safety simulator for mass gatherings, and several NASA Space Apps entries. I'm also the founder of Concierge, where I build full-stack and AI software.</p>
-            </section>
+        <section id="work">
+            <h2 class="label"><small>02</small> Work</h2>
+            <p style="margin: -1rem 0 2rem; max-width: 40rem">Most of these were built in pair with Claude. Each tile opens a short write-up, dressed like the project it's about. Live links sit on the ones that are deployed.</p>
+            <ol class="bento" id="work-list"></ol>
+            <noscript><p>The project list needs JavaScript. All of it is on <a href="https://github.com/shrestha-droid">GitHub</a>.</p></noscript>
+        </section>
 
-            <section id="work">
-                <h2 class="label">Selected work</h2>
-                <p style="margin-bottom:2rem">Most of the projects below were built in pair with Claude. Each one opens a short write-up, and live links sit under the ones that are deployed.</p>
-                <ol class="work" id="work-list"></ol>
-                <noscript><p>The project list needs JavaScript. All of it is on <a href="https://github.com/shrestha-droid">GitHub</a>.</p></noscript>
-            </section>
+        <section id="experience">
+            <h2 class="label"><small>03</small> Experience &amp; education</h2>
+            <ol class="tl">
+                <li style="--c:var(--pink)">
+                    <span class="when">Present</span>
+                    <div><h3>Founder, Concierge</h3><p>Architecting and building full-stack software, intelligent AI systems and high-performance web applications.</p></div>
+                </li>
+                <li style="--c:var(--cyan)">
+                    <span class="when">2026</span>
+                    <div><h3>NASA Space Apps Challenge</h3><p class="sub">Planet X and SPHEREx · CLPS Lunar Mission Browser</p><p>Two entries. One finds moving objects in SPHEREx all-sky images and grades them against JPL's catalogue; the other compares lunar south-pole landing sites using JPL Horizons data.</p></div>
+                </li>
+                <li style="--c:var(--amber)">
+                    <span class="when">2026</span>
+                    <div><h3>Team Terminal 3, IEEE SMCS Search and Rescue Competition</h3><p>A three-person team with a faculty advisor. We built a modular Python system that separates video information extraction, mission planning, multi-robot control and victim detection.</p></div>
+                </li>
+                <li style="--c:var(--lime)">
+                    <span class="when">Year 2</span>
+                    <div><h3>VIT Bhopal</h3><p class="sub">Engineering</p><p>Coursework and projects centred on systems architecture, algorithmic problem solving and software dynamics.</p></div>
+                </li>
+            </ol>
+        </section>
 
-            <section id="experience">
-                <h2 class="label">Experience</h2>
-                <ol class="tl">
-                    <li>
-                        <span class="mono">Present</span>
-                        <div>
-                            <h3>Founder, Concierge</h3>
-                            <p>Architecting and building full-stack software, intelligent AI systems and high-performance web applications.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="mono">2026</span>
-                        <div>
-                            <h3>NASA Space Apps Challenge</h3>
-                            <p class="sub">Planet X and SPHEREx · CLPS Lunar Mission Browser</p>
-                            <p>Two entries. One finds moving objects in SPHEREx all-sky images and grades them against JPL's catalogue; the other compares lunar south-pole landing sites using JPL Horizons data.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="mono">2026</span>
-                        <div>
-                            <h3>Team Terminal 3, IEEE SMCS Search and Rescue Competition</h3>
-                            <p>A three-person team with a faculty advisor. We built a modular Python system that separates video information extraction, mission planning, multi-robot control and victim detection.</p>
-                        </div>
-                    </li>
-                </ol>
-            </section>
+        <section id="skills">
+            <h2 class="label"><small>04</small> Skills</h2>
+            <dl class="skills">
+                <div style="--c:var(--pink)"><dt>Languages</dt><dd><span>TypeScript</span><span>JavaScript</span><span>Python</span><span>C++</span></dd></div>
+                <div style="--c:var(--violet)"><dt>Web</dt><dd><span>React</span><span>Next.js</span><span>Vite</span><span>Three.js / WebGL</span></dd></div>
+                <div style="--c:var(--cyan)"><dt>Backend</dt><dd><span>Node + Express</span><span>FastAPI</span><span>Supabase</span></dd></div>
+                <div style="--c:var(--lime)"><dt>Systems</dt><dd><span>Electron</span><span>WebAssembly</span><span>Simulation</span><span>NASA / JPL data</span></dd></div>
+                <div style="--c:var(--amber)"><dt>Security</dt><dd><span>WebCrypto</span><span>Argon2id</span><span>Shamir sharing</span><span>WebAuthn</span><span>CSP</span></dd></div>
+                <div style="--c:var(--pink)"><dt>Tooling</dt><dd><span>Vitest</span><span>GitHub Actions</span><span>Vercel</span></dd></div>
+            </dl>
+        </section>
 
-            <section id="education">
-                <h2 class="label">Education</h2>
-                <ol class="tl">
-                    <li>
-                        <span class="mono">Year 2</span>
-                        <div>
-                            <h3>VIT Bhopal</h3>
-                            <p class="sub">Engineering</p>
-                            <p>Coursework and projects centred on systems architecture, algorithmic problem solving and software dynamics.</p>
-                        </div>
-                    </li>
-                </ol>
-            </section>
+        <footer id="contact">
+            <h2>Let's build <span class="grad">something</span></h2>
+            <div class="cta">
+                <a class="btn hot" href="mailto:shresthakp07@gmail.com">shresthakp07@gmail.com</a>
+                <a class="btn" href="https://github.com/shrestha-droid" target="_blank" rel="noopener">GitHub ↗</a>
+                <a class="btn" href="https://www.kaggle.com/shrestha11022007" target="_blank" rel="noopener">Kaggle ↗</a>
+            </div>
+            <small>© Shrestha Pandey</small>
+        </footer>
+    </main>
 
-            <section id="skills">
-                <h2 class="label">Skills</h2>
-                <dl class="skills">
-                    <div><dt>Languages</dt><dd>TypeScript, JavaScript, Python, C++</dd></div>
-                    <div><dt>Web</dt><dd>React, Next.js, Vite, Three.js and WebGL</dd></div>
-                    <div><dt>Backend</dt><dd>Node and Express, FastAPI, Supabase</dd></div>
-                    <div><dt>Systems</dt><dd>Electron, WebAssembly, simulation, JPL and NASA data pipelines</dd></div>
-                    <div><dt>Security</dt><dd>WebCrypto, Argon2id, Shamir secret sharing, WebAuthn, CSP</dd></div>
-                    <div><dt>Tooling</dt><dd>Vitest, GitHub Actions, Vercel</dd></div>
-                </dl>
-            </section>
-
-            <footer>
-                <p>Shrestha Pandey · <a href="mailto:shresthakp07@gmail.com">shresthakp07@gmail.com</a></p>
-            </footer>
-        </main>
+    <div id="cli" role="dialog" aria-label="Terminal">
+        <div id="cli-out"><div>> type help. esc to close.</div></div>
+        <label><span>shrestha@sp:~$</span><input id="cli-in" autocomplete="off" spellcheck="false" aria-label="Terminal input"></label>
     </div>
 
     <script src="projects.js"></script>
-    <script>
-        const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-        document.getElementById('work-list').innerHTML = PROJECTS.map(p => `
-            <li class="row" style="--c:${p.accent}">
-                <span class="yr mono">${p.year}</span>
-                <div>
-                    <h3><a href="project.html?id=${p.id}">${esc(p.title)}</a><span class="arr" aria-hidden="true">↗</span></h3>
-                    <p class="kind mono">${esc(p.kind)}</p>
-                    <p>${esc(p.summary)}</p>
-                    ${p.live || p.repo ? `<div class="ext">
-                        ${p.live ? `<a href="${esc(p.live)}" target="_blank" rel="noopener">Live site ↗</a>` : ''}
-                        ${p.repo ? `<a href="${esc(p.repo)}" target="_blank" rel="noopener">Source ↗</a>` : ''}
-                    </div>` : ''}
-                </div>
-            </li>`).join('');
-
-        // Mark the nav link for the section in view.
-        const navLinks = [...document.querySelectorAll('.nav a')];
-        const seen = new IntersectionObserver(entries => entries.forEach(e => {
-            if (e.isIntersecting) navLinks.forEach(a => a.setAttribute('aria-current', String(a.hash === '#' + e.target.id)));
-        }), { rootMargin: '-40% 0px -55% 0px' });
-        document.querySelectorAll('main > section').forEach(s => seen.observe(s));
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="home.js"></script>
 </body>
 </html>
