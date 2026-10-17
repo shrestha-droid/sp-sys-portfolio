@@ -2,6 +2,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { background-color: var(--dark); color: var(--accent); font-family: 'JetBrains Mono', monospace; overflow-x: hidden; }
 
+#bg-canvas { position: fixed; top: 0; left: 0; z-index: -2; }
 .hud-scanline { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.5) 50%); background-size: 100% 4px; z-index: -1; pointer-events: none; }
 .vignette { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: radial-gradient(circle, transparent 30%, #000000 120%); z-index: -1; pointer-events: none; }
 
