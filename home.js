@@ -63,57 +63,91 @@ const navLinks = [...document.querySelectorAll('.nav a')];
 const seenObs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) navLinks.forEach(a => a.setAttribute('aria-current', String(a.hash === '#' + e.target.id))); }), { rootMargin: '-40% 0px -55% 0px' });
 document.querySelectorAll('main > section').forEach(s => seenObs.observe(s));
 
-// ---- Background: a generative flow field. Thousands of thin streaks follow a slow noise field;
-// each streak carries one project's colour, so hovering a project lights its share of the field. ----
+// ---- Background: a branching timeline. One luminous trunk splits into a strand per project (each in its colour);
+// strands grow, carry pulses, get pruned and regrow. Hover a project to light its branch. ----
 (() => {
     const canvas = document.getElementById('bg-canvas'), ctx = canvas.getContext('2d');
-    const DPR = Math.min(devicePixelRatio || 1, 2), TAU = Math.PI * 2;
-    // Small gradient-noise (Perlin) so the field is smooth and has no external dependency.
-    const perm = new Uint8Array(512); { const p = [...Array(256).keys()].sort(() => Math.random() - .5); for (let i = 0; i < 512; i++) perm[i] = p[i & 255]; }
-    const fade = t => t * t * t * (t * (t * 6 - 15) + 10), lerp = (a, b, t) => a + (b - a) * t;
-    const grad = (h, x, y) => { const u = (h & 1) ? x : -x, v = (h & 2) ? y : -y; return u + v; };
-    const noise = (x, y) => { const X = Math.floor(x) & 255, Y = Math.floor(y) & 255; x -= Math.floor(x); y -= Math.floor(y); const u = fade(x), v = fade(y), A = perm[X] + Y, B = perm[X + 1] + Y;
-        return lerp(lerp(grad(perm[A], x, y), grad(perm[B], x - 1, y), u), lerp(grad(perm[A + 1], x, y - 1), grad(perm[B + 1], x - 1, y - 1), u), v); };
+    const DPR = Math.min(devicePixelRatio || 1, 2), cols = PROJECTS.map(p => p.accent), N = cols.length;
+    const R = (a, b) => a + Math.random() * (b - a), accentNow = () => getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#e50914';
+    let W, H, branches = [], pulses = [], focus = -1, mono = null, trunkCol = accentNow(), t = 0, mx = 0, my = 0, smx = 0, smy = 0, nextPrune = 4;
 
-    const colours = PROJECTS.map(p => p.accent), N = 56; // N: points kept per streak
-    let W, H, parts = [], mx = -999, my = -999, focus = -1, mono = null, t = 0;
-    const spawn = (p = {}) => { p.x = Math.random() * W; p.y = Math.random() * H; p.age = 0; p.max = 160 + Math.random() * 320; p.k = p.k ?? (Math.random() * colours.length) | 0; p.v = .8 + Math.random() * 1.1;
-        p.tr = p.tr || new Float32Array(N * 2); for (let i = 0; i < N; i++) { p.tr[i * 2] = p.x; p.tr[i * 2 + 1] = p.y; } return p; };
-    const fit = () => { W = canvas.width = Math.round(innerWidth * DPR); H = canvas.height = Math.round(innerHeight * DPR);
-        parts = Array.from({ length: Math.min(750, Math.round(W * H / 5200 / DPR)) }, () => spawn()); };
-    fit(); addEventListener('resize', fit);
-    addEventListener('pointermove', e => { mx = e.clientX * DPR; my = e.clientY * DPR; });
-    window.hudFocus = i => { focus = i; };                 // hovered project: its streaks glow, the rest recede
-    window.heroTint = hex => { mono = hex; };               // `theme` in the shell: the whole field goes one colour
-
-    const TIERS = [.12, .3, .75]; // tail, middle, head
-    const draw = dt => {
-        const scale = DPR * 0.0011, drift = t * 0.00005, R = 170 * DPR; // the field itself evolves over tens of seconds
-        for (const p of parts) {
-            const ang = noise(p.x * scale + 7.3, p.y * scale + drift) * TAU * 1.15;
-            let vx = Math.cos(ang) * p.v * DPR * dt, vy = Math.sin(ang) * p.v * DPR * dt;
-            const dx = p.x - mx, dy = p.y - my, d2 = dx * dx + dy * dy;
-            if (d2 < R * R) { const d = Math.sqrt(d2) + 1, f = (1 - d / R) * 2.4 * DPR * dt; vx += (-dy / d) * f + (dx / d) * f * .5; vy += (dx / d) * f + (dy / d) * f * .5; } // the pointer stirs the field
-            p.tr.copyWithin(0, 2); p.x += vx; p.y += vy; p.age += dt; p.tr[(N - 1) * 2] = p.x; p.tr[(N - 1) * 2 + 1] = p.y;
-            if (p.age > p.max || p.x < -30 || p.y < -30 || p.x > W + 30 || p.y > H + 30) spawn(p);
+    // A strand wanders: a slow sine sway plus jitter, eased toward a heading so it keeps travelling outward.
+    const walk = (x, y, ang, len, heading, ph, maxSteps = 900) => {
+        const pts = [x, y];
+        for (let i = 0; i < maxSteps; i++) {
+            ang += Math.sin(i * .06 + ph) * .03 + R(-.012, .012) + (heading - ang) * .012;
+            x += Math.cos(ang) * len; y += Math.sin(ang) * len; pts.push(x, y);
+            if (x > W * 1.08 || y < -H * .1 || y > H * 1.1) break;
         }
-        ctx.clearRect(0, 0, W, H); ctx.globalCompositeOperation = 'lighter'; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-        const per = Math.floor((N - 1) / TIERS.length);
-        colours.forEach((col, k) => {
-            const on = focus === k, dim = focus >= 0 && !on, base = dim ? .35 : on ? 1.6 : 1;
-            ctx.strokeStyle = mono || col; ctx.lineWidth = (on ? 2.2 : 1.4) * DPR;
-            TIERS.forEach((a, j) => {
-                ctx.globalAlpha = Math.min(1, a * base);
-                ctx.beginPath();
-                for (const p of parts) { if (p.k !== k) continue; const s = j * per, e = j === TIERS.length - 1 ? N - 1 : (j + 1) * per; ctx.moveTo(p.tr[s * 2], p.tr[s * 2 + 1]); for (let i = s + 1; i <= e; i++) ctx.lineTo(p.tr[i * 2], p.tr[i * 2 + 1]); }
-                ctx.stroke();
-            });
-        });
+        return pts;
+    };
+    const add = (pts, k, w, depth, delay) => { const b = { pts, n: pts.length / 2, k, w, depth, delay, g: 0, a: 1, state: 0, wait: 0, flash: 0 }; branches.push(b); return b; };
+
+    const build = (grown = false) => {
+        W = canvas.width = Math.round(innerWidth * DPR); H = canvas.height = Math.round(innerHeight * DPR);
+        const len = 7 * DPR, small = innerWidth < 700; branches = []; pulses = [];
+        const trunk = walk(-.04 * W, .5 * H, 0, len, 0, R(0, 6), Math.round(W * .62 / len));
+        add(trunk, -1, 3.4 * DPR, 0, 0);
+        for (let i = 0; i < N; i++) {
+            const f = .16 + .56 * i / (N - 1), j = Math.floor(f * (trunk.length / 2 - 1)), side = i % 2 ? 1 : -1;
+            const spread = (.22 + .6 * ((i >> 1) / (N / 2))) * side + R(-.06, .06); // alternate above/below, wider the later they split
+            const main = walk(trunk[j * 2], trunk[j * 2 + 1], spread * .4, len, spread * .5, R(0, 6));
+            add(main, i, 1.9 * DPR, 1, .6 + i * .13);
+            for (let s = 0, subs = small ? 2 : 3 + (i % 3); s < subs; s++) {
+                const m = Math.floor(R(.12, .8) * (main.length / 2 - 2)), dir = Math.random() < .5 ? -1 : 1;
+                const sub = walk(main[m * 2], main[m * 2 + 1], spread * .5 + dir * R(.2, .5), len * .9, spread * .5 + dir * R(.5, 1), R(0, 6), Math.floor(R(30, 90)));
+                add(sub, i, 1 * DPR, 2, 1.3 + i * .13 + s * .25);
+                if (!small && Math.random() < .55) { const m2 = Math.floor(R(.3, .8) * (sub.length / 2 - 2)); add(walk(sub[m2 * 2], sub[m2 * 2 + 1], spread * .5 + dir * R(.6, 1.1), len * .8, spread * .5 + dir * R(.8, 1.4), R(0, 6), Math.floor(R(15, 40))), i, .7 * DPR, 3, 2 + i * .13 + s * .25); }
+            }
+        }
+        if (grown) branches.forEach(b => { b.g = 1; b.state = 2; });
+        pulses = Array.from({ length: small ? 10 : 22 }, () => ({ b: null, u: 0, sp: R(.1, .26) }));
+    };
+    build(); addEventListener('resize', () => build(true));
+    addEventListener('pointermove', e => { mx = e.clientX / innerWidth * 2 - 1; my = e.clientY / innerHeight * 2 - 1; });
+    window.hudFocus = i => { focus = i; };                                    // hovered project: its branch glows, the rest recede
+    window.heroTint = hex => { mono = hex; trunkCol = hex; };                 // `theme` in the shell: everything goes one colour
+
+    const pickPulseBranch = () => { const live = branches.filter(b => b.state >= 1 && b.state <= 2 && b.g > .5 && b.depth > 0); return live.length ? live[(Math.random() * live.length) | 0] : null; };
+    const step = dt => { // dt in seconds
+        t += dt; smx += (mx - smx) * Math.min(1, dt * 3); smy += (my - smy) * Math.min(1, dt * 3);
+        for (const b of branches) {
+            if (b.state === 0 && t >= b.delay) b.state = 1;
+            if (b.state === 1) { b.g = Math.min(1, b.g + dt / (2.2 + b.depth * .7)); if (b.g >= 1) b.state = 2; }
+            if (b.state === 3) { b.a -= dt / 1.4; b.flash = Math.max(0, b.flash - dt * 2); if (b.a <= 0) { b.state = 4; b.wait = R(1.5, 3.5); } }
+            if (b.state === 4 && (b.wait -= dt) <= 0) { b.g = 0; b.a = 1; b.state = 1; }
+        }
+        if (t > nextPrune) { // a strand is pruned: it flashes, fades, then a new one grows in its place
+            nextPrune = t + R(3, 6);
+            const held = branches.filter(b => b.state === 2 && b.depth >= 2); if (held.length) { const b = held[(Math.random() * held.length) | 0]; b.state = 3; b.flash = 1; }
+        }
+        for (const p of pulses) { if (!p.b || p.b.state > 2 || p.u >= p.b.g) { p.b = pickPulseBranch(); p.u = 0; } else p.u += dt * p.sp; }
+    };
+    const draw = () => {
+        ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, W, H);
+        ctx.translate(-smx * 14 * DPR, -smy * 8 * DPR); ctx.globalCompositeOperation = 'lighter'; ctx.lineCap = ctx.lineJoin = 'round';
+        const tip = [];
+        for (const b of branches) {
+            if (b.state === 0 || b.a <= 0) continue;
+            const m = Math.max(2, Math.floor(b.g * (b.n - 1)) + 1), col = mono || (b.k < 0 ? trunkCol : cols[b.k]);
+            const f = (focus < 0 ? 1 : b.k === focus ? 2 : b.k < 0 ? .8 : .28) * (innerWidth < 700 ? .55 : 1), base = [.9, .6, .42, .3][b.depth];
+            ctx.strokeStyle = col; ctx.beginPath(); ctx.moveTo(b.pts[0], b.pts[1]); for (let i = 1; i < m; i++) ctx.lineTo(b.pts[i * 2], b.pts[i * 2 + 1]);
+            ctx.lineWidth = b.w * 4; ctx.globalAlpha = Math.min(1, .07 * f) * b.a; ctx.stroke();      // soft halo
+            ctx.lineWidth = b.w * (focus === b.k ? 1.5 : 1); ctx.globalAlpha = Math.min(1, base * f) * b.a; ctx.stroke();  // the strand
+            if (b.state === 1 || b.flash > 0) tip.push([b.pts[(m - 1) * 2], b.pts[(m - 1) * 2 + 1], col, b.flash]);
+        }
+        ctx.globalAlpha = 1;
+        for (const [x, y, col, fl] of tip) { ctx.fillStyle = fl > 0 ? '#fff' : col; ctx.globalAlpha = fl > 0 ? fl : .8; ctx.beginPath(); ctx.arc(x, y, (fl > 0 ? 3 + 6 * (1 - fl) : 2) * DPR, 0, 6.283); ctx.fill(); }
+        for (const p of pulses) { // a bright bead travelling out along a strand
+            if (!p.b) continue; const i = Math.min(p.b.n - 1, Math.floor(p.u * (p.b.n - 1))), x = p.b.pts[i * 2], y = p.b.pts[i * 2 + 1], col = mono || cols[p.b.k];
+            ctx.fillStyle = col; ctx.globalAlpha = .18 * p.b.a; ctx.beginPath(); ctx.arc(x, y, 7 * DPR, 0, 6.283); ctx.fill();
+            ctx.fillStyle = '#fff'; ctx.globalAlpha = .85 * p.b.a; ctx.beginPath(); ctx.arc(x, y, 1.6 * DPR, 0, 6.283); ctx.fill();
+        }
         ctx.globalAlpha = 1;
     };
-    if (calm) { for (let i = 0; i < 90; i++) { t += 16; draw(1); } return; } // reduced motion: one still, pre-drawn frame
+    if (calm) { build(true); draw(); return; } // reduced motion: a fully grown, still timeline
     let last = performance.now();
-    (function loop(now) { requestAnimationFrame(loop); const dt = Math.min(3, (now - last) / 16.7); last = now; t += dt * 16; draw(dt); canvas.style.opacity = String(1 - Math.min(1, scrollY / innerHeight) * .55); })(last);
+    (function loop(now) { requestAnimationFrame(loop); const dt = Math.min(.1, (now - last) / 1000); last = now; step(dt); draw(); canvas.style.opacity = String(1 - Math.min(1, scrollY / innerHeight) * .6); })(last);
 })();
 
 // ---- Shell: type /// ----
