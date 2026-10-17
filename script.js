@@ -132,3 +132,15 @@ function processCommand(cmd) {
             if(cmd) printOutput(`> ERR: UNKNOWN DIRECTIVE '${cmd}'.`);
     }
 }
+
+// --- 3. Project rows (data lives in projects.js) ---
+document.getElementById('more-projects').innerHTML = PROJECTS.map(p => `
+    <a href="project.html?id=${p.id}" class="target-row">
+        <div class="target-brackets">[</div>
+        <div class="target-data">
+            <div class="tech-label">${p.sys}</div>
+            <h2>${p.title}</h2>
+            <p class="role-highlight">INITIATE DOSSIER DECRYPTION</p>
+        </div>
+        <div class="target-brackets">]</div>
+    </a>`).join('');
