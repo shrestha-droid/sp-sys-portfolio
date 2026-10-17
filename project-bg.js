@@ -1,6 +1,8 @@
 // Per-project WebGL backgrounds. Each scene echoes what the project does.
 // Depends on: three.js r128, `p` from project.js, --accent set on :root.
-if (p) {
+if (p && window.customBg && customBg[p.id]) {
+    customBg[p.id](document.getElementById('bg-canvas')); // 2D canvas scene for the bespoke pages
+} else if (p) {
     const canvas = document.getElementById('bg-canvas');
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, innerWidth / innerHeight, 0.1, 1000);

@@ -12,7 +12,7 @@ if (!p) {
     tick(); setInterval(tick, 1000);
 
     const nb = (q, label) => q ? `<a href="project.html?id=${q.id}"><span class="mono">${label}</span><span class="t">${esc(q.title)}</span></a>` : '<span></span>';
-    root.innerHTML = `
+    const generic = () => `
         <article class="case" style="--n:${p.blocks.length + 1}">
             <p class="eyebrow mono">${sysCode(i)} // ${esc(p.kind)} // ${p.year} // ${statusOf(p)}</p>
             <h1 id="title">${esc(p.title)}</h1>
@@ -33,8 +33,10 @@ if (!p) {
                 <p class="stack">${esc(p.stack)}</p>
             </section>
             <section id="demo-slot"></section>
-        </article>
-        <nav class="pager" aria-label="More targets">${nb(PROJECTS[i - 1], '◂ Previous target')}${nb(PROJECTS[i + 1], 'Next target ▸')}</nav>`;
+        </article>`;
+    const pager = `<nav class="pager" aria-label="More targets">${nb(PROJECTS[i - 1], '◂ Previous target')}${nb(PROJECTS[i + 1], 'Next target ▸')}</nav>`;
+    root.innerHTML = (PAGES[p.id] || generic)(p, i) + pager;
 
-    scramble(document.getElementById('title'), p.title, 1000);
+    const title = document.getElementById('title'); // bespoke pages bring their own headline
+    if (title) scramble(title, p.title, 1000);
 }

@@ -2,29 +2,29 @@
 // Private repos have no `repo` link on purpose.
 const PROJECTS = [
   {
-    id: 'branch-hq', title: "Branch HQ", kind: "Desktop app · Agentic AI", year: 2026, stats: [["6", "AI agents"], ["700+", "passing tests"], ["Gate 1", "security scan on every build"]], summary: "Describe an app in plain language; a crew of AI agents builds, scans, reviews and runs it locally, with a tamper-evident audit log.", accent: '#00E5A0',
+    id: 'branch-hq', title: "Branch HQ", kind: "Desktop app · AI engineering", year: 2026, stats: [["6", "AI specialists"], ["4", "checks on every build"], ["27/32", "builds working end to end"]], summary: "AI writes the code, your auditors get the proof: every change reaches your repo as a pull request carrying the scan, tests, review, model and approver.", accent: '#a5a3ff',
     role: 'Founder, Architecture & Full-Stack Dev',
-    concept: 'An Electron desktop app that turns a plain-language request into a working, running full-stack application. Everything is generated, security-scanned, reviewed and executed on the user\'s own machine, and every generation lands in a tamper-evident audit log.',
+    concept: 'Branch HQ builds and changes software with AI, and every change reaches your repository as a pull request that carries what checked it: the security scan, your tests, an independent review, the model, and who approved it.',
+    live: 'https://shrestha-droid.github.io/branchhq/', repo: 'https://github.com/shrestha-droid/branchhq',
     blocks: [
-      ['Agent crew', [
-        ['Michael:', 'reads the request, picks the specialists, routes the work.'],
-        ['Jim / Dwight:', 'frontend (React, Vite, Tailwind) and backend (Express, encrypted lowdb; Python FastAPI too).'],
-        ['Pam / Riley / Donna:', 'code review with an explicit verdict, documents (PDF, DOCX, XLSX, PPTX), and operations from real audit data.']]],
-      ['Pipeline', [
-        ['Gate 1:', 'deterministic Babel-AST security scan. Blocks hardcoded credentials, plaintext passwords, insecure cookies.'],
-        ['Review, run, audit:', 'LLM review, real sandboxed execution with self-healing, then a SHA-256 hash-chained audit record. Each stage is reported separately and never conflated.']],
-      ],
-      ['Proven, not assumed', [
-        ['Deploys:', 'a generated app was pushed to GitHub and deployed live on Render, health-checked and read back over the public URL.'],
-        ['Tests:', '700+ passing. The deploy run caught a real bug (tsx missing from the production image) that previews never would have.']]],
+      ['Proof, not promises', [
+        ['Security scan:', 'a deterministic scan that blocks hardcoded credentials, plaintext passwords and insecure cookies. Nothing bypasses it.'],
+        ['Independent review:', 'the reviewer reads every change like a senior engineer and records a verdict. It is never the model that wrote the code.'],
+        ['Real execution and record:', 'the build is started for real, a real record is saved and read back, and the result goes into a timestamped audit record.']]],
+      ['Pull requests with the proof', [
+        ['Delivery:', 'changes go out as pull requests on GitHub, GitHub Enterprise or GitLab. The description lists what checked them, and the same facts travel in the commit.'],
+        ['AI provenance report:', 'which lines in the repository AI wrote, by which model, checked how and approved by whom, in a form an auditor can run without Branch HQ.']]],
+      ['Your model, your agreement', [
+        ['Bring any model:', 'your Azure OpenAI tenant, AWS Bedrock account, Anthropic, OpenAI, Google, or a model on your own hardware.'],
+        ['Local by choice:', 'on a local model, zero bytes of your code leave the building.']]],
     ],
     stack: 'Electron, React, TypeScript, Express, FastAPI, Vitest',
   },
   {
-    id: 'vault-v2', title: "Zero-Trust Vault v2", kind: "Web app · Cryptography", year: 2026, stats: [["2–16", "Shamir shards"], ["256 MiB", "Argon2id memory"], ["0", "keys seen by a server"]], summary: "A client-side vault that splits secrets into Shamir shards, passphrases and passkeys. No server ever sees a key.", accent: '#FFB000',
+    id: 'vault-v2', title: "Zero-Trust Vault v2", kind: "Web app · Cryptography", year: 2026, stats: [["2–16", "Shamir shards"], ["256 MiB", "Argon2id memory"], ["0", "keys seen by a server"]], summary: "A client-side vault that splits secrets into Shamir shards, passphrases and passkeys. No server ever sees a key.", accent: '#e5414b',
     role: 'Security Architecture & Full-Stack Dev',
     concept: 'Client-side, zero-knowledge encryption for things that must outlive you: seed phrases, recovery codes, wills, credentials, files. Split secrets between people you trust. No server ever sees a key or plaintext.',
-    live: 'https://zero-trust-vault-v2.vercel.app', repo: 'https://github.com/shrestha-droid/zero-trust-vault-v2',
+    live: 'https://www.zerotrustvault.in', repo: 'https://github.com/shrestha-droid/zero-trust-vault-v2',
     blocks: [
       ['Key slots', [
         ['Unlock methods:', 'Shamir shards (any K of N, 2 to 16), an Argon2id passphrase, both together as two-factor, or a hardware passkey via WebAuthn PRF.'],

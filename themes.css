@@ -1,22 +1,5 @@
 /* One theme per project dossier: palette, fonts and layout flavour. Applied as body.t-<id>. */
 
-/* ---- Branch HQ: an agent crew in terminal windows ---- */
-.t-branch-hq { --bg:#03110c; --fg:#d8ffee; --soft:#9fd9bf; --muted:#5f8f7a; --line:#0f3a2b; --accent:#00e5a0; --accent2:#7cffcb; --display:'JetBrains Mono',monospace; --body:'JetBrains Mono',monospace; --display-weight:800; --display-ls:-.05em; --r:6px; --r2:8px; }
-.t-branch-hq .case section { border: 1px solid var(--line); border-radius: 10px; background: #00e5a00a; padding: 0 1.25rem .8rem; overflow: hidden; }
-.t-branch-hq .case h2 { margin: 0 -1.25rem .6rem; padding: .7rem 1.25rem; background: #00e5a014; border-bottom: 1px solid var(--line); text-transform: none; letter-spacing: 0; }
-.t-branch-hq .case h2::before { content: '● ● ●   '; color: #ff5f56; letter-spacing: .05em; word-spacing: -.1em; }
-.t-branch-hq .case section p { border-top: 0; padding: .35rem 0; font-size: .88rem; }
-.t-branch-hq .case section p::before { content: '$ '; color: var(--accent); }
-.t-branch-hq .case h1::after { content: '_'; color: var(--accent); animation: blink 1s steps(1) infinite; }
-@keyframes blink { 50% { opacity: 0; } }
-
-/* ---- Zero-Trust Vault v2: key slots ---- */
-.t-vault-v2 { --bg:#0b0700; --fg:#fff1d0; --soft:#d9c7a0; --muted:#8f7d56; --line:#2c2108; --accent:#ffb000; --accent2:#ffd36b; --display:'Syncopate',sans-serif; --body:'Space Grotesk',sans-serif; --display-weight:700; --display-case:uppercase; --display-ls:-.04em; --r:0; --r2:0; }
-.t-vault-v2 .case h1 { font-size: clamp(2rem, 5.2vw, 4.2rem); }
-.t-vault-v2 .case section { position: relative; padding: 1.4rem 1.4rem .6rem 1.4rem; border: 1px solid var(--line); border-top: 3px solid var(--accent); background: linear-gradient(180deg, #ffb00010, transparent); }
-.t-vault-v2 .case h2::before { content: 'SLOT ' counter(sec) ' ▸ '; }
-.t-vault-v2 .case section::after { content: ''; position: absolute; right: 1rem; top: 1rem; width: 14px; height: 14px; border: 2px solid var(--accent); border-radius: 50%; box-shadow: inset 0 0 0 3px var(--bg), inset 0 0 0 5px var(--accent); }
-
 /* ---- SPHEREx: observatory plates ---- */
 .t-spherex { --bg:#030816; --fg:#e6f0ff; --soft:#a9bddd; --muted:#6d82a8; --line:#13244a; --accent:#7ab8ff; --accent2:#c4a7ff; --display:'Space Grotesk',sans-serif; --body:'Space Grotesk',sans-serif; --display-weight:300; --display-ls:-.05em; }
 .t-spherex .case h1 { background: linear-gradient(100deg, #fff, var(--accent) 55%, var(--accent2)); -webkit-background-clip: text; background-clip: text; color: transparent; }

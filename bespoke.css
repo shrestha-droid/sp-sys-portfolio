@@ -1,0 +1,138 @@
+/* Bespoke dossiers. Each follows its real product's design language, not the portfolio's. */
+
+/* ======================= Branch HQ: night sky, Instrument Serif, indigo ======================= */
+.t-branch-hq { --bg:#04050a; --fg:#eef1f8; --soft:#b3b9cf; --muted:#9097ad; --line:rgba(190,205,255,.11); --accent:#8b88f0; --accent2:#a5a3ff; --grid:transparent;
+    --serif:'Instrument Serif',ui-serif,Georgia,serif; --pixel:'Silkscreen','JetBrains Mono',monospace; background-image: none; }
+.t-branch-hq .hud, .t-branch-hq .veil { display: none; }
+.t-branch-hq .bar { background: linear-gradient(#04050ae6, transparent); }
+.t-branch-hq .logo, .t-branch-hq .stat span:first-child { color: var(--accent2); }
+.t-branch-hq .logo i { background: var(--accent); box-shadow: 0 0 12px var(--accent); }
+.bh { max-width: 70rem; margin: 0 auto; padding: 8rem clamp(1.25rem, 5vw, 3rem) 2rem; font-family: var(--sans, Inter, sans-serif); color: #eef1f8; }
+.bh h1, .bh h2 { font-family: var(--serif); font-weight: 400; letter-spacing: -.025em; text-wrap: balance; }
+.bh h1 { font-size: clamp(3rem, 8.4vw, 6.6rem); line-height: .96; margin-top: 1.4rem; }
+.bh h2 { font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1; margin-top: .9rem; }
+.bh em { font-style: italic; color: #a5a3ff; }
+.bh-hero { text-align: center; padding-bottom: 2rem; }
+.bh-badge { display: inline-flex; gap: .7rem; align-items: center; padding: .35rem .9rem .35rem .4rem; border: 1px solid rgba(190,205,255,.2); border-radius: 999px; background: rgba(16,19,30,.6); font-size: .8rem; color: #b3b9cf; }
+.bh-badge b { font: 400 .65rem 'Silkscreen', monospace; letter-spacing: .08em; text-transform: uppercase; padding: .25rem .6rem; border-radius: 999px; background: rgba(139,136,240,.16); color: #a5a3ff; }
+.bh-kicker { margin-top: 1.6rem; font: 400 .72rem 'JetBrains Mono', monospace; letter-spacing: .16em; text-transform: uppercase; color: #5f667d; }
+.bh-lede { max-width: 41rem; margin: 1.8rem auto 0; font-size: clamp(1.05rem, 2vw, 1.25rem); color: #9097ad; line-height: 1.65; text-wrap: pretty; }
+.bh-ctas { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; margin-top: 2.2rem; }
+.bh-btn { display: inline-flex; padding: .85rem 1.4rem; border-radius: 12px; font: 500 .9rem Inter, sans-serif; color: #eef1f8; border: 1px solid rgba(190,205,255,.2); background: rgba(16,19,30,.6); box-shadow: inset 0 1px 0 rgba(255,255,255,.06); transition: transform .3s cubic-bezier(.32,.72,0,1), background .2s; }
+.bh-btn:hover { transform: translateY(-2px); background: rgba(30,34,52,.8); }
+.bh-btn.primary { background: #5e5ce6; border-color: #6e6cf0; box-shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 10px 30px rgba(94,92,230,.35); }
+.bh-btn.primary:hover { background: #6e6cf0; }
+.bh-req { margin-top: 1.2rem; font: 400 .72rem 'JetBrains Mono', monospace; color: #5f667d; }
+.bh-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 3rem 0; border: 1px solid rgba(190,205,255,.11); border-radius: 18px; background: rgba(16,19,30,.55); backdrop-filter: blur(8px); box-shadow: inset 0 1px 0 rgba(255,255,255,.05); }
+.bh-stats div { padding: 1.6rem 1.4rem; border-right: 1px solid rgba(190,205,255,.08); }
+.bh-stats div:last-child { border: 0; }
+.bh-stats b { display: block; font: 400 clamp(1.8rem, 3.6vw, 2.8rem)/1 'Silkscreen', monospace; color: #eef1f8; }
+.bh-stats span { display: block; margin-top: .7rem; font-size: .85rem; color: #9097ad; line-height: 1.4; }
+.bh-block { margin-top: 6rem; }
+.bh-kick { font: 400 .8rem 'Silkscreen', monospace; letter-spacing: .12em; text-transform: uppercase; color: #a5a3ff; }
+.bh-sub { max-width: 40rem; margin-top: 1.2rem; color: #9097ad; font-size: 1.05rem; line-height: 1.65; }
+.bh-office { margin-top: 2.2rem; padding: 12px; max-width: 44rem; border: 1px solid rgba(190,205,255,.2); border-radius: 18px; background: rgba(16,19,30,.72); box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 30px 80px rgba(0,0,0,.5); }
+.bh-office canvas { display: block; width: 100%; height: auto; image-rendering: pixelated; border-radius: 10px; }
+.bh-office figcaption { display: flex; gap: .6rem; align-items: center; margin-top: .8rem; padding: 0 .3rem; font-size: .85rem; color: #9097ad; }
+.bh-office figcaption i { width: .45rem; height: .45rem; border-radius: 50%; background: #8b88f0; }
+.bh-office figcaption b { color: #eef1f8; font-weight: 500; }
+.bh-team { margin-top: 2.4rem; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.bh-team article { position: relative; padding: 1.4rem; border: 1px solid rgba(190,205,255,.11); border-radius: 16px; background: rgba(16,19,30,.6); box-shadow: inset 0 1px 0 rgba(255,255,255,.05); transition: transform .35s cubic-bezier(.32,.72,0,1), border-color .2s; }
+.bh-team article:hover { transform: translateY(-4px); border-color: rgba(165,163,255,.4); }
+.bh-team article:hover .bh-av svg { animation: wave .5s steps(2) 3; }
+@keyframes wave { 50% { transform: translateY(-3px); } }
+.bh-av { margin-bottom: .9rem; }
+.bh-role { font: 400 .68rem 'JetBrains Mono', monospace; letter-spacing: .08em; text-transform: uppercase; color: #5f667d; }
+.bh-team h3 { margin: .2rem 0 .5rem; font: 600 1.15rem Inter, sans-serif; color: #eef1f8; }
+.bh-team p:not(.bh-role) { font-size: .88rem; color: #9097ad; line-height: 1.55; }
+.bh-team small { position: absolute; right: 1.1rem; top: 1.2rem; font: 400 .66rem 'JetBrains Mono', monospace; color: #5f667d; }
+.bh-two { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 3rem; align-items: start; }
+.bh-sec { margin-top: 2rem; }
+.bh-label { font: 500 .7rem 'JetBrains Mono', monospace; letter-spacing: .16em; text-transform: uppercase; color: #5f667d; margin-bottom: .6rem; }
+.bh-row { padding: .8rem 0; border-top: 1px solid rgba(190,205,255,.09); font-size: .95rem; color: #9097ad; line-height: 1.6; }
+.bh-row b { color: #eef1f8; font-weight: 600; }
+.bh-proof { position: sticky; top: 6rem; padding: 1.6rem; border: 1px solid rgba(190,205,255,.18); border-radius: 18px; background: rgba(14,17,27,.85); box-shadow: inset 0 1px 0 rgba(255,255,255,.06); }
+.bh-proof ul { list-style: none; margin: .8rem 0 1.2rem; }
+.bh-proof li { display: flex; align-items: center; gap: .8rem; padding: .75rem 0; border-bottom: 1px solid rgba(190,205,255,.08); font-size: .92rem; color: #eef1f8; }
+.bh-proof li .ok { display: grid; place-items: center; width: 1.4rem; height: 1.4rem; border-radius: 6px; background: rgba(110,231,168,.14); color: #6ee7a8; font-size: .8rem; }
+.bh-proof li em { margin-left: auto; font: 400 .75rem 'JetBrains Mono', monospace; color: #5f667d; }
+.bh-verdict { padding: .9rem 1rem; border-radius: 12px; background: rgba(110,231,168,.08); border: 1px solid rgba(110,231,168,.25); font-size: .9rem; color: #b3b9cf; }
+.bh-verdict b { color: #6ee7a8; }
+.bh-stack { margin-top: .8rem; font: 400 .9rem 'JetBrains Mono', monospace; color: #b3b9cf; }
+.t-branch-hq .demo { display: none; }
+.t-branch-hq .pager a { border-radius: 14px; background: rgba(16,19,30,.6); }
+.t-branch-hq .pager .t { font-family: var(--serif); font-weight: 400; font-size: 1.5rem; }
+
+/* ======================= Zero-Trust Vault v2: banknote paper, Bodoni, security red ======================= */
+.t-vault-v2 { color-scheme: light; --bg:#f3eee3; --fg:#16120f; --soft:#4a433c; --muted:#776d64; --line:rgba(22,18,15,.16); --accent:#b5121b; --accent2:#8c0d14; --grid:transparent;
+    --paper2:#ebe4d4; --card:#f8f4ea; --display:'Bodoni Moda','Didot',Georgia,serif; --body:'Archivo',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .27  0 0 0 0 .18  0 0 0 .09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"), radial-gradient(120rem 60rem at 50% -10%, #f7f3ea, transparent 60%);
+    font-family: var(--body); }
+.t-vault-v2 .hud, .t-vault-v2 .veil { display: none; }
+.t-vault-v2 #bg-canvas { z-index: -1; }
+.t-vault-v2 .bar { top: 1.7rem; background: linear-gradient(#f3eee3f2, #f3eee300); color: #4a433c; }
+.t-vault-v2 .logo { color: #16120f; }
+.t-vault-v2 .logo i { background: #b5121b; box-shadow: none; }
+.t-vault-v2 .stat, .t-vault-v2 .stat span:first-child { color: #776d64; }
+.t-vault-v2 ::selection { background: #b5121b; color: #f3eee3; }
+.vt { padding-bottom: 2rem; color: #16120f; }
+.vt-micro { position: fixed; top: 0; left: 0; right: 0; z-index: 60; overflow: hidden; white-space: nowrap; background: #16120f; color: #f3eee3; font: 500 .58rem/1.7rem 'IBM Plex Mono', monospace; letter-spacing: .24em; height: 1.7rem; }
+.vt-micro span { display: inline-block; animation: micro 60s linear infinite; }
+@keyframes micro { to { transform: translateX(-100%); } }
+.vt-hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; max-width: 77rem; margin: 0 auto; padding: 9.5rem clamp(1.25rem, 4vw, 2.5rem) 3rem; }
+.vt-serial { font: 500 .78rem 'IBM Plex Mono', monospace; letter-spacing: .08em; color: #b5121b; text-transform: uppercase; }
+.vt h1 { margin-top: 1.4rem; font: 400 clamp(2.6rem, 5.8vw, 5rem)/1.02 'Bodoni Moda', Didot, Georgia, serif; letter-spacing: -.02em; font-variation-settings: 'opsz' 96; text-wrap: balance; color: #16120f; }
+.vt em { font-family: 'Bodoni Moda', Didot, Georgia, serif; font-style: italic; color: #b5121b; font-weight: 400; }
+.vt-lede { margin-top: 1.5rem; max-width: 36rem; font-size: 1.12rem; line-height: 1.65; color: #4a433c; }
+.vt-ctas { display: flex; flex-wrap: wrap; gap: .9rem; margin-top: 2rem; }
+.vt-btn { display: inline-flex; padding: 1rem 1.5rem; font: 600 .74rem Archivo, sans-serif; font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; background: #16120f; color: #f3eee3; border: 1px solid #16120f; box-shadow: 3px 3px 0 #b5121b; transition: transform .15s, box-shadow .15s; }
+.vt-btn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 #b5121b; }
+.vt-btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 #b5121b; }
+.vt-btn.ghost { background: transparent; color: #16120f; box-shadow: none; border-color: rgba(22,18,15,.7); }
+.vt-btn.ghost:hover { background: #ebe4d4; transform: none; }
+.vt-fine { margin-top: 1.4rem; font: 400 .72rem 'IBM Plex Mono', monospace; color: #776d64; max-width: 30rem; }
+.vt-cert { position: relative; margin: 0; padding: 1.7rem 1.7rem 1.4rem; background: #f8f4ea; border: 2px solid #b5121b; outline: 1px solid #b5121b; outline-offset: 5px; box-shadow: 0 30px 60px rgba(60,40,20,.18); transform: rotate(1.6deg); }
+.vt-cert::before { content: ''; position: absolute; inset: 7px; border: 1px dashed rgba(181,18,27,.45); pointer-events: none; }
+.vt-ctitle { font: 700 .66rem Archivo, sans-serif; font-stretch: 125%; letter-spacing: .24em; text-transform: uppercase; color: #b5121b; }
+.vt-cert h2 { margin-top: .4rem; font: 400 clamp(1.6rem, 3vw, 2.2rem)/1.05 'Bodoni Moda', serif; color: #16120f; }
+.vt-cno { margin-top: .5rem; font: 500 .72rem 'IBM Plex Mono', monospace; color: #b5121b; }
+.vt-cert dl { margin: 1.2rem 0; border-top: 1px solid rgba(22,18,15,.3); }
+.vt-cert dl div { display: flex; justify-content: space-between; gap: 1rem; padding: .55rem 0; border-bottom: 1px solid rgba(22,18,15,.16); font-size: .85rem; }
+.vt-cert dt { font: 600 .62rem Archivo, sans-serif; font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: #776d64; }
+.vt-cert dd { margin: 0; font-weight: 500; color: #16120f; }
+.vt-coupons { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem; }
+.vt-coupon { position: relative; display: flex; flex-direction: column; align-items: center; padding: .5rem .2rem; border: 1px dashed rgba(22,18,15,.5); background: #f3eee3; }
+.vt-coupon svg { margin: .2rem 0; } .vt-coupon b { font: 400 1.05rem 'Bodoni Moda', serif; } .vt-coupon small { font: 500 .56rem 'IBM Plex Mono', monospace; color: #776d64; }
+.vt-pres { position: absolute; top: -.45rem; left: -.3rem; padding: .05rem .3rem; background: #b5121b; color: #f3eee3; font: 700 .48rem Archivo, sans-serif; letter-spacing: .1em; text-transform: uppercase; transform: rotate(-6deg); }
+.vt-seal { position: absolute; right: -1.6rem; bottom: -2rem; width: 6.5rem; height: 6.5rem; opacity: .9; transform: rotate(-14deg); filter: drop-shadow(0 2px 0 rgba(181,18,27,.15)); }
+.vt-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 77rem; margin: 1rem auto 0; padding: 0 clamp(1.25rem, 4vw, 2.5rem); }
+.vt-stats div { position: relative; padding: 1.4rem 1.2rem; border: 1px solid rgba(22,18,15,.32); margin-left: -1px; background: #f8f4ea; }
+.vt-stats small { position: absolute; top: .6rem; right: .8rem; font: 500 .7rem 'IBM Plex Mono', monospace; color: #b5121b; }
+.vt-stats b { display: block; font: 400 clamp(1.6rem, 3.4vw, 2.6rem)/1 'Bodoni Moda', serif; color: #16120f; }
+.vt-stats span { display: block; margin-top: .6rem; font: 600 .62rem Archivo, sans-serif; font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: #776d64; }
+.vt-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; max-width: 77rem; margin: 3rem auto 0; padding: 0 clamp(1.25rem, 4vw, 2.5rem); }
+.vt-card { padding: 1.5rem; background: #f8f4ea; border: 1px solid rgba(22,18,15,.32); box-shadow: 4px 4px 0 rgba(181,18,27,.85); }
+.vt-label { font: 600 .66rem Archivo, sans-serif; font-stretch: 125%; letter-spacing: .2em; text-transform: uppercase; color: #b5121b; margin-bottom: .8rem; }
+.vt-card p:not(.vt-label) { padding: .7rem 0; border-top: 1px solid rgba(22,18,15,.16); font-size: .92rem; line-height: 1.55; color: #4a433c; }
+.vt-card p b { color: #16120f; font-weight: 600; }
+.vt-wide { max-width: 77rem; margin: 1.2rem auto 0; width: calc(100% - 2 * clamp(1.25rem, 4vw, 2.5rem)); }
+.vt-mono { font-family: 'IBM Plex Mono', monospace; color: #16120f !important; }
+/* the demo, on paper */
+.t-vault-v2 #demo-slot { max-width: 77rem; margin: 3rem auto 0; padding: 0 clamp(1.25rem, 4vw, 2.5rem); }
+.t-vault-v2 #demo-slot h2 { color: #b5121b; }
+.t-vault-v2 .demo { background: #f8f4ea; border: 1px solid rgba(22,18,15,.32); box-shadow: 4px 4px 0 rgba(181,18,27,.85); max-width: 44rem; }
+.t-vault-v2 .demo .log2 { color: #4a433c; } .t-vault-v2 .demo .log2 .u { color: #16120f; } .t-vault-v2 .demo .log2 .ok { color: #1a6b32; } .t-vault-v2 .demo .log2 .bad { color: #b5121b; }
+.t-vault-v2 .demo input { background: #f3eee3; color: #16120f; border-color: rgba(22,18,15,.3); }
+.t-vault-v2 .demo button { color: #16120f; border-color: #16120f; background: transparent; }
+.t-vault-v2 .demo button:hover { background: #16120f; color: #f3eee3; }
+.t-vault-v2 .demo .tip { color: #776d64 !important; }
+.t-vault-v2 .pager { max-width: 77rem; margin: 0 auto; }
+.t-vault-v2 .pager a { background: #f8f4ea; border-color: rgba(22,18,15,.32); }
+.t-vault-v2 .pager .t { font-family: 'Bodoni Moda', serif; font-weight: 400; color: #16120f; }
+
+@media (max-width: 900px) {
+    .bh-stats { grid-template-columns: repeat(2, 1fr); } .bh-team { grid-template-columns: 1fr 1fr; } .bh-two { grid-template-columns: 1fr; } .bh-proof { position: static; }
+    .vt-hero { grid-template-columns: 1fr; padding-top: 8rem; } .vt-cert { transform: none; } .vt-grid, .vt-stats { grid-template-columns: 1fr; } .vt-seal { right: -.5rem; }
+}
+@media (max-width: 520px) { .bh-team { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .vt-micro span { animation: none; } .bh-team article:hover .bh-av svg { animation: none; } }
