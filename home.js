@@ -3,8 +3,7 @@
     const boot = document.getElementById('boot');
     let seen = false; try { seen = sessionStorage.getItem('sp-booted') === '1'; } catch {}
     if (seen || calm) return boot.remove();
-    const gl = (() => { try { return !!document.createElement('canvas').getContext('webgl'); } catch { return false; } })();
-    const lines = ['SP_SYS_01 // BIOS OK', `MOUNTING PROJECT INDEX ... <em>${PROJECTS.length} ENTRIES</em>`, 'LOADING DOSSIERS ... <em>OK</em>', `WEBGL ... <em>${gl ? 'OK' : 'UNAVAILABLE'}</em>`, 'OPERATOR SP_1102 ... <span>AUTHENTICATED</span>', '> WELCOME.'];
+    const lines = ['SP_SYS_01 // BIOS OK', `MOUNTING PROJECT INDEX ... <em>${PROJECTS.length} ENTRIES</em>`, 'LOADING DOSSIERS ... <em>OK</em>', 'RENDERER ... <em>OK</em>', 'OPERATOR SP_1102 ... <span>AUTHENTICATED</span>', '> WELCOME.'];
     let i = 0;
     const end = () => { clearInterval(iv); try { sessionStorage.setItem('sp-booted', '1'); } catch {} boot.classList.add('off'); setTimeout(() => boot.remove(), 600); };
     const iv = setInterval(() => (i < lines.length ? boot.insertAdjacentHTML('beforeend', `<div>${lines[i++]}</div>`) : end()), 170);
@@ -64,86 +63,57 @@ const navLinks = [...document.querySelectorAll('.nav a')];
 const seenObs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) navLinks.forEach(a => a.setAttribute('aria-current', String(a.hash === '#' + e.target.id))); }), { rootMargin: '-40% 0px -55% 0px' });
 document.querySelectorAll('main > section').forEach(s => seenObs.observe(s));
 
-// ---- Background: a JARVIS-style HUD dial. Each arc of the wheel is one project, in its own colour. ----
+// ---- Background: a generative flow field. Thousands of thin streaks follow a slow noise field;
+// each streak carries one project's colour, so hovering a project lights its share of the field. ----
 (() => {
-    const canvas = document.getElementById('bg-canvas');
-    let renderer; try { renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true }); } catch { return; }
-    const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(60, 1, 0.1, 400);
-    camera.position.z = 44; renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-    const css = () => getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#e50914';
-    const tint = new THREE.Color(css()), target = new THREE.Color(css()); // the accent: ticks, rings, core. Shared so the shell's `theme` recolours it.
-    const ADD = THREE.AdditiveBlending, TAU = Math.PI * 2;
-    const line = (pts, op, loop = true, col = tint) => { const g = new THREE.BufferGeometry().setAttribute('position', new THREE.BufferAttribute(new Float32Array(pts), 3)); return new (loop ? THREE.LineLoop : THREE.Line)(g, new THREE.LineBasicMaterial({ color: col, transparent: true, opacity: op, blending: ADD })); };
-    const arcPts = (r, a0, a1, n = 48) => { const p = []; for (let i = 0; i <= n; i++) { const a = a0 + (a1 - a0) * i / n; p.push(Math.cos(a) * r, Math.sin(a) * r, 0); } return p; };
-    const glowTex = (() => { const c = document.createElement('canvas'); c.width = c.height = 64; const x = c.getContext('2d'), g = x.createRadialGradient(32, 32, 0, 32, 32, 32); g.addColorStop(0, 'rgba(255,255,255,1)'); g.addColorStop(.3, 'rgba(255,255,255,.35)'); g.addColorStop(1, 'rgba(255,255,255,0)'); x.fillStyle = g; x.fillRect(0, 0, 64, 64); return new THREE.CanvasTexture(c); })();
-    const glow = (size, col, op) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex, color: col, transparent: true, opacity: op, blending: ADD, depthWrite: false })); s.scale.setScalar(size); return s; };
+    const canvas = document.getElementById('bg-canvas'), ctx = canvas.getContext('2d');
+    const DPR = Math.min(devicePixelRatio || 1, 2), TAU = Math.PI * 2;
+    // Small gradient-noise (Perlin) so the field is smooth and has no external dependency.
+    const perm = new Uint8Array(512); { const p = [...Array(256).keys()].sort(() => Math.random() - .5); for (let i = 0; i < 512; i++) perm[i] = p[i & 255]; }
+    const fade = t => t * t * t * (t * (t * 6 - 15) + 10), lerp = (a, b, t) => a + (b - a) * t;
+    const grad = (h, x, y) => { const u = (h & 1) ? x : -x, v = (h & 2) ? y : -y; return u + v; };
+    const noise = (x, y) => { const X = Math.floor(x) & 255, Y = Math.floor(y) & 255; x -= Math.floor(x); y -= Math.floor(y); const u = fade(x), v = fade(y), A = perm[X] + Y, B = perm[X + 1] + Y;
+        return lerp(lerp(grad(perm[A], x, y), grad(perm[B], x - 1, y), u), lerp(grad(perm[A + 1], x, y - 1), grad(perm[B + 1], x - 1, y - 1), u), v); };
 
-    const hud = new THREE.Group(); scene.add(hud);
-    const spin = {}; // named rotating layers
-    const layer = (name, speed) => (spin[name] = { g: new THREE.Group(), speed }, hud.add(spin[name].g), spin[name].g);
-
-    // outer tick ring: 180 ticks, longer every 5th and 15th, like a bezel
-    const ticks = []; for (let i = 0; i < 180; i++) { const a = i / 180 * TAU, r0 = 25, r1 = r0 + (i % 15 === 0 ? 1.7 : i % 5 === 0 ? 1 : .5); ticks.push(Math.cos(a) * r0, Math.sin(a) * r0, 0, Math.cos(a) * r1, Math.sin(a) * r1, 0); }
-    layer('bezel', 0.0006).add(new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.BufferAttribute(new Float32Array(ticks), 3)), new THREE.LineBasicMaterial({ color: tint, transparent: true, opacity: 0.55, blending: ADD })), line(arcPts(24.4, 0, TAU, 160), 0.35));
-
-    // broken arcs of varied length, counter-rotating
-    const broken = layer('broken', -0.0012); [[0.1, 1.3], [1.6, 2.1], [2.5, 4.2], [4.5, 5.3], [5.6, 6.1]].forEach(([a, b]) => broken.add(line(arcPts(21.6, a, b, 40), 0.7, false)));
-    [[0.4, 0.8], [3.0, 3.4]].forEach(([a, b]) => broken.add(line(arcPts(22.4, a, b, 12), 0.9, false)));
-
-    // the project wheel: one coloured arc per project; the colour is the project's colour
-    const N = PROJECTS.length, wheel = layer('wheel', 0.0009), arcs = [];
-    PROJECTS.forEach((p, i) => {
-        const gap = 0.045, a0 = i / N * TAU + gap, th = TAU / N - gap * 2;
-        const m = new THREE.Mesh(new THREE.RingGeometry(16.2, 17.6, 28, 1, a0, th), new THREE.MeshBasicMaterial({ color: p.accent, transparent: true, opacity: 0.4, side: THREE.DoubleSide, blending: ADD, depthWrite: false }));
-        const mid = a0 + th / 2, dot = glow(2.2, p.accent, 0.9); dot.position.set(Math.cos(mid) * 18.6, Math.sin(mid) * 18.6, 0);
-        const rim = line(arcPts(15.6, a0, a0 + th, 14), 0.5, false, new THREE.Color(p.accent));
-        wheel.add(m, dot, rim); arcs.push({ m, dot, rim });
-    });
-    const sel = line(arcPts(19.6, 0, TAU, 120), 0, true, new THREE.Color('#fff')); wheel.add(sel); // a hairline that lights up for the hovered project
-
-    // dashed ring, inner polygons, crosshair
-    const dash = new THREE.LineLoop(new THREE.BufferGeometry().setAttribute('position', new THREE.BufferAttribute(new Float32Array(arcPts(13.2, 0, TAU, 140)), 3)), new THREE.LineDashedMaterial({ color: tint, dashSize: .5, gapSize: .4, transparent: true, opacity: 0.55, blending: ADD })); dash.computeLineDistances();
-    layer('dash', 0.002).add(dash);
-    const poly = layer('poly', -0.0035); poly.add(line(arcPts(10, 0, TAU, 6).slice(0, 18), 0.8), line(arcPts(7.4, 0.52, TAU + 0.52, 3).slice(0, 9), 0.6), line(arcPts(10.8, 0, TAU, 96), 0.25));
-    hud.add(line([-27, 0, 0, -12, 0, 0], 0.35, false), line([12, 0, 0, 27, 0, 0], 0.35, false), line([0, -27, 0, 0, -12, 0], 0.35, false), line([0, 12, 0, 0, 27, 0], 0.35, false));
-
-    // radar sweep: a fan that fades along its trailing edge
-    const fan = new THREE.CircleGeometry(13, 40, 0, 1.1), fc = new Float32Array(fan.attributes.position.count * 3);
-    for (let i = 1; i < fan.attributes.position.count; i++) { const t = (i - 1) / (fan.attributes.position.count - 2), k = Math.pow(1 - t, 1.6) * 0.55; fc.set([tint.r * k, tint.g * k, tint.b * k], i * 3); }
-    fan.setAttribute('color', new THREE.BufferAttribute(fc, 3));
-    const sweep = new THREE.Mesh(fan, new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, blending: ADD, depthWrite: false, side: THREE.DoubleSide })); hud.add(sweep);
-
-    // core: a faceted reactor with a pulsing glow and two small satellites
-    const core = new THREE.Mesh(new THREE.IcosahedronGeometry(3.1, 1), new THREE.MeshBasicMaterial({ color: tint, wireframe: true, transparent: true, opacity: 0.8, blending: ADD }));
-    const core2 = new THREE.Mesh(new THREE.OctahedronGeometry(1.7, 0), new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.7, blending: ADD }));
-    const halo = glow(12, tint, 0.45); hud.add(core, core2, halo);
-    const sats = [0, 2.1, 4.2].map(ph => { const s = glow(1.4, 0xffffff, 0.95); hud.add(s); return { s, ph }; });
-
-    // sparse dust, white and quiet
-    const dust = new Float32Array(500 * 3); for (let i = 0; i < 500; i++) dust.set([(Math.random() - .5) * 120, (Math.random() - .5) * 80, -10 - Math.random() * 40], i * 3);
-    scene.add(new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.BufferAttribute(dust, 3)), new THREE.PointsMaterial({ size: 0.12, color: 0xffffff, transparent: true, opacity: 0.35, blending: ADD, depthWrite: false })));
-
-    let focus = -1; window.hudFocus = i => { focus = i; if (i >= 0) sel.material.color.set(PROJECTS[i].accent); };
-    window.heroTint = hex => target.set(hex);
-    const fit = () => { renderer.setSize(innerWidth, innerHeight, false); camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); };
+    const colours = PROJECTS.map(p => p.accent), N = 56; // N: points kept per streak
+    let W, H, parts = [], mx = -999, my = -999, focus = -1, mono = null, t = 0;
+    const spawn = (p = {}) => { p.x = Math.random() * W; p.y = Math.random() * H; p.age = 0; p.max = 160 + Math.random() * 320; p.k = p.k ?? (Math.random() * colours.length) | 0; p.v = .8 + Math.random() * 1.1;
+        p.tr = p.tr || new Float32Array(N * 2); for (let i = 0; i < N; i++) { p.tr[i * 2] = p.x; p.tr[i * 2 + 1] = p.y; } return p; };
+    const fit = () => { W = canvas.width = Math.round(innerWidth * DPR); H = canvas.height = Math.round(innerHeight * DPR);
+        parts = Array.from({ length: Math.min(750, Math.round(W * H / 5200 / DPR)) }, () => spawn()); };
     fit(); addEventListener('resize', fit);
-    let mx = 0, my = 0; addEventListener('pointermove', e => { mx = e.clientX / innerWidth * 2 - 1; my = -(e.clientY / innerHeight) * 2 + 1; });
-    let t = 0;
-    (function loop() {
-        requestAnimationFrame(loop); t += 0.016;
-        const away = Math.min(1, scrollY / innerHeight);
-        tint.lerp(target, 0.06);
-        if (!calm) { Object.values(spin).forEach(l => l.g.rotation.z += l.speed); sweep.rotation.z -= 0.012; core.rotation.x += 0.006; core.rotation.y += 0.009; core2.rotation.x -= 0.012; core2.rotation.z += 0.008; }
-        halo.material.opacity = 0.38 + Math.sin(t * 2) * 0.1;
-        sats.forEach(({ s, ph }) => s.position.set(Math.cos(t * 0.6 + ph) * 15, Math.sin(t * 0.6 + ph) * 15, 0));
-        arcs.forEach(({ m, dot }, i) => { const goal = focus < 0 ? 0.42 : i === focus ? 1 : 0.14; m.material.opacity += (goal - m.material.opacity) * 0.15; dot.material.opacity += ((focus < 0 ? 0.9 : i === focus ? 1 : 0.25) - dot.material.opacity) * 0.15; dot.scale.setScalar(2.2 + (i === focus ? 1.6 + Math.sin(t * 6) * 0.3 : 0)); });
-        sel.material.opacity += ((focus >= 0 ? 0.35 : 0) - sel.material.opacity) * 0.15;
-        // layout: centred behind the name, then drifts right and shrinks as you scroll
-        const s = (innerWidth > 900 ? Math.min(innerWidth / 1500, innerHeight / 880) * 1.05 : 0.55) * (1 - away * 0.3);
-        hud.scale.setScalar(s); hud.position.x += ((innerWidth > 900 ? away * 17 : 0) - hud.position.x) * 0.05;
-        hud.rotation.x += (-my * 0.25 - hud.rotation.x) * 0.05; hud.rotation.y += (mx * 0.3 - hud.rotation.y) * 0.05;
-        renderer.render(scene, camera);
-    })();
+    addEventListener('pointermove', e => { mx = e.clientX * DPR; my = e.clientY * DPR; });
+    window.hudFocus = i => { focus = i; };                 // hovered project: its streaks glow, the rest recede
+    window.heroTint = hex => { mono = hex; };               // `theme` in the shell: the whole field goes one colour
+
+    const TIERS = [.12, .3, .75]; // tail, middle, head
+    const draw = dt => {
+        const scale = DPR * 0.0011, drift = t * 0.00005, R = 170 * DPR; // the field itself evolves over tens of seconds
+        for (const p of parts) {
+            const ang = noise(p.x * scale + 7.3, p.y * scale + drift) * TAU * 1.15;
+            let vx = Math.cos(ang) * p.v * DPR * dt, vy = Math.sin(ang) * p.v * DPR * dt;
+            const dx = p.x - mx, dy = p.y - my, d2 = dx * dx + dy * dy;
+            if (d2 < R * R) { const d = Math.sqrt(d2) + 1, f = (1 - d / R) * 2.4 * DPR * dt; vx += (-dy / d) * f + (dx / d) * f * .5; vy += (dx / d) * f + (dy / d) * f * .5; } // the pointer stirs the field
+            p.tr.copyWithin(0, 2); p.x += vx; p.y += vy; p.age += dt; p.tr[(N - 1) * 2] = p.x; p.tr[(N - 1) * 2 + 1] = p.y;
+            if (p.age > p.max || p.x < -30 || p.y < -30 || p.x > W + 30 || p.y > H + 30) spawn(p);
+        }
+        ctx.clearRect(0, 0, W, H); ctx.globalCompositeOperation = 'lighter'; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+        const per = Math.floor((N - 1) / TIERS.length);
+        colours.forEach((col, k) => {
+            const on = focus === k, dim = focus >= 0 && !on, base = dim ? .35 : on ? 1.6 : 1;
+            ctx.strokeStyle = mono || col; ctx.lineWidth = (on ? 2.2 : 1.4) * DPR;
+            TIERS.forEach((a, j) => {
+                ctx.globalAlpha = Math.min(1, a * base);
+                ctx.beginPath();
+                for (const p of parts) { if (p.k !== k) continue; const s = j * per, e = j === TIERS.length - 1 ? N - 1 : (j + 1) * per; ctx.moveTo(p.tr[s * 2], p.tr[s * 2 + 1]); for (let i = s + 1; i <= e; i++) ctx.lineTo(p.tr[i * 2], p.tr[i * 2 + 1]); }
+                ctx.stroke();
+            });
+        });
+        ctx.globalAlpha = 1;
+    };
+    if (calm) { for (let i = 0; i < 90; i++) { t += 16; draw(1); } return; } // reduced motion: one still, pre-drawn frame
+    let last = performance.now();
+    (function loop(now) { requestAnimationFrame(loop); const dt = Math.min(3, (now - last) / 16.7); last = now; t += dt * 16; draw(dt); canvas.style.opacity = String(1 - Math.min(1, scrollY / innerHeight) * .55); })(last);
 })();
 
 // ---- Shell: type /// ----
