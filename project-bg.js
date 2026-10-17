@@ -218,6 +218,19 @@ if (p) {
             };
         },
 
+        // A HUD around a core, with a scan plane sweeping through it.
+        'friday'() {
+            const m = wire(accent, 0.28);
+            const core = new THREE.Mesh(new THREE.IcosahedronGeometry(10, 1), m), shell = new THREE.Mesh(new THREE.DodecahedronGeometry(17, 1), m);
+            const laser = new THREE.Mesh(new THREE.PlaneGeometry(44, 44), new THREE.MeshBasicMaterial({ color: accent, transparent: true, opacity: 0.18, side: THREE.DoubleSide, blending: THREE.AdditiveBlending }));
+            laser.rotation.x = Math.PI / 2; g.add(core, shell, laser);
+            let dir = 1;
+            return () => {
+                core.rotation.y += 0.005; core.rotation.x += 0.002; shell.rotation.y -= 0.002; shell.rotation.z += 0.003;
+                laser.position.y += 0.15 * dir; if (Math.abs(laser.position.y) > 16) dir *= -1;
+            };
+        },
+
         // A grid of bytes: scratches turn them red, the decoder heals them green.
         'mend'() {
             const C = 52, R = 30, N = C * R, pos = new Float32Array(N * 3), cols = new Float32Array(N * 3), dmg = new Float32Array(N);
@@ -260,6 +273,7 @@ if (p) {
         },
     };
 
+    scenes['vault-v1'] = scenes['vault-v2']; // same idea, earlier version
     const tick = (scenes[p.id] || (() => () => {}))();
     let last = performance.now(), t = 0;
     (function loop(now) {

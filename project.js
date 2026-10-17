@@ -1,37 +1,34 @@
-const p = PROJECTS.find(x => x.id === new URLSearchParams(location.search).get('id'));
+const i = PROJECTS.findIndex(x => x.id === new URLSearchParams(location.search).get('id'));
+const p = PROJECTS[i];
 const root = document.getElementById('dossier');
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 if (!p) {
-    root.innerHTML = '<h1>DOSSIER NOT FOUND</h1>';
+    root.innerHTML = '<div class="case"><h1>Not found</h1><p class="concept"><a href="index.html">Back to the portfolio</a></p></div>';
 } else {
-    document.title = `${p.title} | Project Dossier`;
+    document.title = `${p.title} | Shrestha Pandey`;
     document.documentElement.style.setProperty('--accent', p.accent);
-    document.getElementById('sys-status').textContent = p.sys;
 
-    const links = [
-        p.live && `<a href="${esc(p.live)}" target="_blank" rel="noopener" class="live-link-btn">[ INITIALIZE LIVE DEPLOYMENT ]</a>`,
-        p.repo && `<a href="${esc(p.repo)}" target="_blank" rel="noopener" class="live-link-btn alt">[ SOURCE REPOSITORY ]</a>`,
-    ].filter(Boolean).join('');
-
+    const nb = (q, label) => q ? `<a href="project.html?id=${q.id}"><span class="mono">${label}</span><span class="t">${esc(q.title)}</span></a>` : '<span></span>';
     root.innerHTML = `
-        <header class="dossier-header">
+        <article class="case">
+            <p class="eyebrow mono">${esc(p.kind)} · ${p.year}</p>
             <h1>${esc(p.title)}</h1>
-            <h2 class="role-highlight">ROLE // ${esc(p.role)}</h2>
-            <p class="core-concept">${esc(p.concept)}</p>
-            ${links ? `<div class="action-station">${links}</div>` : ''}
-        </header>
-        <section class="data-stream">
+            <p class="role mono">${esc(p.role)}</p>
+            <p class="concept">${esc(p.concept)}</p>
+            ${p.live || p.repo ? `<div class="btns">
+                ${p.live ? `<a class="btn" href="${esc(p.live)}" target="_blank" rel="noopener">Live site ↗</a>` : ''}
+                ${p.repo ? `<a class="btn ${p.live ? 'alt' : ''}" href="${esc(p.repo)}" target="_blank" rel="noopener">Source code ↗</a>` : ''}
+            </div>` : ''}
             ${p.blocks.map(([title, lines]) => `
-            <div class="stream-block">
-                <div class="stream-title">${esc(title)}</div>
-                <div class="stream-content">
-                    ${lines.map(([k, v]) => `<p>> <strong>${esc(k)}</strong> ${esc(v)}</p>`).join('')}
-                </div>
-            </div>`).join('')}
-            <div class="stream-block">
-                <div class="stream-title">STACK</div>
-                <div class="stream-content"><p>> ${esc(p.stack)}</p></div>
-            </div>
-        </section>`;
+            <section>
+                <h2>${esc(title)}</h2>
+                ${lines.map(([k, v]) => `<p><strong>${esc(k)}</strong> ${esc(v)}</p>`).join('')}
+            </section>`).join('')}
+            <section>
+                <h2>Stack</h2>
+                <p class="stack">${esc(p.stack)}</p>
+            </section>
+        </article>
+        <nav class="pager" aria-label="More projects">${nb(PROJECTS[i - 1], '← Previous')}${nb(PROJECTS[i + 1], 'Next →')}</nav>`;
 }
