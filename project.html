@@ -3,28 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project | Shrestha Pandey</title>
+    <title>Dossier | Shrestha Pandey</title>
     <meta name="color-scheme" content="dark">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;800&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;800&family=Noto+Sans+Devanagari:wght@700&family=Orbitron:wght@500;800&family=Poppins:wght@400;600;800&family=Rajdhani:wght@400;600&family=Sora:wght@400;800&family=Space+Grotesk:wght@300;400;600&family=Space+Mono:wght@400;700&family=Syncopate:wght@700&family=Unbounded:wght@500;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;800&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;700;800&family=Noto+Sans+Devanagari:wght@700&family=Orbitron:wght@500;800&family=Poppins:wght@400;600;800&family=Rajdhani:wght@400;600&family=Sora:wght@400;800&family=Space+Grotesk:wght@300;400;600&family=Space+Mono:wght@400;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="site.css">
     <link rel="stylesheet" href="themes.css">
 </head>
 <body>
     <canvas id="bg-canvas" aria-hidden="true"></canvas>
-    <div class="veil"></div>
+    <div class="veil" aria-hidden="true"></div>
+    <div class="hud" aria-hidden="true"></div>
 
-    <header class="top">
-        <a href="index.html">← Shrestha Pandey</a>
-        <a href="index.html#work">All work</a>
+    <header class="bar">
+        <a class="logo" href="index.html"><i></i>← Exit to main system</a>
+        <div class="stat"><span id="dossier-status">Dossier</span><span id="clock"></span></div>
     </header>
 
     <main id="dossier"></main>
 
     <script src="projects.js"></script>
+    <script src="fx.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="project.js"></script>
     <script src="project-bg.js"></script>
+    <script src="demos.js"></script>
 </body>
 </html>

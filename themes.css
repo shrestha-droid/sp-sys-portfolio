@@ -1,5 +1,4 @@
-/* One theme per project. Variables apply to the project's home tile and its case-study page;
-   the decoration rules below only touch the page (.case) unless they say .tile. */
+/* One theme per project dossier: palette, fonts and layout flavour. Applied as body.t-<id>. */
 
 /* ---- Branch HQ: an agent crew in terminal windows ---- */
 .t-branch-hq { --bg:#03110c; --fg:#d8ffee; --soft:#9fd9bf; --muted:#5f8f7a; --line:#0f3a2b; --accent:#00e5a0; --accent2:#7cffcb; --display:'JetBrains Mono',monospace; --body:'JetBrains Mono',monospace; --display-weight:800; --display-ls:-.05em; --r:6px; --r2:8px; }
@@ -87,19 +86,5 @@
 .t-vault-v1::after { content: ''; position: fixed; inset: 0; z-index: 5; pointer-events: none; background: repeating-linear-gradient(transparent 0 2px, #00000038 2px 4px); }
 .t-vault-v1 .case section p { font-size: .85rem; }
 .t-vault-v1 .case section p::before { content: '> '; color: var(--accent); }
-
-/* ---- Home tiles: a little of each theme's character ---- */
-.tile.t-clps { background-image: linear-gradient(#ffffff0a 1px, transparent 1px), linear-gradient(90deg, #ffffff0a 1px, transparent 1px), radial-gradient(120% 90% at 100% 0%, #ffd16626, transparent 60%); background-size: 28px 28px, 28px 28px, auto; background-color: var(--bg); }
-.tile.t-drishti::before { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 8px; background: repeating-linear-gradient(-45deg, var(--accent) 0 12px, #0d0c0a 12px 24px); }
-.tile.t-bheed-drishti::before { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 14px; background: radial-gradient(circle at 7px 7px, var(--accent2) 0 4px, transparent 5px) 0 0/22px 14px repeat-x; }
-.tile.t-vault-v1::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(transparent 0 2px, #0000002e 2px 4px); }
-.tile.t-friday { clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 22px 100%, 0 calc(100% - 22px)); border-radius: 0; }
-.tile.t-vault-v2, .tile.t-clps, .tile.t-vault-v1 { border-radius: .25rem; }
-.tile.t-branch-hq, .tile.t-mend { border-radius: .6rem; }
-.tile.t-branch-hq h3, .tile.t-mend h3, .tile.t-ring0 h3 { letter-spacing: -.07em; }
-.tile.t-vault-v2 h3, .tile.t-drishti h3, .tile.t-friday h3, .tile.t-vault-v1 h3 { text-transform: uppercase; }
-.tile.t-vault-v2 h3 { font-size: clamp(1.1rem, 1.8vw, 1.5rem); }
-.tile.t-friday h3 { font-size: clamp(1.4rem, 2.4vw, 2rem); letter-spacing: .04em; }
-.tile.t-drishti h3 { font-size: clamp(2rem, 3.4vw, 3rem); line-height: .9; }
 
 @media (prefers-reduced-motion: reduce) { .t-mend .case h1, .t-branch-hq .case h1::after { animation: none; } }

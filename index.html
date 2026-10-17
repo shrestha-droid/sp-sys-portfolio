@@ -8,111 +8,118 @@
     <meta name="color-scheme" content="dark">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;800&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;800&family=Noto+Sans+Devanagari:wght@700&family=Orbitron:wght@500;800&family=Poppins:wght@400;600;800&family=Rajdhani:wght@400;600&family=Sora:wght@400;800&family=Space+Grotesk:wght@300;400;600&family=Space+Mono:wght@400;700&family=Syncopate:wght@700&family=Unbounded:wght@500;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;800&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;700;800&family=Noto+Sans+Devanagari:wght@700&family=Orbitron:wght@500;800&family=Poppins:wght@400;600;800&family=Rajdhani:wght@400;600&family=Sora:wght@400;800&family=Space+Grotesk:wght@300;400;600&family=Space+Mono:wght@400;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="site.css">
-    <link rel="stylesheet" href="themes.css">
 </head>
 <body>
-    <a class="skip" href="#about">Skip to content</a>
+    <a class="skip" href="#ident">Skip to content</a>
+    <div id="boot" aria-hidden="true"></div>
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+    <div class="hud" aria-hidden="true"></div>
+    <div class="prog" id="prog" aria-hidden="true"></div>
 
-    <nav class="nav" aria-label="Sections">
-        <a href="#top">Home</a>
-        <a href="#about">About</a>
-        <a href="#work">Work</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-    </nav>
-
-    <header class="hero" id="top">
-        <canvas id="hero-canvas" aria-hidden="true"></canvas>
-        <p class="tag"><i></i> Engineering student · VIT Bhopal · Year 2</p>
-        <h1><span>Shrestha</span><span class="grad">Pandey</span></h1>
-        <p class="sub">I'm an <b>AI systems architect</b>, <b>full-stack developer</b> and <b>founder</b>. I build the stuff that sounds impossible in a sentence: apps that write apps, vaults nobody can open alone, crowds that route themselves.</p>
-        <div class="cta">
-            <a class="btn hot" href="#work">See the work ↓</a>
-            <a class="btn" href="https://github.com/shrestha-droid" target="_blank" rel="noopener">GitHub ↗</a>
-            <a class="btn" href="mailto:shresthakp07@gmail.com">Say hi</a>
-        </div>
-        <p class="hint mono">psst. press <kbd>/</kbd><kbd>/</kbd><kbd>/</kbd> for a terminal.</p>
+    <header class="bar">
+        <a class="logo" href="#ident"><i></i>SP_SYS_01</a>
+        <nav class="nav" aria-label="Modules">
+            <a href="#projects"><b>01</b>Projects</a>
+            <a href="#operator"><b>02</b>Operator</a>
+            <a href="#log"><b>03</b>Mission log</a>
+            <a href="#skills"><b>04</b>Capabilities</a>
+            <a href="#comms"><b>05</b>Comms</a>
+        </nav>
+        <div class="stat"><span>Main terminal // online</span><span id="clock">--:--:--</span></div>
     </header>
 
-    <div class="ticker" aria-hidden="true"><div id="ticker"></div></div>
-
     <main>
-        <section id="about">
-            <h2 class="label"><small>01</small> About</h2>
+        <section class="hero" id="ident">
+            <p class="tag mono">Operator SP_1102 // Timeline: prime</p>
+            <h1 id="name"><span>Shrestha</span><span class="r">Pandey</span></h1>
+            <p class="sub" id="sub" aria-label="AI systems. Full-stack. Founder."></p>
+            <div class="readout">
+                <div class="cell brk"><b>AI Systems Architect</b><span>Designation</span></div>
+                <div class="cell brk"><b>VIT Bhopal // Year 2</b><span>Base</span></div>
+                <div class="cell brk"><b id="count">11 online</b><span>Project index</span></div>
+                <div class="cell brk"><b>Building</b><span>Status</span></div>
+            </div>
+            <div class="cta">
+                <a class="btn main" href="#projects">Enter project index ↓</a>
+                <a class="btn" href="https://github.com/shrestha-droid" target="_blank" rel="noopener">GitHub ↗</a>
+                <a class="btn" href="mailto:shresthakp07@gmail.com">Open comms</a>
+            </div>
+        </section>
+
+        <section class="mod" id="projects">
+            <header><span class="n">01</span><h2>Project index</h2></header>
+            <p class="note">Most of these were built in pair with Claude. Hover a target to inspect it, click to open its dossier. Each dossier is skinned like the project it describes.</p>
+            <div class="index">
+                <ul class="targets" id="targets"></ul>
+                <aside class="insp brk" id="insp" aria-live="polite"></aside>
+            </div>
+            <noscript><p>The project index needs JavaScript. Everything is also on <a href="https://github.com/shrestha-droid">GitHub</a>.</p></noscript>
+        </section>
+
+        <section class="mod" id="operator">
+            <header><span class="n">02</span><h2>Operator</h2></header>
             <div class="about">
                 <div>
                     <p class="lead">I like problems where <em>being wrong is expensive</em>: security, simulation, and software that has to keep working when nobody is watching.</p>
                     <p>This year that has meant a desktop app that turns a sentence into a running full-stack app, a client-side vault that splits secrets between people you trust, a crowd-safety simulator for mass gatherings, and several NASA Space Apps entries. I'm also the founder of Concierge, where I build full-stack and AI software.</p>
                 </div>
                 <div class="facts">
-                    <div class="fact" style="--c:var(--pink)"><b>11</b><span>projects shipped this year</span></div>
-                    <div class="fact" style="--c:var(--cyan)"><b>2</b><span>NASA Space Apps 2026 entries</span></div>
-                    <div class="fact" style="--c:var(--lime)"><b>Year 2</b><span>engineering at VIT Bhopal</span></div>
+                    <div class="cell brk"><b>11</b><span>projects in the index</span></div>
+                    <div class="cell brk"><b>2</b><span>NASA Space Apps 2026 entries</span></div>
+                    <div class="cell brk"><b>Year 2</b><span>engineering, VIT Bhopal</span></div>
                 </div>
             </div>
         </section>
 
-        <section id="work">
-            <h2 class="label"><small>02</small> Work</h2>
-            <p style="margin: -1rem 0 2rem; max-width: 40rem">Most of these were built in pair with Claude. Each tile opens a short write-up, dressed like the project it's about. Live links sit on the ones that are deployed.</p>
-            <ol class="bento" id="work-list"></ol>
-            <noscript><p>The project list needs JavaScript. All of it is on <a href="https://github.com/shrestha-droid">GitHub</a>.</p></noscript>
-        </section>
-
-        <section id="experience">
-            <h2 class="label"><small>03</small> Experience &amp; education</h2>
-            <ol class="tl">
-                <li style="--c:var(--pink)">
-                    <span class="when">Present</span>
-                    <div><h3>Founder, Concierge</h3><p>Architecting and building full-stack software, intelligent AI systems and high-performance web applications.</p></div>
-                </li>
-                <li style="--c:var(--cyan)">
-                    <span class="when">2026</span>
-                    <div><h3>NASA Space Apps Challenge</h3><p class="sub">Planet X and SPHEREx · CLPS Lunar Mission Browser</p><p>Two entries. One finds moving objects in SPHEREx all-sky images and grades them against JPL's catalogue; the other compares lunar south-pole landing sites using JPL Horizons data.</p></div>
-                </li>
-                <li style="--c:var(--amber)">
-                    <span class="when">2026</span>
-                    <div><h3>Team Terminal 3, IEEE SMCS Search and Rescue Competition</h3><p>A three-person team with a faculty advisor. We built a modular Python system that separates video information extraction, mission planning, multi-robot control and victim detection.</p></div>
-                </li>
-                <li style="--c:var(--lime)">
-                    <span class="when">Year 2</span>
-                    <div><h3>VIT Bhopal</h3><p class="sub">Engineering</p><p>Coursework and projects centred on systems architecture, algorithmic problem solving and software dynamics.</p></div>
-                </li>
+        <section class="mod" id="log">
+            <header><span class="n">03</span><h2>Mission log</h2></header>
+            <ol class="log">
+                <li><span class="when">Present</span><div><h3>Founder, Concierge</h3><p>Architecting and building full-stack software, intelligent AI systems and high-performance web applications.</p></div></li>
+                <li><span class="when">2026</span><div><h3>NASA Space Apps Challenge</h3><p class="sub">Planet X and SPHEREx // CLPS Lunar Mission Browser</p><p>Two entries. One finds moving objects in SPHEREx all-sky images and grades them against JPL's catalogue; the other compares lunar south-pole landing sites using JPL Horizons data.</p></div></li>
+                <li><span class="when">2026</span><div><h3>Team Terminal 3, IEEE SMCS Search and Rescue Competition</h3><p>A three-person team with a faculty advisor. We built a modular Python system that separates video information extraction, mission planning, multi-robot control and victim detection.</p></div></li>
+                <li><span class="when">Year 2</span><div><h3>VIT Bhopal</h3><p class="sub">Engineering</p><p>Coursework and projects centred on systems architecture, algorithmic problem solving and software dynamics.</p></div></li>
             </ol>
         </section>
 
-        <section id="skills">
-            <h2 class="label"><small>04</small> Skills</h2>
-            <dl class="skills">
-                <div style="--c:var(--pink)"><dt>Languages</dt><dd><span>TypeScript</span><span>JavaScript</span><span>Python</span><span>C++</span></dd></div>
-                <div style="--c:var(--violet)"><dt>Web</dt><dd><span>React</span><span>Next.js</span><span>Vite</span><span>Three.js / WebGL</span></dd></div>
-                <div style="--c:var(--cyan)"><dt>Backend</dt><dd><span>Node + Express</span><span>FastAPI</span><span>Supabase</span></dd></div>
-                <div style="--c:var(--lime)"><dt>Systems</dt><dd><span>Electron</span><span>WebAssembly</span><span>Simulation</span><span>NASA / JPL data</span></dd></div>
-                <div style="--c:var(--amber)"><dt>Security</dt><dd><span>WebCrypto</span><span>Argon2id</span><span>Shamir sharing</span><span>WebAuthn</span><span>CSP</span></dd></div>
-                <div style="--c:var(--pink)"><dt>Tooling</dt><dd><span>Vitest</span><span>GitHub Actions</span><span>Vercel</span></dd></div>
+        <section class="mod" id="skills">
+            <header><span class="n">04</span><h2>Capabilities</h2></header>
+            <dl class="caps">
+                <div><dt>Languages</dt><dd><span>TypeScript</span><span>JavaScript</span><span>Python</span><span>C++</span></dd></div>
+                <div><dt>Web</dt><dd><span>React</span><span>Next.js</span><span>Vite</span><span>Three.js / WebGL</span></dd></div>
+                <div><dt>Backend</dt><dd><span>Node + Express</span><span>FastAPI</span><span>Supabase</span></dd></div>
+                <div><dt>Systems</dt><dd><span>Electron</span><span>WebAssembly</span><span>Simulation</span><span>NASA / JPL data</span></dd></div>
+                <div><dt>Security</dt><dd><span>WebCrypto</span><span>Argon2id</span><span>Shamir sharing</span><span>WebAuthn</span><span>CSP</span></dd></div>
+                <div><dt>Tooling</dt><dd><span>Vitest</span><span>GitHub Actions</span><span>Vercel</span></dd></div>
             </dl>
         </section>
 
-        <footer id="contact">
-            <h2>Let's build <span class="grad">something</span></h2>
-            <div class="cta">
-                <a class="btn hot" href="mailto:shresthakp07@gmail.com">shresthakp07@gmail.com</a>
-                <a class="btn" href="https://github.com/shrestha-droid" target="_blank" rel="noopener">GitHub ↗</a>
-                <a class="btn" href="https://www.kaggle.com/shrestha11022007" target="_blank" rel="noopener">Kaggle ↗</a>
-            </div>
-            <small>© Shrestha Pandey</small>
-        </footer>
+        <section class="mod" id="comms">
+            <header><span class="n">05</span><h2>Comms</h2></header>
+            <ul class="comms">
+                <li><a href="mailto:shresthakp07@gmail.com"><span>&gt; mail</span>shresthakp07@gmail.com</a></li>
+                <li><a href="https://github.com/shrestha-droid" target="_blank" rel="noopener"><span>&gt; github</span>shrestha-droid ↗</a></li>
+                <li><a href="https://www.kaggle.com/shrestha11022007" target="_blank" rel="noopener"><span>&gt; kaggle</span>shrestha11022007 ↗</a></li>
+            </ul>
+        </section>
+
+        <p class="end">// end of transmission<br>© Shrestha Pandey</p>
     </main>
 
-    <div id="cli" role="dialog" aria-label="Terminal">
-        <div id="cli-out"><div>> type help. esc to close.</div></div>
-        <label><span>shrestha@sp:~$</span><input id="cli-in" autocomplete="off" spellcheck="false" aria-label="Terminal input"></label>
+    <footer class="foot" aria-hidden="true">
+        <span id="coords">X 0.00 · Y 0.00</span>
+        <span>Press <kbd>/</kbd><kbd>/</kbd><kbd>/</kbd> for the shell</span>
+    </footer>
+
+    <div id="cli" role="dialog" aria-label="Shell">
+        <header>SECURE SHELL // SP_SYS_01 // ESC TO CLOSE</header>
+        <div id="cli-out"></div>
+        <label><span>root@SP_SYS:~#</span><input id="cli-in" autocomplete="off" spellcheck="false" aria-label="Shell input"></label>
     </div>
 
     <script src="projects.js"></script>
+    <script src="fx.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="home.js"></script>
 </body>
