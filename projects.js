@@ -1,4 +1,4 @@
-// Projects built with Claude. Rendered by index.html (list) and project.html (case study).
+// Project data. Rendered by index.html (list) and project.html (case study).
 // Private repos have no `repo` link on purpose.
 const PROJECTS = [
   {

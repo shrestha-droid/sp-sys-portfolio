@@ -58,7 +58,7 @@ h1, h2, h3 { color: var(--fg); text-wrap: balance; }
 main { padding: 0 clamp(1.25rem, 6vw, 6rem); max-width: 84rem; margin: 0 auto; }
 .hero { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 8rem 0 6rem; }
 .hero .tag { color: var(--accent); margin-bottom: 1.4rem; }
-.hero h1 { font: 900 clamp(3.2rem, 11vw, 9.5rem)/.88 var(--display); letter-spacing: -.055em; text-transform: uppercase; }
+.hero h1 { text-shadow: 0 0 40px #000, 0 0 12px #000a; font: 900 clamp(3.2rem, 11vw, 9.5rem)/.88 var(--display); letter-spacing: -.055em; text-transform: uppercase; }
 .hero h1 span { display: block; }
 .hero h1 .r { color: color-mix(in srgb, var(--accent) 20%, transparent); -webkit-text-stroke: 2px var(--accent); text-shadow: 0 0 40px color-mix(in srgb, var(--accent) 45%, transparent); }
 .hero .sub { margin-top: 1.6rem; font: 400 clamp(.8rem, 1.6vw, 1rem)/1.6 var(--mono); letter-spacing: .12em; color: var(--accent); min-height: 1.6em; }
