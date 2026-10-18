@@ -39,6 +39,8 @@ const PAGES = {
             </header>
 
             <div class="bh-stats">${p.stats.map(([v, l]) => `<div><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join('')}</div>
+            ${liveWindow(p)}
+            ${teleStrip(p)}
 
             <section class="bh-block">
                 <p class="bh-kick">The office</p>
@@ -46,6 +48,7 @@ const PAGES = {
                 <p class="bh-sub">Every request goes to a team in a little pixel office. The lead calls a meeting, the builders' screens light up as they write, the reviewer checks the result, and the file passes from desk to desk.</p>
                 <figure class="bh-office"><canvas id="office" width="320" height="200" aria-label="Animated pixel office with six departments"></canvas>
                     <figcaption><i></i><b id="office-who">Mitchell</b> <span id="office-what">working out who does what</span></figcaption></figure>
+                ${gallery(p)}
             </section>
 
             <section class="bh-block">
@@ -107,6 +110,7 @@ const PAGES = {
             </header>
 
             <div class="vt-stats">${p.stats.map(([v, l], n) => `<div><small>${numerals[n]}</small><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join('')}</div>
+            <div class="vt-live">${liveWindow(p)}${teleStrip(p)}</div>
 
             <div class="vt-grid">
                 ${p.blocks.map(([t, lines], n) => `

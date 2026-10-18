@@ -1,73 +1,71 @@
-/* One theme per project dossier: palette, fonts and layout flavour. Applied as body.t-<id>. */
+/* Each dossier wears its project's real identity: the palette, type and panel style lifted from the
+   project's own source (its CSS custom properties and Google Fonts), not invented for the portfolio.
+   Applied as body.t-<id>. Branch HQ and Zero-Trust Vault v2 have fully bespoke pages in bespoke.css. */
 
-/* ---- SPHEREx: observatory plates ---- */
-.t-spherex { --bg:#030816; --fg:#e6f0ff; --soft:#a9bddd; --muted:#6d82a8; --line:#13244a; --accent:#7ab8ff; --accent2:#c4a7ff; --display:'Space Grotesk',sans-serif; --body:'Space Grotesk',sans-serif; --display-weight:300; --display-ls:-.05em; }
-.t-spherex .case h1 { background: linear-gradient(100deg, #fff, var(--accent) 55%, var(--accent2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.t-spherex .case h2::before { content: 'PLATE ' counter(sec, upper-roman) ' · '; }
-.t-spherex .case section p { border-top-style: dashed; }
+/* ---- RING0 · from ring0/src: ink #eeece6 on #0a0b0d, scheduler amber, Instrument Serif + Inter + JetBrains Mono ---- */
+.t-ring0 { --bg:#0a0b0d; --panel:#0e1013; --fg:#eeece6; --soft:#b4b2a9; --muted:#8d8c85; --line:#23262b; --accent:#ffb547; --accent2:#4fd8c4;
+    --display:'Instrument Serif',Georgia,serif; --body:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace; --tag-weight:400; --tag-ls:-.02em; --r:6px; }
+.t-ring0 .case section { padding: 1.1rem 1.3rem .5rem; background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); }
+.t-ring0 .case h2 { color: var(--fg); letter-spacing: .14em; }
+.t-ring0 .case h2::before { color: var(--accent); content: counter(sec, decimal-leading-zero) '   '; }
+.t-ring0 .stats b, .t-ring0 .tele b { font-family: var(--mono); font-weight: 500; }
 
-/* ---- CLPS: sun and earth over a blueprint ---- */
-.t-clps { --bg:#09090d; --fg:#f2f2f6; --soft:#b5b5c4; --muted:#7c7c8e; --line:#20202c; --accent:#ffd166; --accent2:#4da3ff; --display:'Space Mono',monospace; --body:'Space Mono',monospace; --display-weight:700; --display-ls:-.06em; --r:2px; --r2:2px; }
-.t-clps { background-image: linear-gradient(#ffffff0a 1px, transparent 1px), linear-gradient(90deg, #ffffff0a 1px, transparent 1px); background-size: 44px 44px; }
-.t-clps .case h1 { text-shadow: 4px 4px 0 #4da3ff55; }
-.t-clps .case h2::before { content: '§' counter(sec) ' '; }
-.t-clps .case section p { font-size: .88rem; border-top-style: dotted; }
+/* ---- MEND · from mend/src: #08090a, ink #ebe8e1, mint #5defb0, parity blue, Newsreader + Geist Mono ---- */
+.t-mend { --bg:#08090a; --panel:#0d0f10; --fg:#ebe8e1; --soft:#a9a69e; --muted:#8c8981; --line:#1d2021; --accent:#5defb0; --accent2:#7f9cff;
+    --display:'Newsreader',Georgia,serif; --body:'Geist',system-ui,sans-serif; --mono:'Geist Mono',ui-monospace,monospace; --tag-weight:300; --tag-ls:-.035em; --r:2px; }
+.t-mend .case .c-tag { font-size: clamp(3rem, 9vw, 7.4rem); line-height: .92; }
+.t-mend .case h2::before { content: counter(sec, decimal-leading-zero) '   '; color: var(--muted); }
+.t-mend .case section p strong { color: var(--accent); font-weight: 500; }
 
-/* ---- Drishti: traffic signal ---- */
-.t-drishti { --bg:#0d0c0a; --fg:#fff3df; --soft:#cfc3ad; --muted:#8c8372; --line:#2a2620; --accent:#ff9f1c; --accent2:#2ee86b; --display:'Barlow Condensed','Noto Sans Devanagari',sans-serif; --body:'Barlow Condensed','Noto Sans Devanagari',sans-serif; --display-weight:800; --display-case:uppercase; --display-ls:-.01em; --r:4px; --r2:4px; }
-.t-drishti .case { font-size: 1.05rem; }
-.t-drishti .case h1 { font-size: clamp(3.4rem, 10vw, 8rem); line-height: .85; }
-.t-drishti .case h1::after { content: ''; display: block; height: 12px; margin-top: 1rem; background: repeating-linear-gradient(-45deg, var(--accent) 0 16px, #0d0c0a 16px 32px); }
-.t-drishti .case section { padding-left: 1.4rem; border-left: 8px solid var(--sig, #2ee86b); }
-.t-drishti .case section:nth-of-type(3n+2) { --sig: #ff9f1c; }
-.t-drishti .case section:nth-of-type(3n+3) { --sig: #ff3b3b; }
-.t-drishti .case section p { font-size: 1.02rem; }
+/* ---- SPHEREx · from planet-x-spherex/web: #04060c, infrared coral, catalogue cyan, Instrument Serif + Archivo + Plex Mono ---- */
+.t-spherex { --bg:#04060c; --panel:#080c18; --fg:#e9edf7; --soft:#b4bcd3; --muted:#7d87a3; --line:#18203a; --accent:#ff6b4a; --accent2:#4fd8ff;
+    --display:'Instrument Serif',Georgia,serif; --body:'Archivo',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace; --tag-weight:400; --tag-ls:-.025em; }
+.t-spherex .case .c-kicker, .t-spherex .case h2, .t-spherex .stats span { font-family: 'Archivo', sans-serif; font-stretch: 125%; font-weight: 600; letter-spacing: .2em; }
+.t-spherex .stats b { font-family: var(--display); font-weight: 400; font-size: clamp(1.8rem, 3.6vw, 2.6rem); color: var(--fg); }
 
-/* ---- Bheed Drishti: marigold garland and crowd heat ---- */
-.t-bheed-drishti { --bg:#1a0805; --fg:#fff0e0; --soft:#e2c3ab; --muted:#a07c66; --line:#40170d; --accent:#ff6b35; --accent2:#ffc233; --display:'Poppins','Noto Sans Devanagari',sans-serif; --body:'Poppins','Noto Sans Devanagari',sans-serif; --display-weight:800; --display-ls:-.04em; --r:12px; --r2:18px; }
-.t-bheed-drishti .case h1 { background: linear-gradient(95deg, var(--accent2), var(--accent) 50%, #e11d48); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: 1.4rem; }
-.t-bheed-drishti .case h1::after { content: ''; display: block; height: 14px; margin-top: .6rem; background: radial-gradient(circle at 7px 7px, var(--accent2) 0 4px, transparent 5px) 0 0/22px 14px repeat-x; }
-.t-bheed-drishti .case section { padding: 1.2rem 1.4rem .5rem; border-radius: var(--r2); background: linear-gradient(160deg, #ff6b3516, #e11d4810); border: 1px solid #ff6b3530; }
-.t-bheed-drishti .case section p { border-top-color: #ff6b3524; font-size: .93rem; }
+/* ---- Drishti · from drishti/demo: road-dark #0b1116, signal teal, go/stop, Schibsted Grotesk + Plex Mono + Tiro Devanagari ---- */
+.t-drishti { --bg:#0b1116; --panel:#10181e; --fg:#e3eaed; --soft:#b9c6cc; --muted:#94a4ac; --line:#1f2b33; --accent:#4fd0da; --accent2:#3ccf86;
+    --display:'Schibsted Grotesk','Tiro Devanagari Hindi',system-ui,sans-serif; --body:'Schibsted Grotesk',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace; --tag-weight:800; --tag-ls:-.045em; --em-style:normal; --r:10px; }
+.t-drishti .case section { padding: 1rem 1.2rem .4rem; background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); border-left: 3px solid var(--sig, #3ccf86); }
+.t-drishti .case section:nth-of-type(2n) { --sig: #ff6159; }
+.t-drishti .stats b { color: var(--fg); font-family: var(--display); }
 
-/* ---- RING0: protection rings, counted down to the kernel ---- */
-.t-ring0 { --bg:#090512; --fg:#f1e9ff; --soft:#bfb0e0; --muted:#8272ad; --line:#2a1d4a; --accent:#b388ff; --accent2:#ff7ad9; --display:'IBM Plex Mono',monospace; --body:'IBM Plex Mono',monospace; --display-weight:600; --display-ls:-.07em; --r:4px; --r2:6px; }
-.t-ring0 .case { counter-reset: ring var(--n, 4); }
-.t-ring0 .case section { counter-increment: ring -1; padding: 1.1rem 1.3rem .4rem; border: 1px solid var(--line); border-radius: 1.2rem; }
-.t-ring0 .case h2::before { content: 'RING ' counter(ring) ' ▸ '; }
-.t-ring0 .case section:last-of-type { border-color: var(--accent); box-shadow: 0 0 40px #b388ff30; }
-.t-ring0 .case h1::before { content: 'sudo '; color: var(--accent2); font-size: .35em; letter-spacing: 0; vertical-align: super; }
+/* ---- Bheed Drishti · from Bheed-Drishti/src: night paper #171a2c, saffron, AI teal, fixed-plan tan, Rajdhani + Hind ---- */
+.t-bheed-drishti { --bg:#171a2c; --panel:#21253b; --fg:#e7e8f4; --soft:#b2b6cf; --muted:#7d82a0; --line:#2f3450; --accent:#e8731a; --accent2:#2bb5b0;
+    --display:'Rajdhani','Tiro Devanagari Hindi',system-ui,sans-serif; --body:'Hind',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace; --tag-weight:700; --tag-ls:-.01em; --em-style:normal; --r:14px; }
+.t-bheed-drishti .case section { padding: 1.1rem 1.3rem .5rem; background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); }
+.t-bheed-drishti .case section p { font-size: 1rem; }
+.t-bheed-drishti .case .c-tag em { color: var(--accent2); }
 
-/* ---- MEND: a hex dump that heals ---- */
-.t-mend { --bg:#020d06; --fg:#dcffe6; --soft:#9fd8b2; --muted:#5b9470; --line:#0f3a1d; --accent:#4ade80; --accent2:#ff3b4e; --display:'IBM Plex Mono',monospace; --body:'IBM Plex Mono',monospace; --display-weight:700; --display-ls:-.06em; --r:3px; --r2:3px; }
-.t-mend .case h1 { animation: heal 7s steps(1) infinite; }
-@keyframes heal { 0%, 90%, 100% { text-shadow: none; translate: 0 0; } 91% { text-shadow: 3px 0 #ff3b4e, -3px 0 #3bff8a; translate: 2px 0; } 93% { text-shadow: -4px 0 #ff3b4e, 4px 0 #3bff8a; translate: -3px 0; } 95% { text-shadow: 2px 0 #3bff8a; translate: 1px 0; } 97% { text-shadow: none; translate: 0 0; } }
-.t-mend .case section { counter-reset: b; }
-.t-mend .case h2::before { content: '0x' counter(sec, decimal-leading-zero) '00  '; }
-.t-mend .case section p { counter-increment: b; font-size: .86rem; }
-.t-mend .case section p::before { content: '0x' counter(b, decimal-leading-zero) '  '; color: var(--muted); }
-.t-mend .case section p:nth-of-type(odd) strong { color: var(--accent); }
+/* ---- CLPS · from the browser itself: plain dark, system type, Sun orange and Earth blue on the plots ---- */
+.t-clps { --bg:#0c0e13; --panel:#12151c; --fg:#eceef3; --soft:#b8bdc9; --muted:#7f8696; --line:#222733; --accent:#ffb347; --accent2:#4d8dff;
+    --display:system-ui,-apple-system,'Segoe UI',sans-serif; --body:system-ui,-apple-system,'Segoe UI',sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace; --tag-weight:700; --tag-ls:-.035em; --em-style:normal; --r:4px; }
+.t-clps .case .c-tag em { color: var(--accent2); }
+.t-clps .case section p { font-size: .94rem; }
 
-/* ---- NCII Shield: a privacy pipeline ---- */
-.t-ncii-shield { --bg:#0e0309; --fg:#ffe6f0; --soft:#e0b5c8; --muted:#a07587; --line:#3b1428; --accent:#ff4d8d; --accent2:#ffb3d1; --display:'Sora',sans-serif; --body:'Sora',sans-serif; --display-weight:800; --display-ls:-.05em; --r:10px; --r2:16px; }
-.t-ncii-shield .case h1 { background: linear-gradient(100deg, var(--accent2), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.t-ncii-shield .case section { position: relative; padding: 1.2rem 1.4rem .5rem; border: 1px solid var(--line); border-radius: var(--r2); background: linear-gradient(160deg, #ff4d8d14, transparent); }
-.t-ncii-shield .case section + section::before { content: '↓'; position: absolute; left: 1.6rem; top: -2.35rem; font-size: 1.4rem; color: var(--accent); }
-.t-ncii-shield .case h2::before { content: 'STEP ' counter(sec) ' → '; }
+/* ---- NCII Shield · from its demo: plum night, protective pink, Sora + Plex Mono ---- */
+.t-ncii-shield { --bg:#0e0309; --panel:#170710; --fg:#ffe6f0; --soft:#e0b5c8; --muted:#a07587; --line:#3b1428; --accent:#ff4d8d; --accent2:#ffb3d1;
+    --display:'Sora',system-ui,sans-serif; --body:'Sora',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace; --tag-weight:800; --tag-ls:-.045em; --em-style:normal; --r:16px; }
+.t-ncii-shield .case .c-tag em { background: linear-gradient(100deg, var(--accent2), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.t-ncii-shield .case section { padding: 1.1rem 1.3rem .5rem; background: linear-gradient(160deg, #1e0a16, var(--panel)); border: 1px solid var(--line); border-radius: var(--r); }
+.t-ncii-shield .case h2::before { content: 'STEP ' counter(sec) ' · '; }
 
-/* ---- Friday: cockpit HUD ---- */
-.t-friday { --bg:#00101c; --fg:#e2fbff; --soft:#9ed8e6; --muted:#5f98a8; --line:#0b3347; --accent:#00e5ff; --accent2:#7df9ff; --display:'Orbitron',sans-serif; --body:'Rajdhani',sans-serif; --display-weight:800; --display-case:uppercase; --display-ls:.04em; --r:0; --r2:0; }
+/* ---- Friday · from Friday_Project/index.html: "QUANTUM INTERFACE", crimson void, red + orange, Rajdhani + JetBrains Mono ---- */
+.t-friday { --bg:#0d0103; --panel:#1f0307; --fg:#fff0f2; --soft:#e2b9be; --muted:#a8787e; --line:#3a0a10; --accent:#ff2a2a; --accent2:#ff9900;
+    --display:'Rajdhani',system-ui,sans-serif; --body:'Rajdhani',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace; --tag-weight:700; --tag-ls:.01em; --tag-case:uppercase; --em-style:normal; --r:0; }
 .t-friday .case { font-size: 1.08rem; }
-.t-friday .case h1 { font-size: clamp(2.6rem, 8vw, 6.5rem); text-shadow: 0 0 30px #00e5ff77; }
-.t-friday .case section { position: relative; padding: 1.2rem 1.4rem .5rem; background: #00e5ff0d; border: 1px solid #00e5ff2a; clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px)); }
-.t-friday .case section p { font-size: 1.05rem; }
-.t-friday .eyebrow::after { content: 'AUDIO OVERRIDE // LISTENING…'; margin-left: 1rem; color: #ff4d6d; }
+.t-friday .case .c-tag { text-shadow: 0 0 30px #ff2a2a55; }
+.t-friday .case section { position: relative; padding: 1.1rem 1.3rem .5rem; background: #1f030766; border: 1px solid var(--line); }
+.t-friday .case section::before { content: ''; position: absolute; inset: -1px; pointer-events: none; background:
+    linear-gradient(var(--accent),var(--accent)) 0 0/14px 1px no-repeat, linear-gradient(var(--accent),var(--accent)) 0 0/1px 14px no-repeat,
+    linear-gradient(var(--accent),var(--accent)) 100% 100%/14px 1px no-repeat, linear-gradient(var(--accent),var(--accent)) 100% 100%/1px 14px no-repeat; }
+.t-friday .case h2 { color: var(--accent); letter-spacing: .24em; }
+.t-friday .case section p { font-size: 1.04rem; }
 
-/* ---- Vault v1: amber CRT ---- */
-.t-vault-v1 { --bg:#0a0600; --fg:#ffd98a; --soft:#d9b36a; --muted:#8a6a2e; --line:#2c1f06; --accent:#ffb000; --accent2:#ffcf5c; --display:'Space Mono',monospace; --body:'Space Mono',monospace; --display-weight:700; --display-case:uppercase; --display-ls:-.05em; --r:0; --r2:0; }
-.t-vault-v1 .case h1 { text-shadow: 0 0 22px #ffb00088; }
-.t-vault-v1::after { content: ''; position: fixed; inset: 0; z-index: 5; pointer-events: none; background: repeating-linear-gradient(transparent 0 2px, #00000038 2px 4px); }
-.t-vault-v1 .case section p { font-size: .85rem; }
-.t-vault-v1 .case section p::before { content: '> '; color: var(--accent); }
-
-@media (prefers-reduced-motion: reduce) { .t-mend .case h1, .t-branch-hq .case h1::after { animation: none; } }
+/* ---- Vault v1 · the deployed app: a clean light form, Inter, one blue action ---- */
+.t-vault-v1 { color-scheme: light; --bg:#f3f5f6; --panel:#ffffff; --fg:#1e293b; --soft:#475569; --muted:#64748b; --line:#e2e8f0; --accent:#2563eb; --accent2:#0f172a;
+    --display:'Inter',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace; --tag-weight:700; --tag-ls:-.04em; --em-style:normal; --r:16px; --grid:transparent; }
+.t-vault-v1 .hud, .t-vault-v1 .veil, .t-vault-v1 #bg-canvas { display: none; }
+.t-vault-v1 .case section { padding: 1.2rem 1.4rem .6rem; background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); box-shadow: 0 1px 2px #0f172a0d; }
+.t-vault-v1 .case .btn.main { color: #fff; }
+.t-vault-v1 .stats, .t-vault-v1 .stats div { background: #fff; }

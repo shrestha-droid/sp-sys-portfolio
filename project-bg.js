@@ -120,9 +120,9 @@ if (p && window.customBg && customBg[p.id]) {
 
         // The Moon seen from the south pole, with the Sun and Earth sweeping the horizon.
         'clps'() {
-            const moon = new THREE.Mesh(new THREE.SphereGeometry(12, 28, 20), wire(accent, 0.22)); g.add(moon);
+            const grey = new THREE.Color('#c8c8d8'), moon = new THREE.Mesh(new THREE.SphereGeometry(12, 28, 20), wire(grey, 0.22)); g.add(moon); // the Moon stays grey; the accent is the Sun
             for (let i = 0; i < 9; i++) { // craters
-                const c = new THREE.Mesh(new THREE.RingGeometry(rnd(0.8, 2), rnd(2.1, 2.4), 24), new THREE.MeshBasicMaterial({ color: accent, transparent: true, opacity: 0.25, side: THREE.DoubleSide }));
+                const c = new THREE.Mesh(new THREE.RingGeometry(rnd(0.8, 2), rnd(2.1, 2.4), 24), new THREE.MeshBasicMaterial({ color: grey, transparent: true, opacity: 0.25, side: THREE.DoubleSide }));
                 c.position.set(rnd(-6, 6), rnd(-12, -9), rnd(-6, 6)); c.lookAt(0, 0, 0); c.position.setLength(12.1); moon.add(c);
             }
             const pole = new THREE.Vector3(0, -12, 0);

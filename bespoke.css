@@ -136,3 +136,17 @@
 }
 @media (max-width: 520px) { .bh-team { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .vt-micro span { animation: none; } .bh-team article:hover .bh-av svg { animation: none; } }
+
+/* live window + telemetry inside the bespoke pages */
+.bh .live-win { margin-top: 0; border-radius: 18px; border-color: rgba(190,205,255,.18); background: rgba(14,17,27,.85); }
+.bh .lw-bar { background: rgba(16,19,30,.9); border-color: rgba(190,205,255,.11); }
+.bh .lw-boot span { background: #5e5ce6; color: #fff; box-shadow: 0 10px 40px rgba(94,92,230,.45); }
+.bh .tele { border-color: rgba(190,205,255,.14); color: #9097ad; } .bh .tele b { color: #eef1f8; }
+.bh .gallery { margin-top: 1.4rem; } .bh .gallery figure { border-radius: 14px; border-color: rgba(190,205,255,.14); } .bh .gallery figcaption { background: #0e111b; color: #9097ad; border-color: rgba(190,205,255,.11); }
+.vt-live { max-width: 77rem; margin: 3rem auto 0; padding: 0 clamp(1.25rem, 4vw, 2.5rem); }
+.t-vault-v2 .live-win { border: 1px solid rgba(22,18,15,.32); border-radius: 0; background: #f8f4ea; box-shadow: 6px 6px 0 rgba(181,18,27,.85); }
+.t-vault-v2 .lw-bar { background: #ebe4d4; color: #4a433c; border-color: rgba(22,18,15,.2); font-family: 'IBM Plex Mono', monospace; }
+.t-vault-v2 .lw-url { background: #f3eee3; } .t-vault-v2 .lw-url b { color: #16120f; }
+.t-vault-v2 .lw-bar a { color: #16120f; border-color: rgba(22,18,15,.3); }
+.t-vault-v2 .lw-note { color: #776d64; border-color: rgba(22,18,15,.16); font-family: 'IBM Plex Mono', monospace; }
+.t-vault-v2 .tele { color: #776d64; border-color: rgba(22,18,15,.25); font-family: 'IBM Plex Mono', monospace; } .t-vault-v2 .tele b { color: #16120f; }

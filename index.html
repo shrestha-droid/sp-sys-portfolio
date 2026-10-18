@@ -4,11 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shrestha Pandey | AI Systems & Full-Stack Engineer</title>
-    <meta name="description" content="Shrestha Pandey is an AI systems architect, full-stack developer and founder, studying engineering at VIT Bhopal.">
+    <meta name="description" content="Shrestha Pandey builds AI systems and the software around them: 11 projects, 10 live, from an AI engineering desktop app to NASA Space Apps tools. Every project opens as a dossier you can run.">
     <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#050505">
+    <link rel="canonical" href="https://sp-sys-portfolio.vercel.app/">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Shrestha Pandey · SP_SYS_01">
+    <meta property="og:description" content="AI systems, full-stack, founder. 11 projects, 10 of them live, each a dossier you can boot.">
+    <meta property="og:url" content="https://sp-sys-portfolio.vercel.app/">
+    <meta property="og:image" content="https://sp-sys-portfolio.vercel.app/og.png">
+    <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Shrestha Pandey","url":"https://sp-sys-portfolio.vercel.app/","email":"mailto:shresthakp07@gmail.com","jobTitle":"AI Systems Architect, Full-Stack Developer, Founder","affiliation":{"@type":"CollegeOrUniversity","name":"VIT Bhopal University"},"sameAs":["https://github.com/shrestha-droid","https://www.kaggle.com/shrestha11022007"]}</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;800&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;700;800&family=Noto+Sans+Devanagari:wght@700&family=Orbitron:wght@500;800&family=Poppins:wght@400;600;800&family=Rajdhani:wght@400;600&family=Sora:wght@400;800&family=Space+Grotesk:wght@300;400;600&family=Space+Mono:wght@400;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="site.css">
 </head>
 <body>
@@ -22,12 +33,13 @@
         <a class="logo" href="#ident"><i></i>SP_SYS_01</a>
         <nav class="nav" aria-label="Modules">
             <a href="#projects"><b>01</b>Projects</a>
-            <a href="#operator"><b>02</b>Operator</a>
-            <a href="#log"><b>03</b>Mission log</a>
-            <a href="#skills"><b>04</b>Capabilities</a>
-            <a href="#comms"><b>05</b>Comms</a>
+            <a href="#telemetry"><b>02</b>Telemetry</a>
+            <a href="#operator"><b>03</b>Operator</a>
+            <a href="#log"><b>04</b>Mission log</a>
+            <a href="#skills"><b>05</b>Capabilities</a>
+            <a href="#comms"><b>06</b>Comms</a>
         </nav>
-        <div class="stat"><span>Main terminal // online</span><span id="clock">--:--:--</span></div>
+        <div class="stat"><button class="kbtn" id="open-palette" type="button" aria-label="Open the command palette"><kbd>⌘</kbd><kbd>K</kbd></button><span id="clock">--:--:--</span></div>
     </header>
 
     <main>
@@ -38,19 +50,19 @@
             <div class="readout">
                 <div class="cell brk"><b>AI Systems Architect</b><span>Designation</span></div>
                 <div class="cell brk"><b>VIT Bhopal // Year 2</b><span>Base</span></div>
-                <div class="cell brk"><b id="count">11 online</b><span>Project index</span></div>
-                <div class="cell brk"><b>Building</b><span>Status</span></div>
+                <div class="cell brk"><b id="count">11 indexed</b><span>Project index</span></div>
+                <div class="cell brk"><b id="livecount">10 live</b><span>Deployments you can run</span></div>
             </div>
             <div class="cta">
                 <a class="btn main" href="#projects">Enter project index ↓</a>
                 <a class="btn" href="https://github.com/shrestha-droid" target="_blank" rel="noopener">GitHub ↗</a>
-                <a class="btn" href="mailto:shresthakp07@gmail.com">Open comms</a>
+                <button class="btn" type="button" id="print-cv">Print CV</button>
             </div>
         </section>
 
         <section class="mod" id="projects">
             <header><span class="n">01</span><h2>Project index</h2></header>
-            <p class="note">Hover a target to inspect it, click to open its dossier. Each dossier is skinned like the project it describes.</p>
+            <p class="note">Hover a target to inspect it; open it for the full dossier, where most can be booted and run in the page. Each dossier wears its project's real identity.</p>
             <div class="index">
                 <ul class="targets" id="targets"></ul>
                 <aside class="insp brk" id="insp" aria-live="polite"></aside>
@@ -58,15 +70,26 @@
             <noscript><p>The project index needs JavaScript. Everything is also on <a href="https://github.com/shrestha-droid">GitHub</a>.</p></noscript>
         </section>
 
+        <section class="mod" id="telemetry">
+            <header><span class="n">02</span><h2>Telemetry</h2></header>
+            <p class="note" id="tele-note">Counted from the git history of every project in the index, not estimated.</p>
+            <div class="tm-big" id="tm-big"></div>
+            <div class="tm-grid">
+                <figure class="tm-card tm-heat"><figcaption class="mono">Commits per day</figcaption><div id="heat" class="heat" role="img"></div><div class="heat-key mono" aria-hidden="true">less <i></i><i></i><i></i><i></i><i></i> more</div></figure>
+                <figure class="tm-card"><figcaption class="mono">Lines of source by language</figcaption><div id="langs"></div></figure>
+                <figure class="tm-card tm-wide"><figcaption class="mono">Per project · commits and lines of source</figcaption><div id="per"></div></figure>
+            </div>
+        </section>
+
         <section class="mod" id="operator">
-            <header><span class="n">02</span><h2>Operator</h2></header>
+            <header><span class="n">03</span><h2>Operator</h2></header>
             <div class="about">
                 <div>
                     <p class="lead">I like problems where <em>being wrong is expensive</em>: security, simulation, and software that has to keep working when nobody is watching.</p>
-                    <p>This year that has meant a desktop app that turns a sentence into a running full-stack app, a client-side vault that splits secrets between people you trust, a crowd-safety simulator for mass gatherings, and several NASA Space Apps entries. I'm also the founder of Concierge, where I build full-stack and AI software.</p>
+                    <p>This year that has meant a desktop app where AI writes the code and every change carries its own proof, a client-side vault that splits secrets between people you trust, a crowd-safety twin for mass gatherings, and two NASA Space Apps entries. I'm also the founder of Concierge, where I build full-stack and AI software.</p>
                 </div>
                 <div class="facts">
-                    <div class="cell brk"><b>11</b><span>projects in the index</span></div>
+                    <div class="cell brk"><b id="f-commits">602</b><span>commits across the index</span></div>
                     <div class="cell brk"><b>2</b><span>NASA Space Apps 2026 entries</span></div>
                     <div class="cell brk"><b>Year 2</b><span>engineering, VIT Bhopal</span></div>
                 </div>
@@ -74,7 +97,7 @@
         </section>
 
         <section class="mod" id="log">
-            <header><span class="n">03</span><h2>Mission log</h2></header>
+            <header><span class="n">04</span><h2>Mission log</h2></header>
             <ol class="log">
                 <li><span class="when">Present</span><div><h3>Founder, Concierge</h3><p>Architecting and building full-stack software, intelligent AI systems and high-performance web applications.</p></div></li>
                 <li><span class="when">2026</span><div><h3>NASA Space Apps Challenge</h3><p class="sub">Planet X and SPHEREx // CLPS Lunar Mission Browser</p><p>Two entries. One finds moving objects in SPHEREx all-sky images and grades them against JPL's catalogue; the other compares lunar south-pole landing sites using JPL Horizons data.</p></div></li>
@@ -84,7 +107,7 @@
         </section>
 
         <section class="mod" id="skills">
-            <header><span class="n">04</span><h2>Capabilities</h2></header>
+            <header><span class="n">05</span><h2>Capabilities</h2></header>
             <dl class="caps">
                 <div><dt>Languages</dt><dd><span>TypeScript</span><span>JavaScript</span><span>Python</span><span>C++</span></dd></div>
                 <div><dt>Web</dt><dd><span>React</span><span>Next.js</span><span>Vite</span><span>Three.js / WebGL</span></dd></div>
@@ -96,21 +119,33 @@
         </section>
 
         <section class="mod" id="comms">
-            <header><span class="n">05</span><h2>Comms</h2></header>
+            <header><span class="n">06</span><h2>Comms</h2></header>
             <ul class="comms">
                 <li><a href="mailto:shresthakp07@gmail.com"><span>&gt; mail</span>shresthakp07@gmail.com</a></li>
                 <li><a href="https://github.com/shrestha-droid" target="_blank" rel="noopener"><span>&gt; github</span>shrestha-droid ↗</a></li>
                 <li><a href="https://www.kaggle.com/shrestha11022007" target="_blank" rel="noopener"><span>&gt; kaggle</span>shrestha11022007 ↗</a></li>
+                <li><a href="cv.pdf" download="Shrestha-Pandey-CV.pdf"><span>&gt; cv</span>Shrestha-Pandey-CV.pdf ↓</a></li>
             </ul>
         </section>
 
         <p class="end">// end of transmission<br>© Shrestha Pandey</p>
     </main>
 
+    <!-- Printable CV: hidden on screen, the only thing that prints. Filled from the same data as the page. -->
+    <article id="cv" class="cv" aria-hidden="true"></article>
+
     <footer class="foot" aria-hidden="true">
         <span id="coords">X 0.00 · Y 0.00</span>
-        <span>Press <kbd>/</kbd><kbd>/</kbd><kbd>/</kbd> for the shell</span>
+        <span><kbd>⌘</kbd><kbd>K</kbd> commands · <kbd>/</kbd><kbd>/</kbd><kbd>/</kbd> shell</span>
     </footer>
+
+    <dialog id="palette" aria-label="Command palette">
+        <form method="dialog" class="pal">
+            <label class="pal-in"><span aria-hidden="true">›</span><input id="pal-q" placeholder="Jump to a project, open a live site, run an action…" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true" aria-controls="pal-list" aria-autocomplete="list"></label>
+            <ul id="pal-list" role="listbox"></ul>
+            <p class="pal-foot mono"><span><kbd>↑</kbd><kbd>↓</kbd> move</span><span><kbd>↵</kbd> run</span><span><kbd>esc</kbd> close</span></p>
+        </form>
+    </dialog>
 
     <div id="cli" role="dialog" aria-label="Shell">
         <header>SECURE SHELL // SP_SYS_01 // ESC TO CLOSE</header>
@@ -119,7 +154,9 @@
     </div>
 
     <script src="projects.js"></script>
+    <script src="telemetry.js"></script>
     <script src="fx.js"></script>
     <script src="home.js"></script>
+    <script src="extras.js"></script>
 </body>
 </html>

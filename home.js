@@ -18,7 +18,8 @@ scramble(document.querySelector('#name .r'), 'PANDEY', 1200);
     if (calm) return (el.textContent = text);
     let i = 0; setTimeout(function t() { el.textContent = text.slice(0, ++i); if (i < text.length) setTimeout(t, 55); }, 1300);
 })();
-document.getElementById('count').textContent = PROJECTS.length + ' online';
+document.getElementById('count').textContent = PROJECTS.length + ' indexed';
+document.getElementById('livecount').textContent = PROJECTS.filter(p => p.live).length + ' live';
 
 // ---- Project index + inspector ----
 const targets = document.getElementById('targets'), insp = document.getElementById('insp');
@@ -37,6 +38,7 @@ function show(i) {
     targets.querySelectorAll('li').forEach(li => li.classList.toggle('on', +li.dataset.i === i));
     insp.style.setProperty('--hot', p.accent);
     insp.innerHTML = `
+        ${p.media && p.media[0] ? `<figure class="i-shot"><img src="${shotOf(p.media[0])}" alt="" decoding="async"></figure>` : ''}
         <p class="sys mono">${sysCode(i)} // ${esc(p.kind)}</p>
         <h3>${esc(p.title)}</h3>
         <p class="mono">${statusOf(p)} · ${p.year}</p>
@@ -158,6 +160,7 @@ document.querySelectorAll('main > section').forEach(s => seenObs.observe(s));
     say('> SYSTEM READY. TYPE <b>help</b> FOR PROTOCOLS.');
     const hist = []; let hi = 0, buf = '';
     const toggle = on => { cli.classList.toggle('on', on); if (on) setTimeout(() => inp.focus(), 350); else inp.blur(); };
+    window.openShell = () => toggle(true);
     addEventListener('keydown', e => {
         if (e.key === 'Escape') return toggle(false);
         if (document.activeElement === inp || e.metaKey || e.ctrlKey || e.altKey || e.key.length > 1) return;
