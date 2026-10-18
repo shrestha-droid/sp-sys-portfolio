@@ -86,6 +86,7 @@
     dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); }); // click on the backdrop
     addEventListener('keydown', e => { if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); dlg.open ? dlg.close() : openPal(); } });
     document.getElementById('open-palette').addEventListener('click', openPal);
+    document.querySelectorAll('[data-palette]').forEach(b => b.addEventListener('click', openPal));
 })();
 
 // ---------- Printable CV: the same data, laid out as a one-page résumé ----------
@@ -100,5 +101,5 @@
         <section><h2>Experience &amp; education</h2><ul class="cv-log">${log}</ul></section>
         <section><h2>Selected projects</h2><ul class="cv-p">${PROJECTS.map(p => `<li><b>${esc(p.title)}</b> <span>${esc(p.kind)}</span><p>${esc(p.summary)}${p.live ? ` <a href="${esc(p.live)}">${esc(new URL(p.live).host + new URL(p.live).pathname).replace(/\/$/, '')}</a>` : ''}</p></li>`).join('')}</ul></section>
         <section><h2>Skills</h2><ul class="cv-s">${caps}</ul></section>`;
-    document.getElementById('print-cv').addEventListener('click', () => window.print());
+    document.getElementById('print-cv')?.addEventListener('click', () => window.print());
 })();
