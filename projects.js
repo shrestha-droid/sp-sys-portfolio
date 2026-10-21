@@ -4,8 +4,8 @@
 const PROJECTS = [
   {
     id: 'kakeya-records', title: "Kakeya Records", kind: "OSI Hackathon 2026 · AI for mathematics", year: 2026, stats: [["0.10696", "union area at N = 128, a new best"], ["6.8%", "below AlphaEvolve"], ["63 min", "to the first record, on a laptop"]], summary: "An AI agent finds new best-known thin-triangle Kakeya constructions in an hour on a laptop, each certified in exact arithmetic.", accent: '#ef7a52', tagline: "An AI agent finds new best-known <em>Kakeya constructions.</em>", media: ["kakeya-records"], embed: true,
-    role: 'Solo entry · 4th Open Scientific Intelligence Hackathon',
-    concept: 'Claude Code, running on an 8 GB laptop, picked an open problem from the HorizonMath benchmark: place one thin triangle per direction so their union is as small as possible. It set new best-known values at every size with a published result (N = 32, 64, 128), beating AlphaEvolve and GPT-5.4 Pro, and certified each one exactly.',
+    role: 'Project lead (solo) · directing an AI research agent',
+    concept: 'I led this solo hackathon entry, directing Claude Code as my research agent on an 8 GB laptop toward one goal: a verifiable record within the event. The agent picked an open problem from the HorizonMath benchmark: place one thin triangle per direction so their union is as small as possible. It set new best-known values at every size with a published result (N = 32, 64, 128), beating AlphaEvolve and GPT-5.4 Pro, and certified each one exactly.',
     live: 'https://shrestha-droid.github.io/kakeya-records/', repo: 'https://github.com/shrestha-droid/kakeya-records',
     blocks: [
       ['How it was found', [
