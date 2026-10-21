@@ -3,6 +3,23 @@
 // `embed` is false where the site refuses framing (X-Frame-Options) or nothing is deployed.
 const PROJECTS = [
   {
+    id: 'kakeya-records', title: "Kakeya Records", kind: "OSI Hackathon 2026 · AI for mathematics", year: 2026, stats: [["0.10696", "union area at N = 128, a new best"], ["6.8%", "below AlphaEvolve"], ["63 min", "to the first record, on a laptop"]], summary: "An AI agent finds new best-known thin-triangle Kakeya constructions in an hour on a laptop, each certified in exact arithmetic.", accent: '#ef7a52', tagline: "An AI agent finds new best-known <em>Kakeya constructions.</em>", media: ["kakeya-records"], embed: true,
+    role: 'Solo entry · 4th Open Scientific Intelligence Hackathon',
+    concept: 'Claude Code, running on an 8 GB laptop, picked an open problem from the HorizonMath benchmark: place one thin triangle per direction so their union is as small as possible. It set new best-known values at every size with a published result (N = 32, 64, 128), beating AlphaEvolve and GPT-5.4 Pro, and certified each one exactly.',
+    live: 'https://shrestha-droid.github.io/kakeya-records/', repo: 'https://github.com/shrestha-droid/kakeya-records',
+    blocks: [
+      ['How it was found', [
+        ['Exact slice formula:', 'every slice is N intervals of equal length L, so its width is L + Σ min(gap, L). That gives the area and an exact gradient with no geometry library.'],
+        ['Lifting lemma:', 'each triangle is exactly two thinner children, so the search runs coarse-to-fine from N = 8 to 128, then memetic islands polish it on a Numba kernel.']]],
+      ['Certified, not claimed', [
+        ['Two verifiers:', 'the benchmark\'s official HorizonMath validator, plus an exact rational verifier that integrates over all 32,640 breakpoints.'],
+        ['Structure:', 'instead of Keich\'s flat profile, bundles of triangles converge at three focal heights where the union collapses.']]],
+      ['Honest limits', [
+        ['Upper bounds:', 'optimality is open, and the margin over the 2026 best (Dualverse) is about 0.1%.']]],
+    ],
+    stack: 'Python, NumPy, Numba, SciPy, marimo, HorizonMath',
+  },
+  {
     id: 'branch-hq', title: "Branch HQ", kind: "Desktop app · AI engineering", year: 2026, stats: [["6", "AI specialists"], ["4", "checks on every build"], ["27/32", "builds working end to end"]], summary: "AI writes the code, your auditors get the proof: every change reaches your repo as a pull request carrying the scan, tests, review, model and approver.", accent: '#a5a3ff', tagline: "AI writes the code. Your auditors get the <em>proof.</em>", media: ["branch-hq-home-office", "branch-hq-chat", "branch-hq-projects-start", "branch-hq-site"], embed: true,
     role: 'Founder, Architecture & Full-Stack Dev',
     concept: 'Branch HQ builds and changes software with AI, and every change reaches your repository as a pull request that carries what checked it: the security scan, your tests, an independent review, the model, and who approved it.',

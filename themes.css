@@ -2,6 +2,12 @@
    project's own source (its CSS custom properties and Google Fonts), not invented for the portfolio.
    Applied as body.t-<id>. Branch HQ and Zero-Trust Vault v2 have fully bespoke pages in bespoke.css. */
 
+/* ---- Kakeya Records · from kakeya-records/index.html dark mode: #141416, ink #ececee, coral #ef7a52, system sans + Georgia (summary) ---- */
+.t-kakeya-records { --bg:#141416; --panel:#1d1d20; --fg:#ececee; --soft:#c4c4ca; --muted:#9a9aa2; --line:#2c2c31; --accent:#ef7a52; --accent2:#9aa0a6;
+    --display:-apple-system,'Helvetica Neue',Arial,sans-serif; --body:Georgia,'Times New Roman',serif; --mono:ui-monospace,Menlo,monospace; --tag-weight:800; --tag-ls:-.03em; --em-style:normal; --r:14px; }
+.t-kakeya-records .case section { padding: 1.1rem 1.3rem .5rem; background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); }
+.t-kakeya-records .stats b { color: var(--accent); font-variant-numeric: tabular-nums; }
+
 /* ---- RING0 · from ring0/src: ink #eeece6 on #0a0b0d, scheduler amber, Instrument Serif + Inter + JetBrains Mono ---- */
 .t-ring0 { --bg:#0a0b0d; --panel:#0e1013; --fg:#eeece6; --soft:#b4b2a9; --muted:#8d8c85; --line:#23262b; --accent:#ffb547; --accent2:#4fd8c4;
     --display:'Instrument Serif',Georgia,serif; --body:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace; --tag-weight:400; --tag-ls:-.02em; --r:6px; }
