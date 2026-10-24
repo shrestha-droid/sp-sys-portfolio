@@ -6,7 +6,7 @@ const PROJECTS = [
     id: 'ai-council-cli', title: "AI Council CLI", kind: "Command-line tool · Multi-model AI", year: 2026, stats: [["3", "provider CLIs in one workflow"], ["2", "advisers consulted in parallel"], ["2", "Claude lead stages: brief + synthesis"]], summary: "Claude leads each task, gathers independent opinions from Gemini and ChatGPT, then returns one considered answer in a Branch HQ-inspired terminal dashboard.", accent: '#5e5ce6', tagline: "One lead. Two second opinions. <em>One answer.</em>", media: [], embed: false,
     role: 'Product design & implementation',
     concept: 'AI Council is a terminal roundtable: Claude frames the question, Gemini and ChatGPT offer independent opinions, and Claude weighs their reasoning before answering. Each provider model is configurable per run or in a local TOML file.',
-    live: '', repo: '',
+    live: '', repo: 'https://github.com/shrestha-droid/ai-council-cli',
     blocks: [
       ['A lead, with advisers', [
         ['Claude leads:', 'Claude prepares a review brief, receives both opinions and writes the final response.'],
