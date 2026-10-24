@@ -9,6 +9,7 @@ import collections, datetime, json, os, re, subprocess
 
 HOME = os.path.expanduser('~')
 REPOS = {  # project id in projects.js -> local checkout
+    'ai-council-cli': 'Documents/Codex/2026-10-24/how-x20/outputs/ai-council-cli',
     'branch-hq': 'branch-hq', 'vault-v2': 'Downloads/zero-trust-vault', 'spherex': 'nasa-space-apps-2026/planet-x-spherex',
     'clps': 'nasa-space-apps-2026/clps-lunar-mission-browser', 'drishti': 'drishti', 'bheed-drishti': 'Bheed-Drishti',
     'ring0': 'ring0', 'kakeya-records': 'kakeya-records', 'mend': 'mend', 'ncii-shield': 'ncii-shield', 'friday': 'Friday_Project', 'vault-v1': 'client vault',

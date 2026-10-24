@@ -2,6 +2,12 @@
    project's own source (its CSS custom properties and Google Fonts), not invented for the portfolio.
    Applied as body.t-<id>. Branch HQ and Zero-Trust Vault v2 have fully bespoke pages in bespoke.css. */
 
+/* ---- AI Council CLI · Branch HQ's renderer: night #05060b, violet #5e5ce6/#a5a3ff, Inter + mono ---- */
+.t-ai-council-cli { --bg:#05060b; --panel:#0a0c13; --fg:#eceff7; --soft:#c3c8d8; --muted:#8b91a7; --line:rgba(190,205,255,.11); --accent:#5e5ce6; --accent2:#a5a3ff;
+    --display:'Instrument Serif',Georgia,serif; --body:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace; --tag-weight:400; --tag-ls:-.02em; --r:14px; }
+.t-ai-council-cli .case section { padding: 1.1rem 1.3rem .5rem; background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); }
+.t-ai-council-cli .stats b { color: var(--accent2); font-variant-numeric: tabular-nums; }
+
 /* ---- Kakeya Records · from kakeya-records/index.html dark mode: #141416, ink #ececee, coral #ef7a52, system sans + Georgia (summary) ---- */
 .t-kakeya-records { --bg:#141416; --panel:#1d1d20; --fg:#ececee; --soft:#c4c4ca; --muted:#9a9aa2; --line:#2c2c31; --accent:#ef7a52; --accent2:#9aa0a6;
     --display:-apple-system,'Helvetica Neue',Arial,sans-serif; --body:Georgia,'Times New Roman',serif; --mono:ui-monospace,Menlo,monospace; --tag-weight:800; --tag-ls:-.03em; --em-style:normal; --r:14px; }

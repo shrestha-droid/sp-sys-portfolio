@@ -3,6 +3,26 @@
 // `embed` is false where the site refuses framing (X-Frame-Options) or nothing is deployed.
 const PROJECTS = [
   {
+    id: 'ai-council-cli', title: "AI Council CLI", kind: "Command-line tool · Multi-model AI", year: 2026, stats: [["3", "provider CLIs in one workflow"], ["2", "advisers consulted in parallel"], ["2", "Claude lead stages: brief + synthesis"]], summary: "Claude leads each task, gathers independent opinions from Gemini and ChatGPT, then returns one considered answer in a Branch HQ-inspired terminal dashboard.", accent: '#5e5ce6', tagline: "One lead. Two second opinions. <em>One answer.</em>", media: [], embed: false,
+    role: 'Product design & implementation',
+    concept: 'AI Council is a terminal roundtable: Claude frames the question, Gemini and ChatGPT offer independent opinions, and Claude weighs their reasoning before answering. Each provider model is configurable per run or in a local TOML file.',
+    live: '', repo: '',
+    blocks: [
+      ['A lead, with advisers', [
+        ['Claude leads:', 'Claude prepares a review brief, receives both opinions and writes the final response.'],
+        ['Independent views:', 'Gemini and ChatGPT work in parallel, then Claude resolves any disagreement instead of taking a vote.'],
+        ['Live dashboard:', 'a Branch HQ-inspired midnight-and-violet TUI shows each model, its current stage and an opinion preview.']]],
+      ['Models and context', [
+        ['Choose each model:', 'CLI flags override saved per-provider defaults in ~/.config/ai-council/config.toml.'],
+        ['Use a project folder:', 'launch from the folder whose context you want the provider CLIs to inspect. This version handles one task per run and does not keep shared chat history.']]],
+      ['Scoped execution', [
+        ['Review modes:', 'Claude runs in plan mode, Gemini in plan approval mode, and Codex in a read-only sandbox.'],
+        ['No extra service:', 'it coordinates the provider CLIs already installed and authenticated on your laptop.']],
+      ],
+    ],
+    stack: 'Python 3.11, Rich, Claude Code CLI, Gemini CLI, Codex CLI',
+  },
+  {
     id: 'kakeya-records', title: "Kakeya Records", kind: "OSI Hackathon 2026 · AI for mathematics", year: 2026, stats: [["0.10696", "union area at N = 128, a new best"], ["6.8%", "below AlphaEvolve"], ["63 min", "to the first record, on a laptop"]], summary: "An AI agent finds new best-known thin-triangle Kakeya constructions in an hour on a laptop, each certified in exact arithmetic.", accent: '#ef7a52', tagline: "An AI agent finds new best-known <em>Kakeya constructions.</em>", media: ["kakeya-records"], embed: true,
     role: 'Project lead (solo) · directing an AI research agent',
     concept: 'I led this solo hackathon entry, directing Claude Code as my research agent on an 8 GB laptop toward one goal: a verifiable record within the event. The agent picked an open problem from the HorizonMath benchmark: place one thin triangle per direction so their union is as small as possible. It set new best-known values at every size with a published result (N = 32, 64, 128), beating AlphaEvolve and GPT-5.4 Pro, and certified each one exactly.',

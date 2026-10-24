@@ -4,6 +4,7 @@ const root = document.getElementById('dossier');
 
 // Only the fonts this project's real identity uses (themes.css), instead of every family on every page.
 const FONTS = {
+    'ai-council-cli': 'Instrument+Serif:ital@0;1&family=Silkscreen&family=Inter:wght@400;500;600',
     'branch-hq': 'Instrument+Serif:ital@0;1&family=Silkscreen&family=Inter:wght@400;500;600',
     'vault-v2': 'Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=Archivo:wdth,wght@62..125,400..700&family=IBM+Plex+Mono:wght@400;500',
     'ring0': 'Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600',
