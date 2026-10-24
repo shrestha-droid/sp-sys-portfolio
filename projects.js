@@ -3,17 +3,17 @@
 // `embed` is false where the site refuses framing (X-Frame-Options) or nothing is deployed.
 const PROJECTS = [
   {
-    id: 'ai-council-cli', title: "AI Council CLI", kind: "Command-line tool · Multi-model AI", year: 2026, stats: [["3", "provider CLIs in one workflow"], ["2", "advisers consulted in parallel"], ["2", "Claude lead stages: brief + synthesis"]], summary: "Claude leads each task, gathers independent opinions from Gemini and ChatGPT, then returns one considered answer in a Branch HQ-inspired terminal dashboard.", accent: '#5e5ce6', tagline: "One lead. Two second opinions. <em>One answer.</em>", media: [], embed: false,
+    id: 'conclave', title: "Conclave", kind: "Command-line tool · Multi-model AI", year: 2026, stats: [["3", "provider CLIs in one workflow"], ["2", "advisers consulted in parallel"], ["2", "Claude lead stages: brief + synthesis"]], summary: "Claude leads each task, gathers independent opinions from Gemini and Codex, then returns one considered answer in a Branch HQ-inspired terminal dashboard.", accent: '#5e5ce6', tagline: "One lead. Two second opinions. <em>One answer.</em>", media: [], embed: false,
     role: 'Product design & implementation',
-    concept: 'AI Council is a terminal roundtable: Claude frames the question, Gemini and ChatGPT offer independent opinions, and Claude weighs their reasoning before answering. Each provider model is configurable per run or in a local TOML file.',
+    concept: 'Conclave is a terminal roundtable: Claude frames the question, Gemini and Codex offer independent opinions, and Claude weighs their reasoning before answering. Each provider model is configurable per run or in a local TOML file.',
     live: '', repo: 'https://github.com/shrestha-droid/ai-council-cli',
     blocks: [
       ['A lead, with advisers', [
         ['Claude leads:', 'Claude prepares a review brief, receives both opinions and writes the final response.'],
-        ['Independent views:', 'Gemini and ChatGPT work in parallel, then Claude resolves any disagreement instead of taking a vote.'],
+        ['Independent views:', 'Gemini and Codex work in parallel, then Claude resolves any disagreement instead of taking a vote.'],
         ['Live dashboard:', 'a Branch HQ-inspired midnight-and-violet TUI shows each model, its current stage and an opinion preview.']]],
       ['Models and context', [
-        ['Choose each model:', 'CLI flags override saved per-provider defaults in ~/.config/ai-council/config.toml.'],
+        ['Choose each model:', 'CLI flags override saved per-provider defaults in ~/.config/conclave/config.toml.'],
         ['Use a project folder:', 'launch from the folder whose context you want the provider CLIs to inspect. This version handles one task per run and does not keep shared chat history.']]],
       ['Scoped execution', [
         ['Review modes:', 'Claude runs in plan mode, Gemini in plan approval mode, and Codex in a read-only sandbox.'],
