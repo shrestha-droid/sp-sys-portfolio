@@ -54,7 +54,7 @@
         ...PROJECTS.filter(p => p.live).map(p => ({ g: 'Live', t: `Run ${p.title}`, s: new URL(p.live).host, c: p.accent, run: open(p.live) })),
         ...[...document.querySelectorAll('.nav a')].map(a => ({ g: 'Go to', t: a.textContent.replace(/^\d+/, ''), s: 'section', run: () => document.querySelector(a.hash).scrollIntoView({ behavior: calm ? 'auto' : 'smooth' }) })),
         { g: 'Actions', t: 'Copy email address', s: 'shresthakp07@gmail.com', run: () => navigator.clipboard.writeText('shresthakp07@gmail.com').then(() => toast('Email copied'), () => (location.href = 'mailto:shresthakp07@gmail.com')) },
-        { g: 'Actions', t: 'Download the CV (PDF)', s: 'one page', run: () => Object.assign(document.createElement('a'), { href: 'cv.pdf', download: 'Shrestha-Pandey-CV.pdf' }).click() },
+        { g: 'Actions', t: 'Download the CV (PDF)', s: 'one page', run: () => Object.assign(document.createElement('a'), { href: 'Shrestha-Pandey-CV.pdf', download: 'Shrestha-Pandey-CV.pdf' }).click() },
         { g: 'Actions', t: 'Read the CV', s: 'one page, web version', run: go('cv.html') },
         { g: 'Actions', t: 'Open the shell', s: 'or type ///', run: () => window.openShell && window.openShell() },
         { g: 'Actions', t: 'GitHub profile', s: 'github.com/shrestha-droid', run: open('https://github.com/shrestha-droid') },
