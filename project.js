@@ -13,7 +13,7 @@ const FONTS = {
     'drishti': 'Schibsted+Grotesk:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&family=Tiro+Devanagari+Hindi',
     'bheed-drishti': 'Rajdhani:wght@500;600;700&family=Hind:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=Tiro+Devanagari+Hindi',
     'ncii-shield': 'Sora:wght@400;600;800&family=IBM+Plex+Mono:wght@400;500',
-    'friday': 'Rajdhani:wght@500;600;700',
+    'friday': 'Barlow+Condensed:wght@400;500;600&family=Barlow:wght@300;400&family=Cormorant+Garamond:ital,wght@1,400;1,500&family=JetBrains+Mono:wght@400;500',
     'vault-v1': 'Inter:wght@400;500;600;700',
 };
 if (p && FONTS[p.id]) document.head.append(Object.assign(document.createElement('link'), { rel: 'stylesheet', href: `https://fonts.googleapis.com/css2?family=${FONTS[p.id]}&display=swap` }));

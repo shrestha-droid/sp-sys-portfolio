@@ -63,11 +63,12 @@
 .t-ncii-shield .case h2::before { content: 'STEP ' counter(sec) ' · '; }
 
 /* ---- Friday · from Friday_Project/index.html: "QUANTUM INTERFACE", crimson void, red + orange, Rajdhani + JetBrains Mono ---- */
-.t-friday { --bg:#0d0103; --panel:#1f0307; --fg:#fff0f2; --soft:#e2b9be; --muted:#a8787e; --line:#3a0a10; --accent:#ff2a2a; --accent2:#ff9900;
-    --display:'Rajdhani',system-ui,sans-serif; --body:'Rajdhani',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace; --tag-weight:700; --tag-ls:.01em; --tag-case:uppercase; --em-style:normal; --r:0; }
+.t-friday { --bg:#04070b; --panel:#0a1119; --fg:#dce8f2; --soft:#a9bccd; --muted:#7d92a7; --line:#16232f; --accent:#67e8f9; --accent2:#ffb454;
+    --display:'Barlow Condensed',system-ui,sans-serif; --body:'Barlow',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace; --tag-weight:700; --tag-ls:.01em; --tag-case:uppercase; --em-style:normal; --r:0; }
 .t-friday .case { font-size: 1.08rem; }
-.t-friday .case .c-tag { text-shadow: 0 0 30px #ff2a2a55; }
-.t-friday .case section { position: relative; padding: 1.1rem 1.3rem .5rem; background: #1f030766; border: 1px solid var(--line); }
+.t-friday .case .c-tag { text-shadow: 0 0 30px #67e8f955; }
+.t-friday .case .c-tag em { font-family: 'Cormorant Garamond', serif; font-style: italic; text-transform: none; color: #ff2e45; text-shadow: 0 0 28px #ff2e4566; }  /* Ultron's line, as in the app */
+.t-friday .case section { position: relative; padding: 1.1rem 1.3rem .5rem; background: #0a111966; border: 1px solid var(--line); }
 .t-friday .case section::before { content: ''; position: absolute; inset: -1px; pointer-events: none; background:
     linear-gradient(var(--accent),var(--accent)) 0 0/14px 1px no-repeat, linear-gradient(var(--accent),var(--accent)) 0 0/1px 14px no-repeat,
     linear-gradient(var(--accent),var(--accent)) 100% 100%/14px 1px no-repeat, linear-gradient(var(--accent),var(--accent)) 100% 100%/1px 14px no-repeat; }

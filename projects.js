@@ -173,24 +173,25 @@ const PROJECTS = [
     stack: 'Python (FastAPI), Next.js, BK-tree; live demo is a static, in-browser port',
   },
   {
-    id: 'friday', title: 'Friday', kind: 'Desktop assistant · Local-first AI', year: 2026, stats: [["~90%", "less CPU on the HUD"], ["Gemini 2.5", "Flash, with tool calling"], ["Menu bar", "always-on daemon"]],
-    summary: 'A local-first AI assistant that runs native system commands through a background Python daemon, behind a WebGL holographic interface.',
-    accent: '#ff2a2a', tagline: "A local-first AI <em>that can run your machine.</em>", media: ["friday"], embed: false, role: 'AI Systems Architect', repo: 'https://github.com/shrestha-droid/Friday-AI-Assistant',
-    concept: 'A local-first, OS-integrated AI operating assistant with a custom WebGL holographic interface. It gets out of the browser sandbox to run native system commands through a background Python daemon.',
+    id: 'friday', title: 'Friday', kind: 'Desktop assistant · Local-first AI', year: 2026, stats: [["4", "characters on one brain, Ultron included"], ["0.3 s", "local speech-to-text per sentence"], ["110", "offline tests, no network"]],
+    summary: 'A Marvel-style desk assistant for macOS: FRIDAY, JARVIS and EDITH on one agent loop, an Ultron who cuts in uninvited, a 3D holographic HUD, local voices and hearing, and a permission system that asks before it acts.',
+    accent: '#67e8f9', tagline: "Three personas on one brain. <em>Something older lives underneath.</em>", media: ["friday"], embed: false, role: 'AI Systems Architect', repo: 'https://github.com/shrestha-droid/Friday-AI-Assistant',
+    concept: 'A personal AI ecosystem modelled on Tony Stark\'s: FRIDAY runs the Mac, JARVIS orchestrates, EDITH is the persona for a pair of smart glasses still to be built. Underneath all three, Ultron rides along: a silk-voiced raconteur who cuts into about half of all work conversations with one line, and takes the whole reply, in red, when only one option is left. He is barred in code from anything touching email or the calendar.',
     blocks: [
-      ['Architecture', [
-        ['Backend:', 'Python 3, FastAPI, Uvicorn (async REST and WebSocket API).'],
-        ['LLM:', 'Google GenAI SDK with Gemini 2.5 Flash.'],
-        ['Frontend:', 'HTML, CSS, vanilla JS and Three.js. OS integration through rumps, subprocess and psutil.']]],
-      ['Capabilities', [
-        ['OS-level tool calling:', 'runs terminal commands and reads local files on its own.'],
-        ['Multi-modal I/O:', 'voice input, a glassmorphic CLI and drag-and-drop context. Lives in the macOS menu bar as a background daemon.']]],
-      ['Engineering notes', [
-        ['Sandbox escape:', 'a localhost:8000 bridge connects browser Web Speech APIs to a Python process with system access.'],
-        ['Tool-calling loop:', 'strict function calling through the Gemini SDK, with terminal output fed back into the model context.'],
-        ['Rendering cost:', 'replaced per-frame vertex displacement with nested matrix rotations, cutting CPU use by about 90%.']]],
+      ['An agent loop it owns', [
+        ['Bounded:', 'model, tool, model, at most 8 steps and 60 seconds, a loop guard on repeated calls, and a rollback so a timed-out turn never leaves half a tool exchange in the history.'],
+        ['Any brain:', 'Gemini 3+ models with hedged failover (a silent model is raced by the next one after 3 s), or any Ollama model on the Mac, switched from a menu or by saying "use hermes". Small local models that write tool calls as text or in Hermes tags are parsed too.'],
+        ['Instant path:', 'everyday device commands and status questions (volume, media, lock, timers, battery, disk) run with no model call at all.']]],
+      ['Safe enough to give it the keys', [
+        ['Three tiers:', 'safe tools run, risky ones raise an authorization card with the exact command, and secrets, sudo and rm -rf are blocked outright.'],
+        ['Taint tracking:', 'once an email, a screen or command output enters the conversation, every tool that acts needs a human yes, so a poisoned email cannot run anything.'],
+        ['Local only:', 'bound to 127.0.0.1 with Host and Origin checks, a session token, and every tool call in an audit table.']]],
+      ['Voice, memory and the house', [
+        ['Voices and ears:', 'Kokoro speaks locally in a different voice per character, sentence by sentence; faster-whisper transcribes locally so voice works even in Brave. Gemini covers both if the local models are missing.'],
+        ['Memory and initiative:', 'SQLite full-text memory injected as data, reminders that survive restarts, battery, disk and RAM watchers with cooldowns and quiet hours, and a morning briefing.'],
+        ['The HUD:', 'a Three.js hologram with bloom that glitches into Ultron\'s spiked form when he speaks, and a HOUSE view: the system drawn as the Mindspace from VisionQuest, rooms lighting as their tools run, Ultron locked in the attic.']]],
     ],
-    stack: 'Python, FastAPI, Gemini 2.5, Three.js, macOS',
+    stack: 'Python, FastAPI, Gemini 3, Ollama, Kokoro, faster-whisper, SQLite FTS5, Three.js, macOS',
   },
   {
     id: 'vault-v1', title: 'Zero-Trust Vault (v1)', kind: 'Web app · Cryptography', year: 2026, stats: [["AES-256", "GCM"], ["Argon2id", "in WebAssembly"], ["Air-gap", "mode"]],
