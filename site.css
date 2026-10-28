@@ -239,24 +239,8 @@ main { padding: 0 clamp(1.25rem, 6vw, 6rem); max-width: 84rem; margin: 0 auto; }
 .pal-empty { padding: 1.2rem .8rem; color: var(--muted); font-size: .9rem; }
 .pal-foot { display: flex; gap: 1.2rem; padding: .7rem 1.2rem; border-top: 1px solid #ffffff14; }
 .toast { position: fixed; left: 50%; bottom: 3.5rem; translate: -50% 0; z-index: 400; padding: .7rem 1.1rem; background: var(--accent); color: #000; font: 700 .75rem var(--mono); letter-spacing: .1em; text-transform: uppercase; animation: shotIn .3s ease both; }
-.cv { display: none; }
 @media (max-width: 900px) { .tm-big { grid-template-columns: repeat(2, 1fr); } .tm-grid { grid-template-columns: 1fr; } .per-row { grid-template-columns: 1fr 6.5rem; } .per-bar, .per-row .per-num:last-child { display: none; } .i-shot { display: none; } }
 
-/* ---------- PRINT: the site becomes a one-page CV ---------- */
-@media print {
-    @page { size: A4; margin: 10mm 12mm; }
-    body { background: #fff !important; color: #111; font: 8.6pt/1.36 Inter, system-ui, sans-serif; }
-    body > *:not(.cv) { display: none !important; }
-    .cv { display: block; }
-    .cv h1 { font: 800 20pt/1.1 Inter, sans-serif; letter-spacing: -.03em; color: #000; }
-    .cv header p { margin-top: 3pt; color: #333; } .cv .cv-c { font: 8.5pt 'JetBrains Mono', monospace; color: #555; }
-    .cv h2 { margin: 11pt 0 4pt; padding-bottom: 2pt; border-bottom: 1.5pt solid #e50914; font: 700 9pt Inter, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #000; }
-    .cv ul { list-style: none; } .cv li { margin-bottom: 4pt; break-inside: avoid; }
-    .cv li b { color: #000; } .cv li span { color: #666; font-size: 8.5pt; } .cv li p { color: #222; }
-    .cv a { color: #b0060f; text-decoration: none; font: 8pt 'JetBrains Mono', monospace; }
-    .cv .cv-p { columns: 2; column-gap: 16pt; } .cv .cv-p p { font-size: 8pt; } .cv li { margin-bottom: 3pt; } .cv .cv-s { columns: 2; column-gap: 16pt; }
-    .cv h2 { margin-top: 9pt; }
-}
 /* ---------- DOSSIER ---------- */
 .t-dossier .bar { background: linear-gradient(color-mix(in srgb, var(--bg) 94%, transparent), transparent); }
 .case { position: relative; max-width: 78rem; margin: 0 auto; padding: 7.5rem clamp(1.25rem, 5vw, 3.5rem) 2rem; font-family: var(--body); counter-reset: sec; }

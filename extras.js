@@ -55,7 +55,7 @@
         ...[...document.querySelectorAll('.nav a')].map(a => ({ g: 'Go to', t: a.textContent.replace(/^\d+/, ''), s: 'section', run: () => document.querySelector(a.hash).scrollIntoView({ behavior: calm ? 'auto' : 'smooth' }) })),
         { g: 'Actions', t: 'Copy email address', s: 'shresthakp07@gmail.com', run: () => navigator.clipboard.writeText('shresthakp07@gmail.com').then(() => toast('Email copied'), () => (location.href = 'mailto:shresthakp07@gmail.com')) },
         { g: 'Actions', t: 'Download the CV (PDF)', s: 'one page', run: () => Object.assign(document.createElement('a'), { href: 'cv.pdf', download: 'Shrestha-Pandey-CV.pdf' }).click() },
-        { g: 'Actions', t: 'Print the CV', s: 'the page prints as a résumé', run: () => window.print() },
+        { g: 'Actions', t: 'Read the CV', s: 'one page, web version', run: go('cv.html') },
         { g: 'Actions', t: 'Open the shell', s: 'or type ///', run: () => window.openShell && window.openShell() },
         { g: 'Actions', t: 'GitHub profile', s: 'github.com/shrestha-droid', run: open('https://github.com/shrestha-droid') },
         ...Object.keys(THEMES).map(n => ({ g: 'Theme', t: `Accent: ${n}`, s: THEMES[n][0], c: THEMES[n][0], run: () => { applyTheme(n); window.heroTint && window.heroTint(THEMES[n][0]); toast(`Theme ${n}`); } })),
@@ -87,19 +87,4 @@
     addEventListener('keydown', e => { if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); dlg.open ? dlg.close() : openPal(); } });
     document.getElementById('open-palette').addEventListener('click', openPal);
     document.querySelectorAll('[data-palette]').forEach(b => b.addEventListener('click', openPal));
-})();
-
-// ---------- Printable CV: the same data, laid out as a one-page résumé ----------
-(() => {
-    const T = typeof TELEMETRY !== 'undefined' ? TELEMETRY : null, live = PROJECTS.filter(p => p.live);
-    const log = [...document.querySelectorAll('.log li')].map(li => `<li><b>${li.querySelector('h3').textContent}</b> <span>${li.querySelector('.when').textContent}</span><p>${[...li.querySelectorAll('p:not(.sub)')].map(p => p.textContent).join(' ')}</p></li>`).join('');
-    const caps = [...document.querySelectorAll('.caps div')].map(d => `<li><b>${d.querySelector('dt').textContent}:</b> ${[...d.querySelectorAll('dd span')].map(s => s.textContent).join(', ')}</li>`).join('');
-    document.getElementById('cv').innerHTML = `
-        <header><h1>Shrestha Pandey</h1><p>AI Systems Architect · Full-Stack Developer · Founder, Concierge · Engineering, VIT Bhopal (Year 2)</p>
-        <p class="cv-c">shresthakp07@gmail.com · github.com/shrestha-droid · kaggle.com/shrestha11022007 · sp-sys-portfolio.vercel.app</p></header>
-        <section><h2>Profile</h2><p>${document.querySelector('#operator .lead').textContent} ${document.querySelector('#operator .about p:not(.lead)').textContent}${T ? ` Across ${T.totals.projects} projects: ${fmt(T.totals.commits)} commits, ${fmt(T.totals.loc)} lines of source and ${fmt(T.totals.tests)} test cases.` : ''}</p></section>
-        <section><h2>Experience &amp; education</h2><ul class="cv-log">${log}</ul></section>
-        <section><h2>Selected projects</h2><ul class="cv-p">${PROJECTS.map(p => `<li><b>${esc(p.title)}</b> <span>${esc(p.kind)}</span><p>${esc(p.summary)}${p.live ? ` <a href="${esc(p.live)}">${esc(new URL(p.live).host + new URL(p.live).pathname).replace(/\/$/, '')}</a>` : ''}</p></li>`).join('')}</ul></section>
-        <section><h2>Skills</h2><ul class="cv-s">${caps}</ul></section>`;
-    document.getElementById('print-cv')?.addEventListener('click', () => window.print());
 })();

@@ -18,12 +18,12 @@
     // ---- Friday: an offline stand-in for the assistant ----
     function friday() {
         const { say, form, input } = shell('Talk to FRIDAY', 'Offline demo: canned answers, no LLM attached. The real assistant talks to Gemini and runs local commands.');
-        say('FRIDAY_SYS: standing by. try "who", "projects", "tech", "concierge" or "contact".');
+        say('FRIDAY_SYS: standing by. try "who", "projects", "tech", "syntrophy" or "contact".');
         const answers = [
             [/who|shrestha|about/, 'Shrestha Pandey: AI systems architect, full-stack developer, founder. Year 2 engineering at VIT Bhopal.'],
             [/project|built|work/, `${PROJECTS.length} projects indexed. Start with Branch HQ, Zero-Trust Vault v2 or SPHEREx Moving Sky. Type "open <name>" in the home shell.`],
             [/tech|stack|language/, 'TypeScript, Python, C++, React, Three.js, FastAPI, WebAssembly, WebCrypto. Friday itself: FastAPI, Gemini 2.5 Flash, Three.js.'],
-            [/concierge/, 'Concierge is where Shrestha builds full-stack and AI software.'],
+            [/syntrophy|branch/, 'Syntrophy is the company Shrestha founded; it builds Branch HQ, where AI-written code ships with its own proof.'],
             [/contact|mail|hire/, 'shresthakp07@gmail.com. Or github.com/shrestha-droid.'],
             [/^(hi|hello|hey)/, 'Hello, operator.'],
         ];
