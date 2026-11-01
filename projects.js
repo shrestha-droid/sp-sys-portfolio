@@ -22,6 +22,23 @@ const PROJECTS = [
     stack: 'Python, Qwen3.8-27B, Qwen3-4B (NVARC), vLLM, Unsloth, Kaggle L4 GPUs',
   },
   {
+    id: 'branch-pay', title: "Branch Pay", kind: "PayPal AI Hackathon 2026 · agentic commerce", year: 2026, stats: [["4", "AI agents, one job each"], ["10", "PayPal API endpoints, hand-written REST"], ["402", "HTTP status until PayPal says paid"]], summary: "AI agents quote a job, bill it through PayPal, chase the payment, and release the work only when PayPal says it's paid. Clients' AI assistants can hire it over MCP.", accent: '#1f3fa0', tagline: "The work ships when the <em>invoice clears.</em>", media: ["branch-pay"], embed: true,
+    concept: 'Freelancers and small agencies lose money on the loop around the work: the quote, the invoice, the chasing, and deciding when it is safe to hand over the files. Branch Pay gives that loop to four AI agents on the PayPal sandbox and keeps a person on every money decision. A client\'s own AI assistant can request work over MCP; the agency still approves and the buyer\'s human still pays.',
+    live: 'https://branch-pay.onrender.com', repo: 'https://github.com/shrestha-droid/branch-pay',
+    blocks: [
+      ['How it works', [
+        ['Four agents:', 'the Scoper prices the request under a hard cap in code, the Biller creates and sends a PayPal invoice by tool calling, the Collector writes reminders and sends them on its own (max 3), and the Builder makes the site once PayPal reports payment.'],
+        ['Deposit plans:', 'the client pays 50% for a watermarked preview, then the balance for the final files, through PayPal\'s native partial payments or, where the merchant\'s country has none, a deposit and a balance invoice. Refunds go back through PayPal and lock the work again.']]],
+      ['Agentic commerce', [
+        ['MCP server:', 'a buyer\'s AI assistant can request_quote, get_job and list_jobs. It cannot approve, pay or refund.'],
+        ['HTTP 402:', 'locked work answers Payment Required with a machine-readable PayPal payment link, in the spirit of x402.']]],
+      ['Safety by design', [
+        ['Money never flows from the model:', 'the Biller\'s tools take only a note and payment terms; amounts and recipient come from the approved quote, following 2025 research on securing LLM agents against prompt injection (CaMeL, design patterns).'],
+        ['Honest limits:', 'sandbox only, JSON-file storage, and the free instance sleeps when idle.']]],
+    ],
+    stack: 'TypeScript, Express, Gemini (Vercel AI SDK), PayPal Invoicing + Payments APIs, Webhooks, MCP, AG Grid, Render',
+  },
+  {
     id: 'conclave', title: "Conclave", kind: "Command-line tool · Multi-model AI", year: 2026, stats: [["3", "provider CLIs in one workflow"], ["2", "advisers consulted in parallel"], ["2", "Claude lead stages: brief + synthesis"]], summary: "Claude leads each task, gathers independent opinions from Gemini and Codex, then returns one considered answer in a Branch HQ-inspired terminal dashboard.", accent: '#5e5ce6', tagline: "One lead. Two second opinions. <em>One answer.</em>", media: [], embed: false,
     role: 'Product design & implementation',
     concept: 'Conclave is a terminal roundtable: Claude frames the question, Gemini and Codex offer independent opinions, and Claude weighs their reasoning before answering. Each provider model is configurable per run or in a local TOML file.',

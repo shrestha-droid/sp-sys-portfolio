@@ -8,6 +8,14 @@
 .t-arc-agi-2 .case section { padding: 1.1rem 1.3rem .5rem; background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); }
 .t-arc-agi-2 .stats b { color: var(--accent2); font-variant-numeric: tabular-nums; }
 
+/* ---- Branch Pay · from branch-pay/public/index.html: ledger paper #f1efe7, ink #121826, fountain-pen blue #1f3fa0, margin red #b3261e, Fraunces + Instrument Sans + DM Mono ---- */
+.t-branch-pay { --bg:#f1efe7; --panel:#f8f6f0; --fg:#121826; --soft:#3f4656; --muted:#6f7685; --line:rgba(18,24,38,.26); --accent:#1f3fa0; --accent2:#b3261e;
+    --display:'Fraunces',Georgia,serif; --body:'Instrument Sans',system-ui,sans-serif; --mono:'DM Mono',ui-monospace,monospace; --tag-weight:350; --tag-ls:-.035em; --r:0px; color-scheme: light; }
+.t-branch-pay .case section { padding: 1.1rem 1.3rem .5rem; background: var(--panel); border: 1px solid var(--line); border-radius: 0; }
+.t-branch-pay .case .c-tag em { font-style: italic; color: var(--accent); font-weight: 300; }
+.t-branch-pay .case .btn:not(.main) { background: transparent; color: var(--fg); border: 1px solid rgba(18,24,38,.7); }
+.t-branch-pay .stats b { color: var(--accent); font-family: var(--display); font-weight: 400; font-variant-numeric: tabular-nums lining-nums; }
+
 /* ---- Conclave · Branch HQ's renderer: night #05060b, violet #5e5ce6/#a5a3ff, Inter + mono ---- */
 .t-conclave { --bg:#05060b; --panel:#0a0c13; --fg:#eceff7; --soft:#c3c8d8; --muted:#8b91a7; --line:rgba(190,205,255,.11); --accent:#5e5ce6; --accent2:#a5a3ff;
     --display:'Instrument Serif',Georgia,serif; --body:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace; --tag-weight:400; --tag-ls:-.02em; --r:14px; }
