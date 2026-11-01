@@ -3,6 +3,25 @@
 // `embed` is false where the site refuses framing (X-Frame-Options) or nothing is deployed.
 const PROJECTS = [
   {
+    id: 'arc-agi-2', title: "ARC-AGI-2 Solver", kind: "ARC Prize 2026 · Kaggle + Paper Track", year: 2026, stats: [["30.69", "best public score, #1,090 of 3,578 teams"], ["90% vs 33%", "right when a program passes: enumerated vs LLM-written"], ["448 tok/s", "27B model on four L4 GPUs, up from 146"]], summary: "A Kaggle solver and research paper that measure what passing the examples is really worth for programs, a fine-tuned model and a reasoning LLM.", accent: '#FF4136', tagline: "A passed check is only as good as <em>the space it was searched from.</em>", media: ["arc-agi-2", "arc-agi-2-programs", "arc-agi-2-agent"], embed: false,
+    role: 'Project lead (solo) · directing an AI research agent',
+    concept: 'My solo entry to ARC Prize 2026. An ARC task can check its own answers: a candidate rule must reproduce every example pair. I measured what that check is worth for each answer source, then built the submission around the result, with enumerated programs, the NVARC model and a Qwen3.8-27B agent sharing 12 offline hours on four L4 GPUs. The findings went to the Paper Track as "Verify Before You Guess".',
+    live: '', repo: '',
+    blocks: [
+      ['What a pass is worth', [
+        ['Enumerated programs:', 'small search spaces stay precise. 115 of 128 passing programs were right on the test output.'],
+        ['LLM-written programs:', 'only 11 of 33 verified predictions were right, because a model can invent a rule that fits two or three examples.'],
+        ['Checks have blind spots:', 'validated invariants flagged 0 of the model\'s 22 wrong answers, so the second attempt comes from an independent source, not a filter.']]],
+      ['The system', [
+        ['Three sources:', 'about 190 enumerated grid transforms, NVARC\'s test-time fine-tuned 4B model, and a 27B agent that writes programs and repairs them from a cell-level error map.'],
+        ['Serving:', '4-bit weights on two vLLM replicas raised throughput 1.5× over the 8-bit setup and took smoke tests from 6/25 to 9/25.']]],
+      ['Measured, not projected', [
+        ['The split matters:', 'moving four hours from the agent to NVARC took the same system from 25.28 to 30.69.'],
+        ['Honest limits:', 'copies of NVARC alone score 29.3 to 33.9, so 30.69 does not show pairing beats it, and the leaders scored above 80.']]],
+    ],
+    stack: 'Python, Qwen3.8-27B, Qwen3-4B (NVARC), vLLM, Unsloth, Kaggle L4 GPUs',
+  },
+  {
     id: 'conclave', title: "Conclave", kind: "Command-line tool · Multi-model AI", year: 2026, stats: [["3", "provider CLIs in one workflow"], ["2", "advisers consulted in parallel"], ["2", "Claude lead stages: brief + synthesis"]], summary: "Claude leads each task, gathers independent opinions from Gemini and Codex, then returns one considered answer in a Branch HQ-inspired terminal dashboard.", accent: '#5e5ce6', tagline: "One lead. Two second opinions. <em>One answer.</em>", media: [], embed: false,
     role: 'Product design & implementation',
     concept: 'Conclave is a terminal roundtable: Claude frames the question, Gemini and Codex offer independent opinions, and Claude weighs their reasoning before answering. Each provider model is configurable per run or in a local TOML file.',

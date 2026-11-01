@@ -2,6 +2,12 @@
    project's own source (its CSS custom properties and Google Fonts), not invented for the portfolio.
    Applied as body.t-<id>. Branch HQ and Zero-Trust Vault v2 have fully bespoke pages in bespoke.css. */
 
+/* ---- ARC-AGI-2 Solver · the paper's cover: near-black, ARC grid red and yellow, the figures' sans ---- */
+.t-arc-agi-2 { --bg:#101418; --panel:#171c21; --fg:#f0efec; --soft:#c3c2b7; --muted:#8f8e86; --line:rgba(240,239,236,.12); --accent:#FF4136; --accent2:#FFDC00;
+    --display:'DejaVu Sans','Noto Sans',Verdana,sans-serif; --body:'DejaVu Sans','Noto Sans',Verdana,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace; --tag-weight:800; --tag-ls:-.03em; --r:6px; }
+.t-arc-agi-2 .case section { padding: 1.1rem 1.3rem .5rem; background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); }
+.t-arc-agi-2 .stats b { color: var(--accent2); font-variant-numeric: tabular-nums; }
+
 /* ---- Conclave · Branch HQ's renderer: night #05060b, violet #5e5ce6/#a5a3ff, Inter + mono ---- */
 .t-conclave { --bg:#05060b; --panel:#0a0c13; --fg:#eceff7; --soft:#c3c8d8; --muted:#8b91a7; --line:rgba(190,205,255,.11); --accent:#5e5ce6; --accent2:#a5a3ff;
     --display:'Instrument Serif',Georgia,serif; --body:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace; --tag-weight:400; --tag-ls:-.02em; --r:14px; }
