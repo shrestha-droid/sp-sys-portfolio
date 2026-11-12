@@ -56,13 +56,13 @@
   <h2>Experience</h2>
   <div class="item">
     <div class="row"><b>Founder &amp; Lead Engineer</b><span class="r">Jul 2026 – Present</span></div>
-    <div class="row"><i>Syntrophy · Branch HQ, verifiable AI software delivery for regulated industries</i><i class="r"><a href="https://shrestha-droid.github.io/branchhq/">shrestha-droid.github.io/branchhq</a></i></div>
+    <div class="row"><i>Syntrophy · Branch HQ, verifiable AI software delivery for regulated industries</i><i class="r"><a href="https://branchhq.online">branchhq.online</a></i></div>
     <ul>
       <li>Architected a 64,000-line Electron platform (100 main-process modules, 623 commits, 1,567 tests) where 6 AI agents plan, build, review and run full-stack apps, solving the gap that blocks regulated teams from AI code: no proof of what checked it, which model wrote it or who approved it.</li>
-      <li>Built a deterministic Babel-AST security gate with cross-agent checks (auth, route and import mismatches) that blocks unsafe code before any model reviews it, feeding exact failures back to the agent as retry instructions and self-healing runtime crashes.</li>
-      <li>Benchmarked the scanner at 0 false alarms across 49,000+ files of 15 production codebases (Ghost, Bitwarden, Gitea) while catching every covered hole in 10 deliberately vulnerable apps in 7 languages; flagged serious flaws in 35 of 94 public AI-built apps.</li>
-      <li>Designed cryptographic provenance: a SHA-256 hash-chained audit log anchored in the OS keychain, RFC 3161 timestamps and RFC 6962 Merkle inclusion proofs, so a standalone verifier proves from git history alone which code AI wrote and who approved it.</li>
-      <li>Secured multi-office delegation with Ed25519 identities and an X25519/HKDF + AES-256-GCM relay the server can neither read nor forge; sandboxed agent commands (no shell, secrets stripped) and masked personal data before any prompt leaves the machine.</li>
+      <li>Built a deterministic Babel-AST security gate with cross-agent checks (auth, route and import mismatches) that blocks unsafe code before model review, feeding exact failures back as retry instructions and self-healing runtime crashes.</li>
+      <li>Measured 0 false alarms on 49,000+ files of 15 production codebases (Ghost, Bitwarden, Gitea), caught every covered hole in 10 intentionally vulnerable apps in 7 languages; flagged serious flaws in 35 of 94 public AI-built apps.</li>
+      <li>Designed provenance: a SHA-256 hash-chained audit log anchored in the OS keychain, RFC 3161 timestamps and RFC 6962 Merkle inclusion proofs, so a standalone verifier proves from git alone which code AI wrote and who approved it.</li>
+      <li>Secured multi-office delegation with Ed25519 identities and an X25519/HKDF + AES-256-GCM relay the server can neither read nor forge; sandboxed agent commands (no shell, secrets stripped) and masked PII in outbound prompts.</li>
       <li>Shipped support for 6 model providers (Azure OpenAI, AWS Bedrock, Anthropic, OpenAI, Gemini, local), delivering changes as GitHub/GitLab pull requests; completed 27 of 32 (84%) unseen build requests end to end.</li>
     </ul>
   </div>
@@ -73,7 +73,7 @@
     <ul>
       <li>Designed a zero-knowledge vault format where any K of N Shamir shards (<span style="white-space:nowrap">2–16</span>), a 256 MiB Argon2id passphrase, both as two-factor (HKDF), or a hardware passkey (WebAuthn PRF) independently unlock one AES-256-GCM key, so secrets survive the loss of any single person or device.</li>
       <li>Closed AES-GCM's multi-key ("invisible salamanders") attack with HMAC key commitment, and added hash-based shard commitments that name a forged shard even when it carries a valid checksum.</li>
-      <li>Hardened the client against its own host: keys live only in a Web Worker under hash-pinned CSP and Trusted Types, and a daily public CI job proves the hosted app is byte-identical to the offline build; 73 tests plus row-level-security attack tests on real Postgres.</li>
+      <li>Hardened the client: keys live only in a Web Worker under hash-pinned CSP and Trusted Types, and a daily public CI job proves the hosted app is byte-identical to the offline build; 73 tests plus Postgres RLS attack tests.</li>
     </ul>
   </div>
   <div class="item">
@@ -85,19 +85,19 @@
 
   <h2>Technical Skills</h2>
   <div class="skills">
-    <p><b>Languages:</b> TypeScript, JavaScript, Python, C++, SQL, HTML/CSS</p>
-    <p><b>Frameworks:</b> React, Node.js, Express, FastAPI, Electron, Three.js/WebGL, NumPy</p>
-    <p><b>AI Systems:</b> Multi-agent orchestration, LLM tool calling, OpenAI, Anthropic and Gemini APIs</p>
-    <p><b>Security &amp; Cryptography:</b> AES-GCM, Argon2id, HKDF, Ed25519/X25519, Shamir sharing, Merkle trees, RFC 3161, WebAuthn, AST analysis</p>
-    <p><b>Tools:</b> Git, GitHub Actions, Vitest, Playwright, WebAssembly, Supabase, Vercel</p>
-    
+    <p><b>Languages:</b> Python, Java, TypeScript, JavaScript, Go, C++, SQL, HTML/CSS</p>
+    <p><b>CS Fundamentals:</b> Data Structures &amp; Algorithms, Object-Oriented Programming, Operating Systems, System Design</p>
+    <p><b>AI / LLM:</b> AI agents, multi-agent orchestration, RAG, vector search, LLM evaluation, prompt engineering, tool calling, Ollama, vLLM, OpenAI, Anthropic and Gemini APIs</p>
+    <p><b>Backend &amp; Web:</b> Node.js, Express, FastAPI, REST APIs, React, Electron, Three.js/WebGL, WebAssembly</p>
+    <p><b>Data &amp; DevOps:</b> PostgreSQL, Supabase, SQLite, Docker, CI/CD (GitHub Actions), Git, Vitest, Playwright, Vercel, Render</p>
+    <p><b>Security &amp; Cryptography:</b> AES-GCM, Argon2id, HKDF, Ed25519/X25519, Shamir sharing, Merkle trees, RFC 3161, WebAuthn, static analysis</p>
   </div>
 
   <h2>Achievements</h2>
   <ul>
-    <li><b>4th Open Scientific Intelligence Hackathon 2026:</b> solo entry, new best-known records on the HorizonMath Kakeya benchmark.</li>
+    <li><b>4th Open Scientific Intelligence Hackathon 2026:</b> solo entry, new best-known records on HorizonMath.</li>
     <li><b>NASA Space Apps Challenge 2026:</b> 2 entries; SPHEREx Moving Sky recovered 94% (83 of 88) of bright known asteroids against 2,762 JPL predictions.</li>
-    <li><b>IEEE SMCS Search &amp; Rescue Competition 2026:</b> Team Terminal 3, modular multi-robot rescue system in Python.</li>
+    <li><b>IEEE SMCS Search &amp; Rescue Competition 2026:</b> Team Terminal 3, multi-robot rescue system in Python.</li>
   </ul>
 </main>
 </body>
