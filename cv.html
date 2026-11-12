@@ -12,8 +12,8 @@
   @page { size: A4; margin: 0; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { background: #2b2b2e; }
-  body { font: 400 10pt/1.4 Charter, 'Bitstream Charter', Georgia, serif; color: #000; font-kerning: none; font-variant-ligatures: none; font-feature-settings: 'kern' 0, 'liga' 0; -webkit-font-smoothing: antialiased; }
-  .page { width: 210mm; min-height: 297mm; margin: 28px auto; padding: 13mm 12mm 10mm; background: #fff; box-shadow: 0 20px 60px #0008; }
+  body { font: 400 10pt/1.33 Charter, 'Bitstream Charter', Georgia, serif; color: #000; font-kerning: none; font-variant-ligatures: none; font-feature-settings: 'kern' 0, 'liga' 0; -webkit-font-smoothing: antialiased; }
+  .page { width: 210mm; min-height: 297mm; margin: 28px auto; padding: 11mm 12mm 8mm; background: #fff; box-shadow: 0 20px 60px #0008; }
   a { color: inherit; text-decoration: underline; text-decoration-thickness: .5pt; text-underline-offset: 1.5pt; }
   header { text-align: center; }
   h1 { font: 700 22pt/1.05 Charter, Georgia, serif; }
@@ -21,7 +21,7 @@
   .contact { margin-top: 2pt; font-size: 8.9pt; }
   .contact span { white-space: nowrap; }
   .contact span + span::before { content: '| '; }
-  h2 { margin: 12pt 0 4pt; padding-bottom: 1pt; border-bottom: .7pt solid #000; font: 700 10.5pt Charter, Georgia, serif; text-transform: uppercase; }
+  h2 { margin: 10pt 0 3.5pt; padding-bottom: 1pt; border-bottom: .7pt solid #000; font: 700 10.5pt Charter, Georgia, serif; text-transform: uppercase; }
   
   .item { margin-top: 6pt; break-inside: avoid; }
   .row { display: flex; justify-content: space-between; gap: 10pt; align-items: baseline; }
@@ -86,19 +86,28 @@
     </ul>
   </div>
 
+  <div class="item">
+    <div class="row"><span><b>ARC-AGI-2 Solver</b> | <i>Python, vLLM, Unsloth, Qwen3 27B, Kaggle GPUs</i></span><span class="r">ARC Prize 2026 · Paper Track</span></div>
+    <ul>
+      <li>Served a 27B LLM at 3× throughput (146 to 448 tokens/s) on 4 L4 GPUs with vLLM and 4-bit quantization.</li>
+      <li>Showed enumerated programs were right 90% of the time vs 33% for LLM-written ones; raised the score 21%.</li>
+    </ul>
+  </div>
+
   <h2>Technical Skills</h2>
   <div class="skills">
     <p><b>Languages:</b> Python, Java, TypeScript, JavaScript, Go, Rust, C++, SQL, HTML/CSS</p>
     <p><b>CS Fundamentals:</b> Data Structures &amp; Algorithms, Object-Oriented Programming, Operating Systems, System Design</p>
-    <p><b>AI / LLM:</b> AI agents, RAG, vector search, LLM evaluation, prompt engineering, tool calling, Ollama, vLLM</p>
-    <p><b>Backend &amp; Web:</b> Node.js, Express, FastAPI, REST APIs, React, Electron, Three.js/WebGL, WebAssembly</p>
+    <p><b>AI / ML:</b> Agentic AI, multi-agent systems, RAG, vector search, MCP, LLM evaluation, fine-tuning, quantization</p>
+    <p><b>LLM Tooling:</b> vLLM, Ollama, Unsloth, Vercel AI SDK, OpenAI, Anthropic and Gemini APIs, prompt engineering</p>
+    <p><b>Backend &amp; Web:</b> Node.js, Express, FastAPI, REST APIs, Webhooks, React, Tailwind CSS, Electron, WebAssembly</p>
     <p><b>Data &amp; DevOps:</b> PostgreSQL, Supabase, SQLite, Docker, CI/CD (GitHub Actions), Git, Vitest, Playwright, Vercel, Render</p>
-    <p><b>Security:</b> AES-GCM, Argon2id, HKDF, Ed25519, Shamir sharing, Merkle trees, WebAuthn, static analysis</p>
+    <p><b>Security:</b> Zero-trust architecture, threat modeling, cryptography (AES-GCM, Argon2id, Ed25519), WebAuthn, SAST</p>
   </div>
 
   <h2>Achievements</h2>
   <ul>
-    <li><b>ARC Prize 2026:</b> top 31% (#1,090 of 3,578 teams) solo; raised the score 21% by rebalancing GPU time.</li>
+    <li><b>ARC Prize 2026:</b> top 31% (#1,090 of 3,578 teams) solo, with a Paper Track research write-up.</li>
     <li><b>PayPal AI Hackathon 2026:</b> built Branch Pay, 4 AI agents that invoice and collect via PayPal APIs.</li>
     <li><b>4th Open Scientific Intelligence Hackathon:</b> records at all 3 sizes of the HorizonMath Kakeya benchmark.</li>
     <li><b>NASA Space Apps 2026:</b> found 94% (83 of 88) of bright known asteroids in NASA SPHEREx images.</li>
