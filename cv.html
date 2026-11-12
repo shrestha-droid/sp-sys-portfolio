@@ -12,22 +12,22 @@
   @page { size: A4; margin: 0; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { background: #2b2b2e; }
-  body { font: 400 10.2pt/1.3 Charter, 'Bitstream Charter', Georgia, serif; color: #000; font-kerning: none; font-variant-ligatures: none; font-feature-settings: 'kern' 0, 'liga' 0; -webkit-font-smoothing: antialiased; }
-  .page { width: 210mm; min-height: 297mm; margin: 28px auto; padding: 10mm 13mm 9mm; background: #fff; box-shadow: 0 20px 60px #0008; }
+  body { font: 400 9.8pt/1.24 Charter, 'Bitstream Charter', Georgia, serif; color: #000; font-kerning: none; font-variant-ligatures: none; font-feature-settings: 'kern' 0, 'liga' 0; -webkit-font-smoothing: antialiased; }
+  .page { width: 210mm; min-height: 297mm; margin: 28px auto; padding: 8.5mm 12mm 6mm; background: #fff; box-shadow: 0 20px 60px #0008; }
   a { color: inherit; text-decoration: underline; text-decoration-thickness: .5pt; text-underline-offset: 1.5pt; }
   header { text-align: center; }
   h1 { font: 700 22pt/1.05 Charter, Georgia, serif; }
   .contact { margin-top: 3pt; font-size: 8.9pt; }
   .contact span { white-space: nowrap; }
   .contact span + span::before { content: '| '; }
-  h2 { margin: 7.5pt 0 2.5pt; padding-bottom: 1pt; border-bottom: .7pt solid #000; font: 700 10.5pt Charter, Georgia, serif; text-transform: uppercase; }
+  h2 { margin: 6.5pt 0 2pt; padding-bottom: 1pt; border-bottom: .7pt solid #000; font: 700 10.5pt Charter, Georgia, serif; text-transform: uppercase; }
   
   .item { margin-top: 4pt; break-inside: avoid; }
   .row { display: flex; justify-content: space-between; gap: 10pt; align-items: baseline; }
   .row b { font-weight: 700; }
   .row i { font-style: italic; }
   .row .r { flex: none; text-align: right; }
-  ul { margin: 1.5pt 0 0 14pt; } li { margin-top: 1.4pt; padding-left: 1pt; }
+  ul { margin: 1.5pt 0 0 14pt; } li { margin-top: 1pt; padding-left: 1pt; }
   .skills p { margin-top: 1.2pt; } .skills b { font-weight: 700; }
   .bar { position: fixed; top: 12px; right: 16px; display: flex; gap: 8px; font: 500 12px system-ui, sans-serif; }
   .bar a { padding: 8px 12px; border-radius: 6px; background: #fff; color: #111; box-shadow: 0 2px 10px #0006; text-decoration: none; }
@@ -45,7 +45,7 @@
   </header>
 
   <h2>Summary</h2>
-  <p class="summary">Software engineer and founder building AI systems and security software. Shipped 13 projects since July 2026, 11 of them live in production, with 629 commits, 88,000 lines of code and 1,577 automated tests across TypeScript, Python and C++. Beat Google DeepMind's AlphaEvolve on a published mathematics benchmark.</p>
+  <p class="summary">Software engineer and founder working where security engineering, applied cryptography and AI systems meet. Shipped 13 projects since July 2026, 11 of them live, with 752 commits, 97,000 lines of code and 1,763 automated tests across TypeScript, Python and C++. Beat Google DeepMind's AlphaEvolve on a published mathematics benchmark.</p>
 
   <h2>Education</h2>
   <div class="item">
@@ -56,35 +56,30 @@
   <h2>Experience</h2>
   <div class="item">
     <div class="row"><b>Founder &amp; Lead Engineer</b><span class="r">Jul 2026 – Present</span></div>
-    <div class="row"><i>Syntrophy · Branch HQ, an AI software delivery platform</i><i class="r"><a href="https://shrestha-droid.github.io/branchhq/">shrestha-droid.github.io/branchhq</a></i></div>
+    <div class="row"><i>Syntrophy · Branch HQ, verifiable AI software delivery for regulated industries</i><i class="r"><a href="https://shrestha-droid.github.io/branchhq/">shrestha-droid.github.io/branchhq</a></i></div>
     <ul>
-      <li>Architected Branch HQ, an Electron desktop platform where 6 specialised AI agents plan, write, review and run software, delivering every change as a pull request that carries its own audit evidence.</li>
-      <li>Wrote 57,000+ lines of TypeScript and Python across 509 commits in 8 weeks, covered by 1,438 automated test cases in Vitest.</li>
-      <li>Engineered a 4-check release gate on every build: a deterministic AST security scan, review by an independent model, a live launch with data read back, and a hash-chained, tamper-evident audit log.</li>
-      <li>Delivered 27 of 32 (84%) unseen build requests end to end across 6 model providers, including fully local models where no code leaves the machine.</li>
+      <li>Architected a 64,000-line Electron platform (100 main-process modules, 623 commits, 1,567 tests) where 6 AI agents plan, build, review and run full-stack apps, solving the gap that blocks regulated teams from AI code: no proof of what checked it, which model wrote it or who approved it.</li>
+      <li>Built a deterministic Babel-AST security gate with cross-agent checks (auth, route and import mismatches) that blocks unsafe code before any model reviews it, feeding exact failures back to the agent as retry instructions and self-healing runtime crashes.</li>
+      <li>Benchmarked the scanner at 0 false alarms across 49,000+ files of 15 production codebases (Ghost, Bitwarden, Gitea) while catching every covered hole in 10 deliberately vulnerable apps in 7 languages; flagged serious flaws in 35 of 94 public AI-built apps.</li>
+      <li>Designed cryptographic provenance: a SHA-256 hash-chained audit log anchored in the OS keychain, RFC 3161 timestamps and RFC 6962 Merkle inclusion proofs, so a standalone verifier proves from git history alone which code AI wrote and who approved it.</li>
+      <li>Secured multi-office delegation with Ed25519 identities and an X25519/HKDF + AES-256-GCM relay the server can neither read nor forge; sandboxed agent commands (no shell, secrets stripped) and masked personal data before any prompt leaves the machine.</li>
+      <li>Shipped support for 6 model providers (Azure OpenAI, AWS Bedrock, Anthropic, OpenAI, Gemini, local), delivering changes as GitHub/GitLab pull requests; completed 27 of 32 (84%) unseen build requests end to end.</li>
     </ul>
   </div>
 
   <h2>Projects</h2>
   <div class="item">
-    <div class="row"><span><b>Zero-Trust Vault</b> | <i>TypeScript, WebCrypto, Argon2id (WASM), WebAuthn</i></span><span class="r"><a href="https://www.zerotrustvault.in">zerotrustvault.in</a></span></div>
+    <div class="row"><span><b>Zero-Trust Vault</b> | <i>TypeScript, WebCrypto, Argon2id (WASM), WebAuthn, Supabase</i></span><span class="r"><a href="https://www.zerotrustvault.in">zerotrustvault.in</a></span></div>
     <ul>
-      <li>Built a zero-knowledge vault on key-committed AES-256-GCM, unlocked by any K of N Shamir shards (<span style="white-space:nowrap">2–16</span>), a 256 MiB Argon2id passphrase, or a hardware passkey (WebAuthn PRF).</li>
-      <li>Implemented forged-shard detection when more than K shards are submitted; isolated all cryptography in a Web Worker under strict CSP and Trusted Types.</li>
-      <li>Automated a daily public CI job that proves hosted and offline builds are byte-identical; 7,000+ lines and 73 test cases.</li>
+      <li>Designed a zero-knowledge vault format where any K of N Shamir shards (<span style="white-space:nowrap">2–16</span>), a 256 MiB Argon2id passphrase, both as two-factor (HKDF), or a hardware passkey (WebAuthn PRF) independently unlock one AES-256-GCM key, so secrets survive the loss of any single person or device.</li>
+      <li>Closed AES-GCM's multi-key ("invisible salamanders") attack with HMAC key commitment, and added hash-based shard commitments that name a forged shard even when it carries a valid checksum.</li>
+      <li>Hardened the client against its own host: keys live only in a Web Worker under hash-pinned CSP and Trusted Types, and a daily public CI job proves the hosted app is byte-identical to the offline build; 73 tests plus row-level-security attack tests on real Postgres.</li>
     </ul>
   </div>
   <div class="item">
     <div class="row"><span><b>Kakeya Records</b> | <i>Python, NumPy, Numba</i></span><span class="r"><a href="https://shrestha-droid.github.io/kakeya-records/">shrestha-droid.github.io/kakeya-records</a></span></div>
     <ul>
-      <li>Directed an AI research agent to new best-known Kakeya constructions at all 3 published sizes, beating Google DeepMind's AlphaEvolve by 6.88% and GPT-5.4 Pro by 2.05% at N = 128.</li>
-      <li>Set the first record in 63 minutes on an 8 GB laptop; certified every result with the HorizonMath official validator and an exact rational-arithmetic verifier.</li>
-    </ul>
-  </div>
-  <div class="item">
-    <div class="row"><span><b>SPHEREx Moving Sky</b> | <i>Python, FITS, JPL Horizons</i></span><span class="r"><a href="https://spherex-moving-sky.vercel.app">spherex-moving-sky.vercel.app</a></span></div>
-    <ul>
-      <li>Detected moving objects in NASA SPHEREx all-sky images by range-reading only the needed rows of 69 MB FITS files, recovering 94% (83 of 88) of bright known asteroids against 2,762 JPL predictions.</li>
+      <li>Directed an AI research agent to new best-known Kakeya constructions at all 3 published sizes, beating Google DeepMind's AlphaEvolve by 6.88% and GPT-5.4 Pro by 2.05% at N = 128; first record in 63 minutes on an 8 GB laptop, each certified by an exact rational-arithmetic verifier.</li>
     </ul>
   </div>
 
@@ -93,16 +88,16 @@
     <p><b>Languages:</b> TypeScript, JavaScript, Python, C++, SQL, HTML/CSS</p>
     <p><b>Frameworks:</b> React, Node.js, Express, FastAPI, Electron, Three.js/WebGL, NumPy</p>
     <p><b>AI Systems:</b> Multi-agent orchestration, LLM tool calling, OpenAI, Anthropic and Gemini APIs</p>
-    <p><b>Security:</b> WebCrypto, AES-GCM, Argon2id, Shamir secret sharing, WebAuthn, CSP</p>
-    <p><b>Tools:</b> Git, GitHub Actions, Vitest, WebAssembly, Vite, Vercel</p>
+    <p><b>Security &amp; Cryptography:</b> AES-GCM, Argon2id, HKDF, Ed25519/X25519, Shamir sharing, Merkle trees, RFC 3161, WebAuthn, AST analysis</p>
+    <p><b>Tools:</b> Git, GitHub Actions, Vitest, Playwright, WebAssembly, Supabase, Vercel</p>
     
   </div>
 
   <h2>Achievements</h2>
   <ul>
-    <li><b>4th Open Scientific Intelligence Hackathon 2026:</b> solo entry, set new best-known records on the HorizonMath Kakeya benchmark.</li>
-    <li><b>NASA Space Apps Challenge 2026:</b> built 2 entries, SPHEREx Moving Sky and a CLPS lunar landing-site browser on JPL Horizons data.</li>
-    <li><b>IEEE SMCS Search &amp; Rescue Competition 2026:</b> Team Terminal 3, built a modular multi-robot rescue system in Python.</li>
+    <li><b>4th Open Scientific Intelligence Hackathon 2026:</b> solo entry, new best-known records on the HorizonMath Kakeya benchmark.</li>
+    <li><b>NASA Space Apps Challenge 2026:</b> 2 entries; SPHEREx Moving Sky recovered 94% (83 of 88) of bright known asteroids against 2,762 JPL predictions.</li>
+    <li><b>IEEE SMCS Search &amp; Rescue Competition 2026:</b> Team Terminal 3, modular multi-robot rescue system in Python.</li>
   </ul>
 </main>
 </body>
