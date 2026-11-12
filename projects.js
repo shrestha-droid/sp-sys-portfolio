@@ -3,6 +3,42 @@
 // `embed` is false where the site refuses framing (X-Frame-Options) or nothing is deployed.
 const PROJECTS = [
   {
+    id: 'arc-agi-2', title: "ARC-AGI-2 Solver", kind: "ARC Prize 2026 · Kaggle + Paper Track", year: 2026, stats: [["30.69", "best public score, #1,090 of 3,578 teams"], ["90% vs 33%", "right when a program passes: enumerated vs LLM-written"], ["448 tok/s", "27B model on four L4 GPUs, up from 146"]], summary: "A Kaggle solver and research paper that measure what passing the examples is really worth for programs, a fine-tuned model and a reasoning LLM.", accent: '#FF4136', tagline: "A passed check is only as good as <em>the space it was searched from.</em>", media: ["arc-agi-2", "arc-agi-2-programs", "arc-agi-2-agent"], embed: false,
+    role: 'Project lead (solo) · directing an AI research agent',
+    concept: 'My solo entry to ARC Prize 2026. An ARC task can check its own answers: a candidate rule must reproduce every example pair. I measured what that check is worth for each answer source, then built the submission around the result, with enumerated programs, the NVARC model and a Qwen3.8-27B agent sharing 12 offline hours on four L4 GPUs. The findings went to the Paper Track as "Verify Before You Guess".',
+    live: '', repo: '',
+    blocks: [
+      ['What a pass is worth', [
+        ['Enumerated programs:', 'small search spaces stay precise. 115 of 128 passing programs were right on the test output.'],
+        ['LLM-written programs:', 'only 11 of 33 verified predictions were right, because a model can invent a rule that fits two or three examples.'],
+        ['Checks have blind spots:', 'validated invariants flagged 0 of the model\'s 22 wrong answers, so the second attempt comes from an independent source, not a filter.']]],
+      ['The system', [
+        ['Three sources:', 'about 190 enumerated grid transforms, NVARC\'s test-time fine-tuned 4B model, and a 27B agent that writes programs and repairs them from a cell-level error map.'],
+        ['Serving:', '4-bit weights on two vLLM replicas raised throughput 1.5× over the 8-bit setup and took smoke tests from 6/25 to 9/25.']]],
+      ['Measured, not projected', [
+        ['The split matters:', 'moving four hours from the agent to NVARC took the same system from 25.28 to 30.69.'],
+        ['Honest limits:', 'copies of NVARC alone score 29.3 to 33.9, so 30.69 does not show pairing beats it, and the leaders scored above 80.']]],
+    ],
+    stack: 'Python, Qwen3.8-27B, Qwen3-4B (NVARC), vLLM, Unsloth, Kaggle L4 GPUs',
+  },
+  {
+    id: 'branch-pay', title: "Branch Pay", kind: "PayPal AI Hackathon 2026 · agentic commerce", year: 2026, stats: [["4", "AI agents, one job each"], ["10", "PayPal API endpoints, hand-written REST"], ["402", "HTTP status until PayPal says paid"]], summary: "AI agents quote a job, bill it through PayPal, chase the payment, and release the work only when PayPal says it's paid. Clients' AI assistants can hire it over MCP.", accent: '#1f3fa0', tagline: "The work ships when the <em>invoice clears.</em>", media: ["branch-pay"], embed: true,
+    concept: 'Freelancers and small agencies lose money on the loop around the work: the quote, the invoice, the chasing, and deciding when it is safe to hand over the files. Branch Pay gives that loop to four AI agents on the PayPal sandbox and keeps a person on every money decision. A client\'s own AI assistant can request work over MCP; the agency still approves and the buyer\'s human still pays.',
+    live: 'https://branch-pay.onrender.com', repo: 'https://github.com/shrestha-droid/branch-pay',
+    blocks: [
+      ['How it works', [
+        ['Four agents:', 'the Scoper prices the request under a hard cap in code, the Biller creates and sends a PayPal invoice by tool calling, the Collector writes reminders and sends them on its own (max 3), and the Builder makes the site once PayPal reports payment.'],
+        ['Deposit plans:', 'the client pays 50% for a watermarked preview, then the balance for the final files, through PayPal\'s native partial payments or, where the merchant\'s country has none, a deposit and a balance invoice. Refunds go back through PayPal and lock the work again.']]],
+      ['Agentic commerce', [
+        ['MCP server:', 'a buyer\'s AI assistant can request_quote, get_job and list_jobs. It cannot approve, pay or refund.'],
+        ['HTTP 402:', 'locked work answers Payment Required with a machine-readable PayPal payment link, in the spirit of x402.']]],
+      ['Safety by design', [
+        ['Money never flows from the model:', 'the Biller\'s tools take only a note and payment terms; amounts and recipient come from the approved quote, following 2025 research on securing LLM agents against prompt injection (CaMeL, design patterns).'],
+        ['Honest limits:', 'sandbox only, JSON-file storage, and the free instance sleeps when idle.']]],
+    ],
+    stack: 'TypeScript, Express, Gemini (Vercel AI SDK), PayPal Invoicing + Payments APIs, Webhooks, MCP, AG Grid, Render',
+  },
+  {
     id: 'conclave', title: "Conclave", kind: "Command-line tool · Multi-model AI", year: 2026, stats: [["3", "provider CLIs in one workflow"], ["2", "advisers consulted in parallel"], ["2", "Claude lead stages: brief + synthesis"]], summary: "Claude leads each task, gathers independent opinions from Gemini and Codex, then returns one considered answer in a Branch HQ-inspired terminal dashboard.", accent: '#5e5ce6', tagline: "One lead. Two second opinions. <em>One answer.</em>", media: [], embed: false,
     role: 'Product design & implementation',
     concept: 'Conclave is a terminal roundtable: Claude frames the question, Gemini and Codex offer independent opinions, and Claude weighs their reasoning before answering. Each provider model is configurable per run or in a local TOML file.',

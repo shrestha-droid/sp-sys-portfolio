@@ -4,6 +4,8 @@ const root = document.getElementById('dossier');
 
 // Only the fonts this project's real identity uses (themes.css), instead of every family on every page.
 const FONTS = {
+    'branch-pay': 'Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500',
+    'arc-agi-2': 'Noto+Sans:wght@400;600;800&family=IBM+Plex+Mono:wght@400;500',
     'conclave': 'Instrument+Serif:ital@0;1&family=Silkscreen&family=Inter:wght@400;500;600',
     'branch-hq': 'Instrument+Serif:ital@0;1&family=Silkscreen&family=Inter:wght@400;500;600',
     'vault-v2': 'Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=Archivo:wdth,wght@62..125,400..700&family=IBM+Plex+Mono:wght@400;500',
