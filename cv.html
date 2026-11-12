@@ -42,12 +42,12 @@
 <main class="page">
   <header>
     <h1>Shrestha Pandey</h1>
-    <p class="headline">Software Engineer | AI Systems &amp; Security | Founder, Syntrophy</p>
+    <p class="headline">AI Systems Engineer</p>
     <p class="contact"><span>Bhopal, India</span> <span><a href="tel:+919354174504">+91 93541 74504</a></span> <span><a href="mailto:shresthakp07@gmail.com">shresthakp07@gmail.com</a></span> <span><a href="https://www.linkedin.com/in/shrestha-pandey-7258103aa/">linkedin.com/in/shrestha-pandey-7258103aa</a></span> <span><a href="https://github.com/shrestha-droid">github.com/shrestha-droid</a></span> <span><a href="https://sp-sys-portfolio.vercel.app">sp-sys-portfolio.vercel.app</a></span></p>
   </header>
 
   <h2>Summary</h2>
-  <p class="summary">Founder and full-stack engineer with 15 shipped projects (12 live), 866 commits and 1,800 automated tests in 4 months, including a 64,000-line AI delivery platform and a math record that beat Google DeepMind's AlphaEvolve.</p>
+  <p class="summary">AI systems engineer and founder of Syntrophy, building AI software delivery and security tooling that regulated teams can audit. 15 projects shipped since July 2026, 12 of them live, with 1,800+ automated tests across projects.</p>
 
   <h2>Education</h2>
   <div class="item">
@@ -61,10 +61,10 @@
     <div class="row"><i>Syntrophy · Branch HQ, AI software delivery for regulated industries</i><i class="r"><a href="https://branchhq.online">branchhq.online</a></i></div>
     <ul>
       <li>Architected a 64,000-line Electron app with 1,567 tests where 6 AI agents build, review and run software.</li>
-      <li>Developed a Babel-AST security gate that blocks unsafe code before review and self-heals runtime crashes.</li>
-      <li>Achieved 0 false alarms on 49,000+ files of 15 codebases; flagged real flaws in 35 of 94 AI-generated apps.</li>
-      <li>Engineered tamper-evident provenance: a SHA-256 hash chain, RFC 3161 timestamps and Merkle proofs.</li>
-      <li>Secured cross-office work with Ed25519 signing and an end-to-end encrypted relay (X25519, AES-GCM).</li>
+      <li>Developed a static security gate (Babel AST) that blocks unsafe code before review and self-heals crashes.</li>
+      <li>Validated the gate on 15 open-source codebases (49,000+ files) with 0 false alarms, each finding hand-checked.</li>
+      <li>Audited 94 public AI-generated apps with the same scanner and confirmed serious security flaws in 35 (37%).</li>
+      <li>Created a tamper-proof audit trail that lets auditors verify which code AI wrote and who approved it.</li>
       <li>Integrated 6 LLM providers, from Azure OpenAI to local Ollama; delivered 27 of 32 (84%) unseen builds.</li>
     </ul>
   </div>
@@ -73,44 +73,43 @@
   <div class="item">
     <div class="row"><span><b>Zero-Trust Vault</b> | <i>TypeScript, WebCrypto, Argon2id (WASM), WebAuthn, Supabase</i></span><span class="r"><a href="https://www.zerotrustvault.in">zerotrustvault.in</a></span></div>
     <ul>
-      <li>Designed a zero-knowledge vault with 4 unlock methods, including 2–16 Shamir shards; servers see 0 keys.</li>
-      <li>Prevented AES-GCM multi-key attacks with HMAC key commitment, verified by 73 automated tests.</li>
+      <li>Designed a zero-knowledge vault where secrets survive a lost key: 4 unlock methods, 2–16 Shamir shards.</li>
+      <li>Prevented a known AES-GCM multi-key attack with key commitment, verified by 73 automated tests.</li>
       <li>Reduced attack surface by isolating keys in a Web Worker; daily CI proves 2 builds are byte-identical.</li>
     </ul>
   </div>
   <div class="item">
     <div class="row"><span><b>Kakeya Records</b> | <i>Python, NumPy, Numba</i></span><span class="r"><a href="https://shrestha-droid.github.io/kakeya-records/">shrestha-droid.github.io/kakeya-records</a></span></div>
     <ul>
-      <li>Outperformed Google DeepMind's AlphaEvolve by 6.88% and GPT-5.4 Pro by 2.05% on a Kakeya benchmark.</li>
+      <li>Set records at all 3 sizes of the HorizonMath Kakeya benchmark, exceeding published AlphaEvolve results by 6.88%.</li>
       <li>Directed an AI research agent to the first record in 63 minutes on an 8 GB laptop, proven in exact arithmetic.</li>
     </ul>
   </div>
 
   <div class="item">
-    <div class="row"><span><b>ARC-AGI-2 Solver</b> | <i>Python, vLLM, Unsloth, Qwen3 27B, Kaggle GPUs</i></span><span class="r">ARC Prize 2026 · Paper Track</span></div>
+    <div class="row"><span><b>ARC-AGI-2 Solver</b> | <i>Python, vLLM, Unsloth, Qwen3 27B, Kaggle GPUs</i></span><span class="r">ARC Prize 2026 · top 31% of 3,578 teams, solo</span></div>
     <ul>
       <li>Tripled 27B LLM throughput (146 to 448 tokens/s) on 4 L4 GPUs with vLLM and 4-bit quantization.</li>
-      <li>Measured enumerated programs as 90% accurate vs 33% for LLM-written ones; raised the score 21%.</li>
+      <li>Measured enumerated programs as 90% accurate vs 33% for LLM-written ones; wrote it up for the Paper Track.</li>
     </ul>
   </div>
 
   <h2>Technical Skills</h2>
   <div class="skills">
-    <p><b>Languages:</b> Python, Java, TypeScript, JavaScript, Go, Rust, C++, SQL, HTML/CSS</p>
+    <p><b>Languages:</b> Proficient: Python, TypeScript, JavaScript, C++, SQL · Familiar: Java, Go, Rust</p>
     <p><b>CS Fundamentals:</b> Data Structures &amp; Algorithms, Object-Oriented Programming, Operating Systems, System Design</p>
     <p><b>AI / ML:</b> Agentic AI, multi-agent systems, RAG, vector search, MCP, LLM evaluation, fine-tuning, quantization</p>
     <p><b>LLM Tooling:</b> vLLM, Ollama, Unsloth, Vercel AI SDK, OpenAI, Anthropic and Gemini APIs, prompt engineering</p>
     <p><b>Backend &amp; Web:</b> Node.js, Express, FastAPI, REST APIs, Webhooks, React, Tailwind CSS, Electron, WebAssembly</p>
     <p><b>Data &amp; DevOps:</b> PostgreSQL, Supabase, SQLite, Docker, CI/CD (GitHub Actions), Git, Vitest, Playwright, Vercel, Render</p>
-    <p><b>Security:</b> Zero-trust architecture, threat modeling, cryptography (AES-GCM, Argon2id, Ed25519), WebAuthn, SAST</p>
+    <p><b>Security:</b> Zero-trust architecture, threat modeling, AES-GCM, Argon2id, Ed25519, hash chains, Merkle trees, SAST</p>
   </div>
 
-  <h2>Achievements</h2>
+  <h2>Hackathons &amp; Competitions</h2>
   <ul>
-    <li><b>ARC Prize 2026:</b> top 31% (#1,090 of 3,578 teams) solo, with a Paper Track research write-up.</li>
     <li><b>PayPal AI Hackathon 2026:</b> Branch Pay, 4 AI agents that invoice and collect payment via 10 PayPal API endpoints.</li>
-    <li><b>4th Open Scientific Intelligence Hackathon:</b> records at all 3 sizes of the HorizonMath Kakeya benchmark.</li>
-    <li><b>NASA Space Apps 2026:</b> detected 94% (83 of 88) of bright known asteroids in NASA SPHEREx images.</li>
+    <li><b>4th Open Scientific Intelligence Hackathon 2026:</b> solo entry that produced the Kakeya records above.</li>
+    <li><b>NASA Space Apps Challenge 2026:</b> detected 94% (83 of 88) of bright known asteroids in NASA SPHEREx images.</li>
     <li><b>IEEE SMCS Search &amp; Rescue 2026:</b> implemented a 4-module multi-robot rescue system in a 3-person team.</li>
   </ul>
 </main>
