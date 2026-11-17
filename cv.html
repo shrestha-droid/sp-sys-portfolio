@@ -14,21 +14,21 @@
   html { background: #2b2b2e; }
   body { font: 400 10pt/1.33 Charter, 'Bitstream Charter', Georgia, serif; color: #000; font-kerning: none; font-variant-ligatures: none; font-feature-settings: 'kern' 0, 'liga' 0; -webkit-font-smoothing: antialiased; }
   .page { width: 210mm; min-height: 297mm; margin: 28px auto; padding: 11mm 12mm 8mm; background: #fff; box-shadow: 0 20px 60px #0008; }
-  a { color: inherit; text-decoration: underline; text-decoration-thickness: .5pt; text-underline-offset: 1.5pt; }
+  a { color: #1c3d7a; text-decoration: underline; text-decoration-thickness: .5pt; text-underline-offset: 1.5pt; }
   header { text-align: center; }
-  h1 { font: 700 22pt/1.05 Charter, Georgia, serif; }
-  .headline { margin-top: 2pt; font-size: 11pt; font-style: italic; }
-  .contact { margin-top: 2pt; font-size: 8.9pt; }
+  h1 { font: 700 22pt/1.05 Charter, Georgia, serif; color: #8a1018; }
+  .headline { margin-top: 2pt; font-size: 11pt; font-style: italic; color: #1c3d7a; }
+  .contact { margin-top: 1pt; font-size: 8.9pt; }
   .contact span { white-space: nowrap; }
   .contact span + span::before { content: '| '; }
-  h2 { margin: 10pt 0 3.5pt; padding-bottom: 1pt; border-bottom: .7pt solid #000; font: 700 10.5pt Charter, Georgia, serif; text-transform: uppercase; }
+  h2 { margin: 10pt 0 3.5pt; padding-bottom: 1pt; border-bottom: .7pt solid #8a1018; font: 700 10.5pt Charter, Georgia, serif; text-transform: uppercase; color: #8a1018; }
   
   .item { margin-top: 6pt; break-inside: avoid; }
   .row { display: flex; justify-content: space-between; gap: 10pt; align-items: baseline; }
-  .row b { font-weight: 700; }
+  .row b { font-weight: 700; color: #1c3d7a; }
   .row i { font-style: italic; }
   .row .r { flex: none; text-align: right; }
-  ul { margin: 1.5pt 0 0 14pt; } li { margin-top: 2.2pt; padding-left: 1pt; }
+  ul { margin: 1.5pt 0 0 14pt; } li { margin-top: 2.2pt; padding-left: 1pt; } li::marker { color: #8a1018; }
   .skills p { margin-top: 2pt; } .skills b { font-weight: 700; }
   .bar { position: fixed; top: 12px; right: 16px; display: flex; gap: 8px; font: 500 12px system-ui, sans-serif; }
   .bar a { padding: 8px 12px; border-radius: 6px; background: #fff; color: #111; box-shadow: 0 2px 10px #0006; text-decoration: none; }
@@ -43,7 +43,8 @@
   <header>
     <h1>Shrestha Pandey</h1>
     <p class="headline">AI Systems Engineer</p>
-    <p class="contact"><span>Bhopal, India</span> <span><a href="tel:+919354174504">+91 93541 74504</a></span> <span><a href="mailto:shresthakp07@gmail.com">shresthakp07@gmail.com</a></span> <span><a href="https://www.linkedin.com/in/shrestha-pandey-7258103aa/">linkedin.com/in/shrestha-pandey-7258103aa</a></span> <span><a href="https://github.com/shrestha-droid">github.com/shrestha-droid</a></span> <span><a href="https://sp-sys-portfolio.vercel.app">sp-sys-portfolio.vercel.app</a></span></p>
+    <p class="contact"><span>Bhopal, India</span> <span><a href="tel:+919354174504">+91 93541 74504</a></span> <span><a href="mailto:shresthakp07@gmail.com">shresthakp07@gmail.com</a></span></p>
+    <p class="contact"><span><a href="https://www.linkedin.com/in/shrestha-pandey-7258103aa/">linkedin.com/in/shrestha-pandey-7258103aa</a></span> <span><a href="https://github.com/shrestha-droid">github.com/shrestha-droid</a></span> <span><a href="https://sp-sys-portfolio.vercel.app">sp-sys-portfolio.vercel.app</a></span></p>
   </header>
 
   <h2>Summary</h2>
@@ -61,10 +62,10 @@
     <div class="row"><i>Syntrophy · Branch HQ, AI software delivery for regulated industries</i><i class="r"><a href="https://branchhq.online">branchhq.online</a></i></div>
     <ul>
       <li>Architected a 64,000-line Electron app with 1,567 tests where 6 AI agents build, review and run software.</li>
-      <li>Developed a static security gate (Babel AST) that blocks unsafe code before review and self-heals crashes.</li>
+      <li>Developed a Babel AST security gate that blocks unsafe code; raised OWASP Juice Shop coverage from 5 to 17 of 25.</li>
       <li>Validated the gate on 15 open-source codebases (49,000+ files) with 0 false alarms, each finding hand-checked.</li>
       <li>Audited 94 public AI-generated apps with the same scanner and confirmed serious security flaws in 35 (37%).</li>
-      <li>Created a tamper-evident audit trail that lets auditors verify which code AI wrote and who approved it.</li>
+      <li>Created a tamper-evident audit trail (Ed25519, RFC 3161) of which code AI wrote, verifiable by anyone in 4 checks.</li>
       <li>Integrated 6 LLM providers, from Azure OpenAI to local Ollama; delivered 27 of 32 (84%) unseen builds.</li>
     </ul>
   </div>
@@ -107,9 +108,9 @@
 
   <h2>Hackathons &amp; Competitions</h2>
   <ul>
-    <li><b>PayPal AI Hackathon 2026:</b> Branch Pay, 4 AI agents that invoice and collect payment via 10 PayPal API endpoints.</li>
+    <li><b>PayPal AI Hackathon 2026:</b> built Branch Pay, 4 AI agents that invoice and collect payment via 10 PayPal endpoints.</li>
     <li><b>NASA Space Apps Challenge 2026:</b> detected 94% (83 of 88) of bright known asteroids in NASA SPHEREx images.</li>
-    <li><b>IEEE SMCS Search &amp; Rescue 2026:</b> implemented a 4-module multi-robot rescue system in a 3-person team.</li>
+    <li><b>IEEE SMCS Search &amp; Rescue 2026:</b> collaborated in a 3-person team on a 4-module multi-robot rescue system.</li>
   </ul>
 </main>
 </body>
