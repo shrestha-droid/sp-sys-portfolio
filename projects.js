@@ -24,7 +24,7 @@ const PROJECTS = [
   {
     id: 'branch-pay', title: "Branch Pay", kind: "PayPal AI Hackathon 2026 · agentic commerce", year: 2026, stats: [["4", "AI agents, one job each"], ["10", "PayPal API endpoints, hand-written REST"], ["402", "HTTP status until PayPal says paid"]], summary: "AI agents quote a job, bill it through PayPal, chase the payment, and release the work only when PayPal says it's paid. Clients' AI assistants can hire it over MCP.", accent: '#1f3fa0', tagline: "The work ships when the <em>invoice clears.</em>", media: ["branch-pay"], embed: true,
     concept: 'Freelancers and small agencies lose money on the loop around the work: the quote, the invoice, the chasing, and deciding when it is safe to hand over the files. Branch Pay gives that loop to four AI agents on the PayPal sandbox and keeps a person on every money decision. A client\'s own AI assistant can request work over MCP; the agency still approves and the buyer\'s human still pays.',
-    live: 'https://branch-pay.onrender.com', repo: 'https://github.com/shrestha-droid/branch-pay',
+    live: 'https://branch-pay-k85r.onrender.com', repo: 'https://github.com/shrestha-droid/branch-pay',
     blocks: [
       ['How it works', [
         ['Four agents:', 'the Scoper prices the request under a hard cap in code, the Biller creates and sends a PayPal invoice by tool calling, the Collector writes reminders and sends them on its own (max 3), and the Builder makes the site once PayPal reports payment.'],
